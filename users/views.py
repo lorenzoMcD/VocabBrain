@@ -12,12 +12,12 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.save()
             username = form.cleaned_data.get('username')
             selection = form.data['selection']
-            # working on stuff below
-            #group = Group.objects.get(name=selection)
-            #group.user_set.add(request.user.id)
+            group = Group.objects.get(name=selection)
+            user.groups.add(group)
             messages.success(request, f'Your account has been created! You are now able to login {username}!')
 
             return redirect('login')
