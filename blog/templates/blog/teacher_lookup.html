@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block content%}
+    <h1>Teacher Lookup Page</h1>
+
+
+           {% for user in users %}
+
+
+            {{ user.username| linebreaks}}
+
+
+          {% endfor %}
+
+
+{% endblock content %}
