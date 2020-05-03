@@ -1,4 +1,6 @@
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import ProfileUpdateForm
+from .forms import UserRegisterForm
+from .forms import UserUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm

@@ -3,13 +3,41 @@
     <h1>Teacher Lookup Page</h1>
 
 
+    <div class = "card card-body">
+      <form method="get">
+        {{myFilter.form}}
+
+      <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+
+    </div>
+
+
+<div class = "row">
+<div class = "col-md">
+<div class = "card card-body">
+
+    <table class = "table table-sm">
+    <thead>
+        <tr>
+
+            <th width="30%">Name</th>
+            <th width ="30%">Email</th>
+
+        </tr>
+    </thead>
+    <tbody>
            {% for user in users %}
+       <tr>
+            <th> {{ user.username}}</th>
+            <th>  {{user.email}} </th>
 
-
-            {{ user.username| linebreaks}}
-
+        </tr>
 
           {% endfor %}
-
-
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
 {% endblock content %}

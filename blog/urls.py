@@ -11,4 +11,5 @@ urlpatterns = [
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('about/', views.about, name='blog-about'),
     path('teacher_lookup/', views.teacher_lookup, name='blog-teacher_lookup'),
+    path('create_word_list/', views.create_word_list, name='blog-create_word_list'),
 ]
