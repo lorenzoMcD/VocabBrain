@@ -29,7 +29,11 @@
     <tbody>
            {% for user in users %}
        <tr>
-            <th> {{ user.username}}</th>
+            <th>
+              <a href="{{ user.username }}"> {{ user.username}} </a>
+            </th>
+
+
             <th>  {{user.email}} </th>
 
         </tr>
