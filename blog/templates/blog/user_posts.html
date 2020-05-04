@@ -1,12 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content%}
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Welcome to our site</h1>
-    <p class="lead">This site is still under construction</p>
-  </div>
-</div>
+<h1 class = "mb-3"> Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
 
     {% for post in posts%}
         <article class="media content-section">
