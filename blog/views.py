@@ -12,6 +12,8 @@ from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
+from django.contrib import messages
+from django.shortcuts import redirect
 
 
 def home(request):
@@ -36,18 +38,20 @@ def teacher_lookup(request):
     }
 
     # trying to create join group button on teacherlookup page
-    # if request.method == 'POST':
+    if request.method == 'POST':
 
-    # this grab the current user's username
-    # user = User.objects.get(username=request.user.username)
-
-    #group_name = request.POST.get("group_name", "")
+        nme = request.POST.get('group_name')
+        group = Group.objects.get(name=nme)
 
     # adds that user to the group
 
-    # group = Group.objects.get(name=str(group_name))
+        # need a if statment to check if user is already part of group...
 
-    # user.groups.add(group)
+        request.user.groups.add(group)
+
+        messages.success(request, f'You have successfully been added to this group')
+
+        return redirect('blog-home')
 
     return render(request, 'blog/teacher_lookup.html', context)
 
@@ -135,9 +139,7 @@ def faq(request):
 def student_tracker(request):
 
     # grab current users name if teacher
-   # user = User.objects.get(username=request.user.username)
     # pull up all people in their group
-    #users = User.objects.filter(groups__name=request.user.username)
 
     name = request.user.username
 
