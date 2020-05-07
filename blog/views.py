@@ -5,7 +5,8 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import DetailView
@@ -33,6 +34,21 @@ def teacher_lookup(request):
         #'users': User.objects.all()
         'users': User.objects.filter(groups__name='Teacher'), 'myFilter': myFilter
     }
+
+
+    # trying to create join group button on teacherlookup page
+    #if request.method == 'POST':
+
+        # this grab the current user's username
+       # user = User.objects.get(username=request.user.username)
+
+        #group_name = request.POST.get("group_name", "")
+
+        # adds that user to the group
+
+       # group = Group.objects.get(name=str(group_name))
+
+       # user.groups.add(group)
 
     return render(request, 'blog/teacher_lookup.html', context)
 
@@ -112,6 +128,6 @@ def create_word_list(requests):
 
     return render(request, 'blog/create_word_list.html', context)
 
-def faq(request): 
-   
-    return render(request, 'blog/faq.html', {'title': 'FAQ'}) 
+def faq(request):
+
+    return render(request, 'blog/faq.html', {'title': 'FAQ'})
