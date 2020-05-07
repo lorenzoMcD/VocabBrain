@@ -35,20 +35,19 @@ def teacher_lookup(request):
         'users': User.objects.filter(groups__name='Teacher'), 'myFilter': myFilter
     }
 
-
     # trying to create join group button on teacherlookup page
-    #if request.method == 'POST':
+    # if request.method == 'POST':
 
-        # this grab the current user's username
-       # user = User.objects.get(username=request.user.username)
+    # this grab the current user's username
+    # user = User.objects.get(username=request.user.username)
 
-        #group_name = request.POST.get("group_name", "")
+    #group_name = request.POST.get("group_name", "")
 
-        # adds that user to the group
+    # adds that user to the group
 
-       # group = Group.objects.get(name=str(group_name))
+    # group = Group.objects.get(name=str(group_name))
 
-       # user.groups.add(group)
+    # user.groups.add(group)
 
     return render(request, 'blog/teacher_lookup.html', context)
 
@@ -131,3 +130,24 @@ def create_word_list(requests):
 def faq(request):
 
     return render(request, 'blog/faq.html', {'title': 'FAQ'})
+
+
+def student_tracker(request):
+
+    # grab current users name if teacher
+   # user = User.objects.get(username=request.user.username)
+    # pull up all people in their group
+    #users = User.objects.filter(groups__name=request.user.username)
+
+    name = request.user.username
+
+    users = User.objects.filter(groups__name=name)
+    myFilter = OrderFilter(request.GET, queryset=users)
+    users = myFilter.qs
+
+    context = {
+
+        'users': User.objects.filter(groups__name=name), 'myFilter': myFilter
+    }
+
+    return render(request, 'blog/student_tracker.html', context)

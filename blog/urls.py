@@ -20,4 +20,6 @@ urlpatterns = [
     path('teacher_lookup/', views.teacher_lookup, name='blog-teacher_lookup'),
     path('create_word_list/', views.create_word_list, name='blog-create_word_list'),
     path('faq/', views.faq, name='blog-faq'),
+
+    path('student_tracker/', views.student_tracker, name='blog-student_tracker'),
 ]

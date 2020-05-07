@@ -21,7 +21,6 @@ def register(request):
             username = form.cleaned_data.get('username')
             selection = form.data['selection']
 
-            user_group = Group.objects.get_or_create(name=form.data['username'])
             group = Group.objects.get(name=selection)
             user.groups.add(group)
 
@@ -29,6 +28,8 @@ def register(request):
             # named after their username. This user will be part of group Teacher and their username
             # Ex. username = John -- the user will be part of group Teacher and John
             if group.name == "Teacher":
+
+                user_group = Group.objects.get_or_create(name=form.data['username'])
                 group = Group.objects.get(name=form.data['username'])
                 user.groups.add(group)
 

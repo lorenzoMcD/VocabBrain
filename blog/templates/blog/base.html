@@ -71,10 +71,27 @@
         <p class='text-muted'>Placeholder.
           <ul class="list-group">
             <li class="list-group-item list-group-item-light"><a href="#" > Announcements</a></li>
-            <li class="list-group-item list-group-item-light"><a href="#" >Track Your Progress</a></li>
+
+
+            {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                      {% if group.name == 'Teacher' %}
+
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Your Students</a></li>
+
+                      {% endif %}
+
+                      {% if group.name == 'Student' %}
+
+                      <li class="list-group-item list-group-item-light"><a href="#" >Track Your Progress</a></li>
+
+                      {% endif %}
+                          {% endfor %}
+                            {% endif %}
+            <!-- <li class="list-group-item list-group-item-light"><a href="#" >Track Your Progress</a></li>  -->
             <li class="list-group-item list-group-item-light"> <a href= "{% url 'blog-faq' %}">FAQ </a></li>  <!-- Eventually will add a if statement/ WIll be Track if you're a student -->
-            <li class="list-group-item list-group-item-light"><a href="#" >Help</a></li>                 <!-- Track your students progress if a teacher --> 
-          
+            <li class="list-group-item list-group-item-light"><a href="#" >Help</a></li>                 <!-- Track your students progress if a teacher -->
+
           </ul>
         </p>
       </div>
