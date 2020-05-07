@@ -37,9 +37,17 @@
 
             <th>  {{user.email}} </th>
 
-            <!-- working on this still
-            <th>  <button class="btn btn-primary" type="submit" name="group_name" value= "{{ user.username }}">Join</button> </th>
-            -->
+
+
+
+
+
+
+
+            <th>
+              <form method = "POST">{% csrf_token %}
+              <button class="btn btn-primary" type="submit" name="group_name" value= "{{ user.username }}">Join</button> </th>
+              </form>
         </tr>
 
           {% endfor %}
