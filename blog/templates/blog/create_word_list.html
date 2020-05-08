@@ -17,25 +17,26 @@
     <thead>
         <tr>
 
-            <th width="30%">Name</th>
-            <th width ="30%">def</th>
+            <h1 width="30%">{{word}}</h1>
+            <br>
+            <th width ="30%">Definitions</th>
             <!-- <th width ="30%"></th>      working on this still -->
 
         </tr>
     </thead>
     <tbody>
-           {% for text in texts %}
-       <tr>
-            <th>
-               {{ word }}
-            </th>
 
-
-            <th>  {{text}} </th>
-
-        </tr>
-
-          {% endfor %}
+           {% for text in texts %}            	 
+          
+            	  
+       			<tr>
+            <th>  {{text}}
+          
+      
+          	</th>
+       	</tr>
+			{% endfor %}
+       
       </tbody>
     </table>
     </div>
