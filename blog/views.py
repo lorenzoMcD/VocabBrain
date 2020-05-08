@@ -38,12 +38,15 @@ def teacher_lookup(request):
     users = myFilter.qs
 
     context = {
-        #'users': User.objects.all()
-        'users': User.objects.filter(groups__name='Teacher'), 'myFilter': myFilter
+
+        'users': users, 'myFilter': myFilter
     }
 
-    # trying to create join group button on teacherlookup page
     if request.method == 'POST':
+
+        # this resets the filter if the reset button is pushed
+        if 'reset' in request.POST:
+            return redirect('blog-teacher_lookup')
 
         nme = request.POST.get('group_name')
         group = Group.objects.get(name=nme)
@@ -152,8 +155,14 @@ def student_tracker(request):
 
     context = {
 
-        'users': User.objects.filter(groups__name=name), 'myFilter': myFilter
+        'users': users, 'myFilter': myFilter
     }
+
+    # this resets the filter if the reset button is pushed
+    if request.method == 'POST':
+
+        if 'reset' in request.POST:
+            return redirect('blog-student_tracker')
 
     return render(request, 'blog/student_tracker.html', context)
 
@@ -166,13 +175,18 @@ def groups(request):
     users = myFilter.qs
 
     context = {
-        'users': User.objects.filter(groups__name='Teacher'), 'myFilter': myFilter
+        'users': users, 'myFilter': myFilter
     }
 
     # checks if button is pushed on page
     # if button is pushed then sends a post request with data we need
     # which is the name of group
     if request.method == 'POST':
+
+        # this resets the filter if the reset button is pushed
+        if 'reset' in request.POST:
+            return redirect('blog-groups')
+
         nme = request.POST.get('group_name')
         group = Group.objects.get(name=nme)
 

@@ -13,6 +13,11 @@
       <button class="btn btn-primary" type="submit">Search</button>
       </form>
 
+
+      <form method = "POST">{% csrf_token %}
+        <button class="btn btn-primary" type="submit" name= "reset">Reset Search</button>
+        </form>
+
     </div>
 
 
@@ -39,12 +44,6 @@
 
 
             <th>  {{user.email}} </th>
-
-
-
-
-
-
 
 
             <th>
