@@ -1,24 +1,28 @@
 from .filters import OrderFilter
 from .models import Post
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
-from django.contrib import messages
-from django.shortcuts import redirect
 
 
 def home(request):
+
     context = {
+
         'posts': Post.objects.all()
+
     }
 
     return render(request, 'blog/home.html', context)
@@ -27,6 +31,9 @@ def home(request):
 # this web page will show list of teachers on site
 # will be able to filter by user,email
 # still need to have link to access teacher individual profiles
+
+
+@login_required
 def teacher_lookup(request):
     users = User.objects.filter(groups__name='Teacher')
     myFilter = OrderFilter(request.GET, queryset=users)
