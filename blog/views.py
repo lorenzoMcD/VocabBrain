@@ -144,22 +144,35 @@ class WikiSearch:
         for items in lookup:
             wordlist = (items['definitions'][0]['text'])
 
-        print(wordlist)
-        # grab first five defs from this list
         for defs in wordlist:
 
             definitions.append(defs)
 
         return(definitions)
 
+    def get_sent(word):
+        parser = WiktionaryParser()
+        lookup = parser.fetch(word)
+        sentences = []
+        for items in lookup:
+            wordlist = (items['definitions'][0]['examples'])
+
+        for sent in wordlist:
+
+            sentences.append(sent)
+
+        return(sentences)
+
 
 def create_word_list(requests):
 
-    mysearch = WikiSearch.get_defs('apple')
+    definitions = WikiSearch.get_defs('apple')
+    sentences = WikiSearch.get_sent('apple')
+    mylist = zip(definitions, sentences)
 
     context = {
         'word': 'apple',
-        'texts': mysearch
+        'mylist': mylist
 
     }
 
