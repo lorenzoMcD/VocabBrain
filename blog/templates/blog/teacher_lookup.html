@@ -38,18 +38,11 @@
 
             <th>  {{user.email}} </th>
 
-
-
-
-
-
-
-
             <th>
 
 
               {% if request.user|has_group:user.username %}
-                <p>User belongs to my group</p>
+                <p>You are in this group</p>
 
               {% else %}
               <form method = "POST">{% csrf_token %}

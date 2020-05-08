@@ -31,7 +31,15 @@
         <div class="navbar-nav mr-auto">
           <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
           <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
+          {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                      {% if group.name == 'Student' %}
+
           <a class="nav-item nav-link" href="{% url 'blog-teacher_lookup' %}">Teachers Lookup</a>
+          {% endif %}
+          {%  endfor %}
+          {% endif %}
         </div>
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
@@ -78,7 +86,8 @@
                 {% for group in user.groups.all %}
                       {% if group.name == 'Teacher' %}
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Your Students</a></li>
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Students in Your Class</a></li>
+
 
                       {% endif %}
 

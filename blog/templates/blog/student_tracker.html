@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content%}
     <h1>Student Tracker</h1>
+    <p> This list shows students that are in your group</p>
 
 
     <div class = "card card-body">
@@ -23,7 +24,7 @@
 
             <th width="30%">Name</th>
             <th width ="30%">Email</th>
-            <!-- <th width ="30%"></th>      working on this still -->
+
 
         </tr>
     </thead>
@@ -38,10 +39,6 @@
 
 
             <th>  {{user.email}} </th>
-
-            <!-- working on this still
-            <th>  <button class="btn btn-primary" type="submit" name="group_name" value= "{{ user.username }}">Join</button> </th>
-            -->
         </tr>
           {% endif %}
           {% endfor %}
