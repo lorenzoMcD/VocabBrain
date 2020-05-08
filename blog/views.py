@@ -134,17 +134,32 @@ def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
 
+class WikiSearch:
+    word = None
+
+    def get_defs(word):
+        parser = WiktionaryParser()
+        lookup = parser.fetch(word)
+        definitions = []
+        for items in lookup:
+            wordlist = (items['definitions'][0]['text'])
+
+        print(wordlist)
+        # grab first five defs from this list
+        for defs in wordlist:
+
+            definitions.append(defs)
+
+        return(definitions)
+
+
 def create_word_list(requests):
 
-    parser = WiktionaryParser()
-    word = parser.fetch('apple')
-
-    for item in word[0]['definitions']:
-        text = item['text']
+    mysearch = WikiSearch.get_defs('apple')
 
     context = {
-        'text': text
-
+        'word': 'apple',
+        'texts': mysearch
 
     }
 
