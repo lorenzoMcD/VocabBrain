@@ -15,6 +15,7 @@ from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
+from wiktionaryparser import WiktionaryParser
 
 # page that shows posts by every user on site
 def home(request):
@@ -135,7 +136,20 @@ def about(request):
 
 def create_word_list(requests):
 
-    return render(request, 'blog/create_word_list.html', context)
+    parser = WiktionaryParser()
+    word = parser.fetch('apple')
+
+    for item in word[0]['definitions']:
+        text = item['text']
+
+    context = {
+        'text': text
+
+
+    }
+
+    return render(requests, 'blog/create_word_list.html', context)
+
 
 def faq(request):
 
