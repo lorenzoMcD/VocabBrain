@@ -1,7 +1,56 @@
 {% extends "blog/base.html" %}
 {% block content%}
 
-<p>{{text}} </p>
+
+
+
+
+
+
+
+
+<div class = "row">
+<div class = "col-md">
+<div class = "card card-body">
+
+    <table class = "table table-sm">
+    <thead>
+        <tr>
+
+            <th width="30%">Name</th>
+            <th width ="30%">def</th>
+            <!-- <th width ="30%"></th>      working on this still -->
+
+        </tr>
+    </thead>
+    <tbody>
+           {% for text in texts %}
+       <tr>
+            <th>
+               {{ word }}
+            </th>
+
+
+            <th>  {{text}} </th>
+
+        </tr>
+
+          {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 {% endblock content %}
 
 
