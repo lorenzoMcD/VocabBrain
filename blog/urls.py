@@ -22,4 +22,6 @@ urlpatterns = [
     path('faq/', views.faq, name='blog-faq'),
 
     path('student_tracker/', views.student_tracker, name='blog-student_tracker'),
+    path('groups/', views.groups, name='blog-groups'),
+    path('groups/<str:username>/', UserPostListView.as_view(), name='blog-groups_search'),
 ]

@@ -16,7 +16,7 @@ from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
 
-
+# page that shows posts by every user on site
 def home(request):
 
     context = {
@@ -31,8 +31,6 @@ def home(request):
 # this web page will show list of teachers on site
 # will be able to filter by user,email
 # still need to have link to access teacher individual profiles
-
-
 @login_required
 def teacher_lookup(request):
     users = User.objects.filter(groups__name='Teacher')
@@ -51,14 +49,12 @@ def teacher_lookup(request):
         group = Group.objects.get(name=nme)
 
     # adds that user to the group
-
-        # need a if statment to check if user is already part of group...
-
         request.user.groups.add(group)
+    # prints message at top of screen if success then redirect user to desired page
 
         messages.success(request, f'You have successfully been added to this group')
 
-        return redirect('blog-home')
+        return redirect('blog-teacher_lookup')
 
     return render(request, 'blog/teacher_lookup.html', context)
 
@@ -160,3 +156,35 @@ def student_tracker(request):
     }
 
     return render(request, 'blog/student_tracker.html', context)
+
+
+# this page will show all groups that user is part of
+# will have button for user to leave group
+def groups(request):
+    users = User.objects.filter(groups__name='Teacher')
+    myFilter = OrderFilter(request.GET, queryset=users)
+    users = myFilter.qs
+
+    context = {
+        'users': User.objects.filter(groups__name='Teacher'), 'myFilter': myFilter
+    }
+
+    # checks if button is pushed on page
+    # if button is pushed then sends a post request with data we need
+    # which is the name of group
+    if request.method == 'POST':
+        nme = request.POST.get('group_name')
+        group = Group.objects.get(name=nme)
+
+    # adds that user to the group
+        # request.user.groups.add(group)
+
+    # removes user from group
+        group.user_set.remove(request.user)
+
+    # prints a message if the group was removed , then redirects user to desired page
+        messages.success(request, f'You have successfully left this group')
+
+        return redirect('blog-groups')
+
+    return render(request, 'blog/groups.html', context)
