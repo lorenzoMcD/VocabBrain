@@ -59,7 +59,7 @@
     <div class="col-md-8">
       {% if messages %}
         {% for message in messages %}
-        <div class = "alert alert-{{ message.tags }}">
+        <div class = "alert alert-{{ message.tags }}" id= "message_container">
           {{ message }}
         </div>
         {% endfor %}
@@ -85,6 +85,7 @@
                       {% if group.name == 'Student' %}
 
                       <li class="list-group-item list-group-item-light"><a href="#" >Track Your Progress</a></li>
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-groups' %}" >Groups</a></li>
 
                       {% endif %}
                           {% endfor %}
@@ -106,5 +107,17 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+
+    // This code sets timer for how long message appears at top of screen.
+    var message_ele = document.getElementById("message_container");
+
+    setTimeout(function(){
+   message_ele.style.display = "none";
+  }, 3000);
+  // Timeout is 3 sec, you can change it
+
+
+    </script>
 </body>
 </html>
