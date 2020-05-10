@@ -15,3 +15,23 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+
+class Word(models.Model):
+    term = models.CharField(max_length=100)
+    definition = models.CharField(max_length=150)
+    sentence = models.CharField(max_length=150)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.term
+
+
+class WordList(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    terms = models.ManyToManyField(Word)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title

@@ -74,10 +74,14 @@
       {% endif %}
       {% block content %}{% endblock %}
     </div>
+
+
     <div class="col-md-0">
-      <div class="content-section">
+      <div class="content-section" div id= "sidebar">
+        {%block sidebar%}
         <h3>Placeholder</h3>
         <p class='text-muted'>Placeholder.
+
           <ul class="list-group">
             <li class="list-group-item list-group-item-light"><a href="#" > Announcements</a></li>
 
@@ -85,6 +89,8 @@
             {% if user.is_authenticated %}
                 {% for group in user.groups.all %}
                       {% if group.name == 'Teacher' %}
+
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'list-create' %}" >Create new WordList</a></li>
 
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Students in Your Class</a></li>
 
@@ -105,6 +111,7 @@
 
           </ul>
         </p>
+        {% endblock %}
       </div>
   </div>
 
