@@ -5,6 +5,7 @@ from .views import PostDetailView
 from .views import PostListView
 from .views import PostUpdateView
 from .views import UserPostListView
+from .views import create_list
 from django.urls import path
 
 
@@ -18,11 +19,13 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='blog-about'),
     path('teacher_lookup/', views.teacher_lookup, name='blog-teacher_lookup'),
-    path('create_word_list/', views.create_word_list, name='blog-create_word_list'),
+    path('create_word_list/new/', views.create_word_list, name='blog-create_word_list'),
     path('faq/', views.faq, name='blog-faq'),
 
     path('student_tracker/', views.student_tracker, name='blog-student_tracker'),
     path('groups/', views.groups, name='blog-groups'),
     path('groups/<str:username>/', UserPostListView.as_view(), name='blog-groups_search'),
+
+    path('create_list/new/', views.create_list, name='list-create'),
 
 ]

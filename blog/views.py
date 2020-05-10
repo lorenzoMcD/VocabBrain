@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
+from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -16,6 +18,9 @@ from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
 from wiktionaryparser import WiktionaryParser
+from.models import WordList
+from.models import Word
+from.form import WordListForm
 
 # page that shows posts by every user on site
 def home(request):
@@ -30,8 +35,6 @@ def home(request):
 
 
 # this web page will show list of teachers on site
-# will be able to filter by user,email
-# still need to have link to access teacher individual profiles
 @login_required
 def teacher_lookup(request):
     users = User.objects.filter(groups__name='Teacher')
@@ -98,6 +101,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
 # class for update blog post
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
@@ -123,7 +127,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = '/'
 
     def test_func(self):
-           # function -- if user that posts blog is log in then they can post to blog.... else they can't
         post = self.get_object()
         if self.request.user == post.author:
             return True
@@ -164,19 +167,52 @@ class WikiSearch:
         return(sentences)
 
 
-def create_word_list(requests):
+# we might need to rename this....
+# This page starts our wordlist creation user will type in title and desc
+@login_required
+def create_list(request):
+    if request.method == 'POST':
+        form = WordListForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.author = request.user
+            user.save()
 
-    definitions = WikiSearch.get_defs('apple')
-    sentences = WikiSearch.get_sent('apple')
-    mylist = zip(definitions, sentences)
+            messages.success(request, f'Your Wordlist creation has started, now add terms to Your list')
+
+            return redirect('blog-create_word_list')
+    else:
+        form = WordListForm()
+    return render(request, 'blog/create_list.html', {'form': form})
+
+# this second part of word list creation
+# this page user can add terms to their word list
+
+
+@login_required
+def create_word_list(request):
+    # we can set the number extra text boxes in form by adding extra
+    # to var below ex.  wordformset = modelformset_factory(Word, fields=('term',),extra=4)
+    wordformset = modelformset_factory(Word, fields=('term',))
+    formset = wordformset(request.POST or None, queryset=Word.objects.none())
+
+    if request.method == "POST":
+        if formset.is_valid():
+            instances = formset.save(commit=False)
+            for instance in instances:
+                instance.author_id = request.user.id
+                instance.save()
+
+            messages.success(request, f'You have added terms to your list')
+
+            # will need to redirect to page where we add sent and def next. for now gonna set this to home
+            return redirect('blog-home')
 
     context = {
-        'word': 'apple',
-        'mylist': mylist
+        'formset': formset
 
     }
-
-    return render(requests, 'blog/create_word_list.html', context)
+    return render(request, 'blog/create_word_list.html', context)
 
 
 def faq(request):
@@ -185,10 +221,8 @@ def faq(request):
 
 
 def student_tracker(request):
-
     # grab current users name if teacher
     # pull up all people in their group
-
     name = request.user.username
 
     users = User.objects.filter(groups__name=name)
