@@ -332,3 +332,18 @@ def temp(request):
     }
 
     return render(request, 'blog/temp.html', context)
+
+
+def word_list_final(request): 
+    definitions = WikiSearch.get_defs('apple') 
+    sentences = WikiSearch.get_sent('apple') 
+    mylist =  zip(definitions, sentences)
+
+
+    context = { 
+
+        'word': 'apple',
+        'mylist': mylist 
+    }
+
+    return render(request, 'blog/word_list_final.html', context)
