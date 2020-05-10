@@ -47,6 +47,7 @@
                 {% for group in user.groups.all %}
                       {% if group.name == 'Teacher' %}
           <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+          <a class="nav-item nav-link" href="{% url 'blog-temp' %}">view all created lists</a>
           {% endif %}
           {% endfor %}
           <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>

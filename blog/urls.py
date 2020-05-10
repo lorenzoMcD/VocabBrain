@@ -5,7 +5,10 @@ from .views import PostDetailView
 from .views import PostListView
 from .views import PostUpdateView
 from .views import UserPostListView
-from .views import create_list
+from .views import UserWordListView
+from .views import WordListDeleteView
+from .views import WordListDetailView
+from .views import WordListUpdateView
 from django.urls import path
 
 
@@ -28,4 +31,13 @@ urlpatterns = [
 
     path('create_list/new/', views.create_list, name='list-create'),
 
+    path('wordlist_form/<int:pk>/update/', WordListUpdateView.as_view(), name='list-update'),
+
+    path('wordlist/<int:pk>/delete/', WordListDeleteView.as_view(), name='list-delete'),
+
+    path('wordlist/<int:pk>/', WordListDetailView.as_view(), name='list-detail'),
+
+    path('user/wordlist/<str:username>/', UserWordListView.as_view(), name='user-lists'),
+
+    path('temp/', views.temp, name='blog-temp'),
 ]

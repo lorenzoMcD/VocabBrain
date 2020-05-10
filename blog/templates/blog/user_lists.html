@@ -1,45 +1,21 @@
 {% extends "blog/base.html" %}
 {% block content%}
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Welcome to our site</h1>
-    <p class="lead">This site is still under construction</p>
-  </div>
-</div>
-
-
-<!-- if user is not in group teacher dont show posts on home page-->
-{% for group in user.groups.all %}
-{% if group.name == 'Teacher' %}
+<h1 class = "mb-3"> lists by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
 
     {% for post in posts%}
-
         <article class="media content-section">
   <img class = "rounded-circle article-img" src="{{post.author.profile.image.url }}">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-      <small class="text-muted">{{ post.date_posted|date:"F d , Y" }}</small>
+      <a class="mr-2" href="{% url 'user-lists' post.author.username %}">{{ post.author }}</a>
     </div>
-    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-    <p class="article-content">{{ post.content }}</p>
+    <h2><a class="article-title" href="{% url 'list-detail' post.id %}">{{ post.title }}</a></h2>
+    <p class="article-content">{{ post.description }}</p>
   </div>
 </article>
-
     {% endfor %}
-      {% endif %}
-      {% endfor %}
 
 
-
-
-
-
-
-<!-- if user is not in group teacher dont show posts on home page-->
-{% for group in user.groups.all %}
-{% if group.name == 'Teacher' %}
 
     {% if is_paginated %}
 
@@ -62,8 +38,4 @@
       {% endif %}
 
     {% endif %}
-
-
-{% endif %}
-{% endfor %}
 {% endblock content %}
