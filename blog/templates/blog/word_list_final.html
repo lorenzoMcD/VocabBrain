@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %} 
+{% block content%} 
+
+
+<div class = "row">
+<div class = "col-md"> 
+<div class = "card card-body">
+
+	<h2> {{word}} </h2>
+
+	<table class = "table table-sm"> 
+		<thead>
+			<tr> 
+
+
+				<th hidth = "30%"> Definitions </th> 
+				<th width = "30%"> Sentence </th>
+
+
+
+			</tr> 
+
+
+		</thead> 
+
+
+		<tbody> 
+
+			{% for def, sent in mylist %} 
+
+			<tr> 
+
+				<th> {{def}} </th>
+
+				<th> {{sent}} </th> 
+
+			</tr> 
+
+
+			{% endfor %} 
+		</tbody> 
+	</table>
+</div>
+</div>
+</div>
+
+
+{% endblock content %} 

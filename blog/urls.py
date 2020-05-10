@@ -40,4 +40,6 @@ urlpatterns = [
     path('user/wordlist/<str:username>/', UserWordListView.as_view(), name='user-lists'),
 
     path('temp/', views.temp, name='blog-temp'),
+
+    path('word_list_final/', views.word_list_final, name = 'word_list_final'),
 ]
