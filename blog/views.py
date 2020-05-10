@@ -28,7 +28,6 @@ def home(request):
     context = {
 
         'posts': Post.objects.all()
-
     }
 
     return render(request, 'blog/home.html', context)
@@ -118,6 +117,52 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user == post.author:
             return True
         return False
+
+
+# class for update blog post
+class WordListUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
+    model = WordList
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        # function -- if user that posts blog is log in then they can post to blog.... else they can't
+        wordlist = self.get_object()
+        if self.request.user == wordlist.author:
+            return True
+        return False
+
+class WordListDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
+    model = WordList
+    success_url = '/'
+
+    def test_func(self):
+        wordlist = self.get_object()
+        if self.request.user == wordlist.author:
+            return True
+        return False
+
+
+class WordListDetailView(DetailView):
+
+    model = WordList
+
+
+class UserWordListView(ListView):
+
+    model = WordList
+    template_name = 'blog/user_lists.html'
+    context_object_name = 'posts'
+    paginate_by = 4  # this will change number of posts visible per page
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return WordList.objects.filter(author=user)
 
 
 # class for delete a blog post
@@ -278,3 +323,12 @@ def groups(request):
         return redirect('blog-groups')
 
     return render(request, 'blog/groups.html', context)
+
+
+def temp(request):
+    context = {
+
+        'lists': WordList.objects.all()
+    }
+
+    return render(request, 'blog/temp.html', context)
