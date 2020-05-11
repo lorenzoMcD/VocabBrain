@@ -37,7 +37,9 @@ class Word(models.Model):
     wordlist = models.ForeignKey(WordList, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.term
+         return self.term.lower()
+
+
 
     def get_defs(term):
         parser = WiktionaryParser()
