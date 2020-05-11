@@ -2,6 +2,8 @@
 {% block content%}
 
 
+<h2>Add terms to your word list </h2>
+
 <form method= "POST">
   {% csrf_token %}
   {{ formset.management_form }}
@@ -9,37 +11,9 @@
 {{form.as_p}}
 {% endfor %}
 
-<button type = "submit">Save</button>
+<button type = "submit">add more words</button>
+<button type = "Done" name = "done">Done</button>
 </form>
 
 {% endblock content %}
 
-
-
-<!--
-
-    <h2>{{word}}</h2>
-    <table class = "table table-sm">
-    <thead>
-        <tr>
-            <th width ="30%">Definitions</th>
-            <th width ="30%">Sentences</th>
-        </tr>
-    </thead>
-    <tbody>
-           {% for def,sent in mylist %}
-       			<tr>
-            <th>  {{def}} </th>
-            <th>  {{sent}} </th>
-       	</tr>
-			{% endfor %}
-      </tbody>
-    </table>
-    </div>
-  </div>
-</div>
-
-
-
-
--->

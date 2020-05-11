@@ -22,7 +22,7 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='blog-about'),
     path('teacher_lookup/', views.teacher_lookup, name='blog-teacher_lookup'),
-    path('create_word_list/new/', views.create_word_list, name='blog-create_word_list'),
+    path('create_word_list/<int:pk>/', views.create_word_list, name='blog-create_word_list'),
     path('faq/', views.faq, name='blog-faq'),
 
     path('student_tracker/', views.student_tracker, name='blog-student_tracker'),
@@ -41,5 +41,5 @@ urlpatterns = [
 
     path('temp/', views.temp, name='blog-temp'),
 
-    path('word_list_final/', views.word_list_final, name = 'word_list_final'),
+    path('word_list_final/', views.word_list_final, name='word_list_final'),
 ]
