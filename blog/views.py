@@ -225,7 +225,7 @@ def create_list(request):
 
             messages.success(request, f'Your Wordlist creation has started, now add terms to Your list')
 
-            return redirect('blog-create_word_list')
+            return redirect('blog-create_word_list', pk=user.id)
     else:
         form = WordListForm()
     return render(request, 'blog/create_list.html', {'form': form})
@@ -235,24 +235,22 @@ def create_list(request):
 
 
 @login_required
-def create_word_list(request):
-    # we can set the number extra text boxes in form by adding extra
-    # to var below ex.  wordformset = modelformset_factory(Word, fields=('term',),extra=4)
-    wordformset = modelformset_factory(Word, fields=('term',))
-    formset = wordformset(request.POST or None, queryset=Word.objects.none())
+def create_word_list(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    wordformset = inlineformset_factory(WordList, Word, fields=('term',), extra=1)
 
     if request.method == "POST":
+        formset = wordformset(request.POST, instance=wordlist)
+        if 'done' in request.POST:
+            if formset.is_valid():
+                formset.save()
+                messages.success(request, f'You have added terms to your list')
+                return redirect('blog-home')
+
         if formset.is_valid():
-            instances = formset.save(commit=False)
-            for instance in instances:
-                instance.author_id = request.user.id
-                instance.save()
+            formset.save()
 
-            messages.success(request, f'You have added terms to your list')
-
-            # will need to redirect to page where we add sent and def next. for now gonna set this to home
-            return redirect('blog-home')
-
+    formset = wordformset(instance=wordlist)
     context = {
         'formset': formset
 
@@ -334,16 +332,15 @@ def temp(request):
     return render(request, 'blog/temp.html', context)
 
 
-def word_list_final(request): 
-    definitions = WikiSearch.get_defs('apple') 
-    sentences = WikiSearch.get_sent('apple') 
-    mylist =  zip(definitions, sentences)
+def word_list_final(request):
+    definitions = WikiSearch.get_defs('apple')
+    sentences = WikiSearch.get_sent('apple')
+    mylist = zip(definitions, sentences)
 
-
-    context = { 
+    context = {
 
         'word': 'apple',
-        'mylist': mylist 
+        'mylist': mylist
     }
 
     return render(request, 'blog/word_list_final.html', context)
