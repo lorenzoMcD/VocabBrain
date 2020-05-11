@@ -41,5 +41,5 @@ urlpatterns = [
 
     path('temp/', views.temp, name='blog-temp'),
 
-    path('word_list_final/', views.word_list_final, name='word_list_final'),
+    path('word_list_final/<int:pk>/', views.word_list_final, name='word_list_final'),
 ]
