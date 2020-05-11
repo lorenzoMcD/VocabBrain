@@ -245,7 +245,7 @@ def create_word_list(request, pk):
             if formset.is_valid():
                 formset.save()
                 messages.success(request, f'You have added terms to your list')
-                return redirect('blog-home')
+                return redirect('word_list_final', pk=pk)
 
         if formset.is_valid():
             formset.save()
@@ -332,15 +332,28 @@ def temp(request):
     return render(request, 'blog/temp.html', context)
 
 
-def word_list_final(request):
-    definitions = WikiSearch.get_defs('apple')
-    sentences = WikiSearch.get_sent('apple')
-    mylist = zip(definitions, sentences)
+def word_list_final(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    # gets words from user word list
+    words = Word.objects.filter(wordlist__id=pk)
+
+    if request.method == 'POST':
+        # this process adds the definiton to users wordlist
+        if 'term_def' in request.POST:
+            def_to_add = request.POST.get('term_def')
+            wrd_id = request.POST["word-id"]
+            wrd = Word.objects.get(id=wrd_id)
+            wrd.definition = def_to_add
+            wrd.save()
+            messages.success(request, f'You have successfully added definition to your term')
+
+        if 'done' in request.POST:
+            messages.success(request, f'You are done adding definitions')
+            return redirect('blog-home')
 
     context = {
-
-        'word': 'apple',
-        'mylist': mylist
+        'words': words
     }
 
     return render(request, 'blog/word_list_final.html', context)

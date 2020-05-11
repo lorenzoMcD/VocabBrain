@@ -1,48 +1,67 @@
-{% extends "blog/base.html" %} 
-{% block content%} 
+{% extends "blog/base.html" %}
+{% block content%}
 
 
 <div class = "row">
-<div class = "col-md"> 
+<div class = "col-md">
 <div class = "card card-body">
 
-	<h2> {{word}} </h2>
+	 <form method = "POST">{% csrf_token %}
+	 	<p>click Finish when you are done adding defs to your terms</p>
+        <button class="btn btn-primary" type="submit" name= "done" >Finish</button>
+        </form>
 
-	<table class = "table table-sm"> 
+
+{% for word in words %}
+
+<table class = "table table-sm">
 		<thead>
-			<tr> 
+			<tr>
+				<th hidth = "30%"> <h3>{{word}}</h3> </th>
+				<th hidth = "30%"> Action </th>
+				<!-- <th width = "30%"> Sentence </th> -->
+			</tr>
+		</thead>
+		<tbody>
 
-
-				<th hidth = "30%"> Definitions </th> 
-				<th width = "30%"> Sentence </th>
-
-
-
-			</tr> 
-
-
-		</thead> 
-
-
-		<tbody> 
-
-			{% for def, sent in mylist %} 
-
-			<tr> 
-
+			{% for def in word.get_defs %}
+			<tr>
 				<th> {{def}} </th>
 
-				<th> {{sent}} </th> 
-
-			</tr> 
 
 
-			{% endfor %} 
-		</tbody> 
+				<th>
+				<!--	will fix this logic later// need way to tell if user already has def in their word list
+				resources that may help: https://www.abidibo.net/blog/2014/05/22/check-if-user-belongs-group-django-templates/
+
+				https://stackoverflow.com/questions/34571880/how-to-check-in-template-if-user-belongs-to-a-group
+
+
+					< if word|get_id:word.id >
+						<p>You have this def already</p>
+
+						< else > -->
+					<form method = "POST">{% csrf_token %}
+
+				<input name="word-id" type="hidden" value="{{word.id}}"></input>
+              <button class="btn btn-primary" type="submit" name="term_def" value= "{{def}}">Add</button>
+              	</form>
+          </th>
+
+
+
+
+			</tr>
+
+		<!--	< endif > -->
+			{% endfor %}
+
+	</tbody>
 	</table>
-</div>
-</div>
-</div>
 
+{% endfor %}
 
-{% endblock content %} 
+</div>
+</div>
+</div>
+{% endblock content %}
