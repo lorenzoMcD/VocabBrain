@@ -1,0 +1,61 @@
+{% extends "blog/base.html" %}
+{% block content%}
+
+
+<div class = "row">
+<div class = "col-md">
+<div class = "card card-body">
+
+<p>----------------------------------------------------------------------------------------</p>
+<p>directions:</p>
+<p>Click the add button to add a definition to your term</p>
+<p>Your definiton will show up in text below, showing the definiton set for your term</p>
+<p>When you finish selecting definitons for your term(s) click the finish button</p>
+<p>at bottom of this page to advance.</p>
+
+<p>----------------------------------------------------------------------------------------</p>
+{% for word in words %}
+
+<h2> the current definition saved for {{word}}:</h2>
+<h3 style="color:red">   {{word.definition}}  </h3>
+
+<table class = "table table-sm">
+		<thead>
+			<tr>
+				<th> <h5 class="font-weight-bold">{{word}}</h5> </th>
+				<th> Action </th>
+				<!-- <th width = "30%"> Sentence </th> -->
+			</tr>
+		</thead>
+		<tbody>
+
+			{% for def in word.get_defs %}
+			<tr>
+				<td> {{def}} </td>
+
+				<td>
+					<form method = "POST">{% csrf_token %}
+
+				<input name="word-id" type="hidden" value="{{word.id}}"></input>
+              <button class="btn btn-primary" type="submit" name="term_def" value= "{{def}}">Add</button>
+              	</form>
+          </td>
+			</tr>
+			{% endfor %}
+
+	</tbody>
+	</table>
+
+{% endfor %}
+<p>----------------------------------------------------------------------------------------</p>
+<h3 class="font-weight-bold">click Finish Button when you are Done</h3>
+<p>----------------------------------------------------------------------------------------</p>
+<form method = "POST">{% csrf_token %}
+
+        <button class="btn btn-success" type="submit" name= "done" >Finish</button>
+        </form>
+
+</div>
+</div>
+</div>
+{% endblock content %}
