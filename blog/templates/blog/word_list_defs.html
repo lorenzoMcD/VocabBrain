@@ -14,7 +14,22 @@
 <p>at bottom of this page to advance.</p>
 
 <p>----------------------------------------------------------------------------------------</p>
+
+
+
+
+
 {% for word in words %}
+
+<form method = "POST">{% csrf_token %}
+<div class="form-group">
+    <label for="exampleFormControlTextarea1">Have a better definition for {{word}}? Enter it here!</label>
+    <textarea class="form-control" name="text_input" rows="2" value="{{text_input}}" placeholder="Enter your own definition here, if you dont like what we suggest."></textarea>
+    <input name="user_add" type="hidden" value="{{word.id}}"></input>
+
+    <button type="submit" class="btn btn-primary mb-2">Add Custom Definiton</button>
+  </div>
+</form>
 
 <h2> the current definition saved for {{word}}:</h2>
 <h3 style="color:red">   {{word.definition}}  </h3>

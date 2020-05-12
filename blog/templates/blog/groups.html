@@ -31,7 +31,7 @@
 
             <th width="30%">Name</th>
             <th width ="30%">Email</th>
-            <!-- <th width ="30%"></th>      working on this still -->
+            <th width ="30%">Action</th>
 
         </tr>
     </thead>
@@ -39,7 +39,7 @@
            {% for user in users %}
        <tr>
             <th>
-              <a href="{{ user.username }}"> {{ user.username}} </a>
+              <a href= "{% url 'user-lists' user.username %}" > {{ user.username}} </a>
             </th>
 
 

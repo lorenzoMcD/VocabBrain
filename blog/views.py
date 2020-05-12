@@ -158,6 +158,7 @@ class UserWordListView(ListView):
     model = WordList
     template_name = 'blog/user_lists.html'
     context_object_name = 'posts'
+    ordering = ['-date_posted']
     paginate_by = 4  # this will change number of posts visible per page
 
     def get_queryset(self):
@@ -348,6 +349,14 @@ def word_list_defs(request, pk):
             wrd.save()
             messages.success(request, f'You have successfully added definition to your term')
 
+        if 'text_input' in request.POST:
+            def_to_add = request.POST.get('text_input')
+            wrd_id = request.POST["user_add"]
+            wrd = Word.objects.get(id=wrd_id)
+            wrd.definition = def_to_add
+            wrd.save()
+            messages.success(request, f'You have successfully added custom definition to your term')
+
         if 'done' in request.POST:
             messages.success(request, f'You are done adding definitions')
             return redirect('word_list_sents', pk=pk)
@@ -374,6 +383,14 @@ def word_list_sents(request, pk):
             wrd.sentence = sent_to_add
             wrd.save()
             messages.success(request, f'You have successfully added sentence to your term')
+
+        if 'text_input' in request.POST:
+            sent_to_add = request.POST.get('text_input')
+            wrd_id = request.POST["user_add"]
+            wrd = Word.objects.get(id=wrd_id)
+            wrd.sentence = sent_to_add
+            wrd.save()
+            messages.success(request, f'You have successfully added custom definition to your term')
 
         if 'done' in request.POST:
             messages.success(request, f'Your wordlist is complete')
