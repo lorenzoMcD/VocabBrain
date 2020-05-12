@@ -9,8 +9,13 @@
     <div class="article-metadata">
       <a class="mr-2" href="{% url 'user-lists' object.author.username %}">{{ object.author }}</a>
     {% if object.author == user %}
+    <p> note: to update the terms within this list</p>
+    <p> click "update terms" to update terms,sentences and </p>
+    <p> defintions for your list.</p>
     <div>
-    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-update' object.id %}">Update </a>
+    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-update' object.id %}">Update description/title</a>
+
+    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog-create_word_list' object.id %}">Update Terms </a>
 
     <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'list-delete' object.id %}">Delete </a>
 </div>
@@ -23,3 +28,6 @@
 </article>
 
 {% endblock content %}
+
+
+'blog-create_word_list'
