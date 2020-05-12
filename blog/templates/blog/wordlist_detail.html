@@ -25,10 +25,18 @@
     </div>
     <h2><a class="article-title"> {{ object.title }}</h2>
     <p class="article-content">{{ object.description }}</p>
-  </div>
+
+
+<p>Terms:</p>
+{% for word in words%}
+
+<p>{{word}} </p>
+
+{% endfor %}
+
+
 </article>
 
 {% endblock content %}
 
 
-'blog-create_word_list'
