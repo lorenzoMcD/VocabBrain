@@ -33,13 +33,11 @@ class WordList(models.Model):
 class Word(models.Model):
     term = models.CharField(max_length=100)
     definition = models.CharField(max_length=150)
-    sentence = models.CharField(max_length=150)
+    sentence = models.CharField(max_length=300)
     wordlist = models.ForeignKey(WordList, on_delete=models.CASCADE)
 
     def __str__(self):
-         return self.term.lower()
-
-
+        return self.term.lower()
 
     def get_defs(term):
         parser = WiktionaryParser()

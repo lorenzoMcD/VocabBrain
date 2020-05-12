@@ -245,7 +245,7 @@ def create_word_list(request, pk):
             if formset.is_valid():
                 formset.save()
                 messages.success(request, f'You have added terms to your list')
-                return redirect('word_list_final', pk=pk)
+                return redirect('word_list_defs', pk=pk)
 
         if formset.is_valid():
             formset.save()
@@ -332,7 +332,7 @@ def temp(request):
     return render(request, 'blog/temp.html', context)
 
 
-def word_list_final(request, pk):
+def word_list_defs(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     # gets words from user word list
@@ -350,10 +350,37 @@ def word_list_final(request, pk):
 
         if 'done' in request.POST:
             messages.success(request, f'You are done adding definitions')
+            return redirect('word_list_sents', pk=pk)
+
+    context = {
+        'words': words
+    }
+
+    return render(request, 'blog/word_list_defs.html', context)
+
+
+def word_list_sents(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    # gets words from user word list
+    words = Word.objects.filter(wordlist__id=pk)
+
+    if request.method == 'POST':
+        # this process adds the definiton to users wordlist
+        if 'term_sent' in request.POST:
+            sent_to_add = request.POST.get('term_sent')
+            wrd_id = request.POST["word-id"]
+            wrd = Word.objects.get(id=wrd_id)
+            wrd.sentence = sent_to_add
+            wrd.save()
+            messages.success(request, f'You have successfully added sentence to your term')
+
+        if 'done' in request.POST:
+            messages.success(request, f'Your wordlist is complete')
             return redirect('blog-home')
 
     context = {
         'words': words
     }
 
-    return render(request, 'blog/word_list_final.html', context)
+    return render(request, 'blog/word_list_sents.html', context)
