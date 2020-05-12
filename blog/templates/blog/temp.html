@@ -14,6 +14,7 @@
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href="{% url 'user-lists' list.author.username %}">{{ list.author }}</a>
+      <small class="text-muted">{{ list.date_posted|date:"F d , Y" }}</small>
 
     </div>
     <h2><a class="article-title" href="{% url 'list-detail' list.id %}">{{ list.title }}</a></h2>

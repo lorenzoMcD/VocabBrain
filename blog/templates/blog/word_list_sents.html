@@ -16,6 +16,15 @@
 <p>----------------------------------------------------------------------------------------</p>
 {% for word in words %}
 
+<form method = "POST">{% csrf_token %}
+<div class="form-group">
+    <label for="exampleFormControlTextarea1">Have a better sentence for {{word}}? Enter it here!</label>
+    <textarea class="form-control" name="text_input" rows="2" value="{{text_input}}" placeholder="Enter your own sentence here, if you dont like what we suggest."></textarea>
+    <input name="user_add" type="hidden" value="{{word.id}}"></input>
+    <button type="submit" class="btn btn-primary mb-2">Add Custom Sentence</button>
+</div>
+</form>
+
 <h2> the current sentence saved for {{word}}:</h2>
 <h3 style="color:red">   {{word.sentence}}  </h3>
 

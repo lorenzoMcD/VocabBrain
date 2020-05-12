@@ -8,6 +8,7 @@
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href="{% url 'user-lists' object.author.username %}">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d , Y" }}</small>
     {% if object.author == user %}
     <p> note: to update the terms within this list</p>
     <p> click "update terms" to update terms,sentences and </p>
