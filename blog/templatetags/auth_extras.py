@@ -1,6 +1,6 @@
 from django import template
 from django.contrib.auth.models import Group
-
+import random
 
 register = template.Library()
 
@@ -15,3 +15,9 @@ def has_def(definiton, word_id):
     wordid = Word.objects.get(id=word_id)
     mydef = wordid.definiton
     return mydef == definiton
+
+@register.filter(name = 'shuffle')
+def shuffle(arg):
+    tmp = list(arg)[:]
+    random.shuffle(tmp)
+    return tmp

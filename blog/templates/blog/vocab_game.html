@@ -1,16 +1,62 @@
 {% load static %}
+{% load auth_extras %}
 
 <html>
 <!--  index.html -->
 <head>
+<h3> <span id = "title"> Vocab Game  </span> </h3> 
+</head> 
 
-<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
+<body> 
 
+  <h3> score <span id = "score_text"> </span> </h3> 
 
-{% for word in words%}
+{% for word in words|shuffle %}
 
-<p> {{word}}</p>
-
+<p id = "words" hidden> {{word}}</p>
 
 {% endfor %}
+
+ <li id = "wordlists">
+   
+
+ </li>
+
+
+
+
+
+
+
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+<script type = "text/javascript"> 
+//Setting words/score
+let words = document.getElementById("words"); 
+let score = 0;
+
+// displays score
+document.getElementById("score_text").innerHTML = score;
+
+//hiding words from django - set to true to hide 
+words.hidden = false;
+
+
+
+
+
+let arr = words.length; 
+
+for (var i = 0; i < arr; i ++){
+  console.log(arr[i]); 
+}
+
+document.getElementById("wordlists").innerHTML = arr; 
+
+
+
+</script> 
+
+</html> 
