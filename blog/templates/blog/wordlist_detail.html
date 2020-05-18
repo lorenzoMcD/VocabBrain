@@ -22,8 +22,11 @@
 </div>
 
     {% endif %}
+
+    <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-vocab_game' object.id %}">Vocab Game </a>
+
     </div>
-    <h2><a class="article-title"> {{ object.title }}</h2>
+    <h2><a class="article-title"> {{ object.title }}</a></h2>
     <p class="article-content">{{ object.description }}</p>
 
 
@@ -33,7 +36,7 @@
 <p>{{word}} </p>
 
 {% endfor %}
-
+</div>
 
 </article>
 
