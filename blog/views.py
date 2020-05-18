@@ -410,6 +410,15 @@ def word_list_sents(request, pk):
     return render(request, 'blog/word_list_sents.html', context)
 
 
-def vocab_game(request):
+def vocab_game(request, pk):
 
-    return render(request, 'blog/vocab_game.html')
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+
+    context = {
+
+        'words': words
+    }
+
+    return render(request, 'blog/vocab_game.html', context)
