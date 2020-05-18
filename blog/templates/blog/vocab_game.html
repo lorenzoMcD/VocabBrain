@@ -1,16 +1,67 @@
 {% load static %}
+{% load auth_extras %}
 
 <html>
 <!--  index.html -->
 <head>
+<h3> <span id = "title"> Vocab Game  </span> </h3> 
+</head> 
 
-<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
+<body> 
 
+  <h3> score <span id = "score_text"> </span> </h3> 
 
-{% for word in words%}
+{% for word in words|shuffle %}
 
-<p> {{word}}</p>
-
+<li id = "words" hidden> {{word}}</li>
 
 {% endfor %}
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+<script type = "text/javascript"> 
+
+//Declaring words/score 
+let words = document.getElementById("words"); 
+let score = 0;
+
+/* Const function that allows us to continiously display what we want
+ As long as we call it */
+
+const showOnScreen = () => {
+  document.getElementById("score_text").innerHTML = score; 
+}
+
+//Hiding words, set to true if you want to hide 
+words.hidden = false;
+
+
+/* Attempting loop through words and display them all
+Not working yet, will fix after work */ 
+
+var i;
+
+for (i= 0; i <= words.length; i++){
+  words += word[i] + "<li>";
+}
+
+
+
+
+
+
+// Calls our main func 
+window.onload = showOnScreen 
+
+</script> 
+
+</html> 

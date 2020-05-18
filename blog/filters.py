@@ -14,3 +14,4 @@ class OrderFilter(django_filters.FilterSet):
         # here you can add other fields to filter by that
         # are based on the User model
         fields = ['username']
+
