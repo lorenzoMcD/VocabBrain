@@ -408,3 +408,8 @@ def word_list_sents(request, pk):
     }
 
     return render(request, 'blog/word_list_sents.html', context)
+
+
+def vocab_game(request):
+
+    return render(request, 'blog/vocab_game.html')
