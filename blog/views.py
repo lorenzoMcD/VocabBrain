@@ -21,6 +21,7 @@ from wiktionaryparser import WiktionaryParser
 from.models import WordList
 from.models import Word
 from.form import WordListForm
+import random
 
 # page that shows posts by every user on site
 def home(request):
@@ -415,10 +416,25 @@ def vocab_game(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    sentlist = []
+    deflist = []
+    for i in words:
+        sentlist.append(i.sentence)
+        deflist.append(i.definition)
+
+    random.shuffle(sentlist)
+    random.shuffle(deflist)
+
+    mylists = zip(words, sentlist)
+
+    # create new list here for sent randomize on view
+    # then insert into template. have to do this from outside first or term and def will keep matching up
 
     context = {
 
-        'words': words
+        'mylists': mylists
     }
 
     return render(request, 'blog/vocab_game.html', context)
