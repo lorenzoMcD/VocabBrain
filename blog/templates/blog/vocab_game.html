@@ -3,17 +3,28 @@
 
 <html>
 <!--  index.html -->
+
+<!-- this style places both divs on same line -->
+<style type="text/css">
+#element1 {display:inline-block; width:45%; padding:10px}
+#element2 {display:inline-block; width:45%; padding:10px}
+</style>
+
 <head>
-<h3> <span id = "title"> Vocab Game  </span> </h3> 
-</head> 
+<h3> <span id = "title"> Vocab Game  </span> </h3>
+</head>
 
-<body> 
+<body>
 
-  <h3> score <span id = "score_text"> </span> </h3> 
+  <h3> score <span id = "score_text"> </span> </h3>
 
-{% for word in words|shuffle %}
+{% for word,sent in mylists|shuffle %}
 
-<li id = "words" hidden> {{word}}</li>
+<!-- <li id = "words" hidden> </li> -->
+<div id="element1"> {{word}}</div>
+
+
+<div id = "element2">{{sent}}</div>
 
 {% endfor %}
 
@@ -24,29 +35,27 @@
 
 
 
-
-
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
 
-<script type = "text/javascript"> 
+<script type = "text/javascript">
 
-//Declaring words/score 
-let words = document.getElementById("words"); 
+//Declaring words/score
+let words = document.getElementById("words");
 let score = 0;
 
 /* Const function that allows us to continiously display what we want
  As long as we call it */
 
 const showOnScreen = () => {
-  document.getElementById("score_text").innerHTML = score; 
+  document.getElementById("score_text").innerHTML = score;
 }
 
-//Hiding words, set to true if you want to hide 
+//Hiding words, set to true if you want to hide
 words.hidden = false;
 
 
 /* Attempting loop through words and display them all
-Not working yet, will fix after work */ 
+Not working yet, will fix after work */
 
 var i;
 
@@ -59,9 +68,9 @@ for (i= 0; i <= words.length; i++){
 
 
 
-// Calls our main func 
-window.onload = showOnScreen 
+// Calls our main func
+window.onload = showOnScreen
 
-</script> 
+</script>
 
-</html> 
+</html>
