@@ -4,29 +4,53 @@
 <html>
 <!--  index.html -->
 
-<!-- this style places both divs on same line -->
-<style type="text/css">
-#element1 {display:inline-block; width:45%; padding:10px}
-#element2 {display:inline-block; width:45%; padding:10px}
-</style>
 
-<head>
-<h3> <span id = "title"> Vocab Game  </span> </h3>
-</head>
 
-<body>
+<!--  Required meta tags  -->
 
-  <h3> score <span id = "score_text"> </span> </h3>
+<!-- Css tags --> 
+<link rel="stylesheet" type="text/css" href="{% static 'blog/game.css'%}">
 
-{% for word,sent in mylists|shuffle %}
 
+<header>
+  <h3> <span id = "title"> Vocab Game  </span> </h3>
+        {% for word,sent in mylists|shuffle %}
 <!-- <li id = "words" hidden> </li> -->
-<div id="element1"> {{word}}</div>
 
-
-<div id = "element2">{{sent}}</div>
-
+       <li> {{word}} </li>
 {% endfor %}
+</header>
+
+<br> <br> <br> <br> 
+
+
+
+
+<body> 
+      {% for sent in mysent|shuffle %}
+      <div class = "sentbox"> 
+        <div class = "content"> {{sent}} 
+        <div class = "submit"> 
+          <br> <br> 
+       
+         <button class="button">A</button>
+         <button class="button button2">B</button>
+         <button class="button button3">C</button>
+         <button class="button button4">D</button>
+         <button class="button button5">E</button>
+
+
+        </div> 
+
+    </div>
+  </div> 
+
+        {% endfor %}
+
+
+</body> 
+     
+      
 
 
 
@@ -40,36 +64,25 @@
 <script type = "text/javascript">
 
 //Declaring words/score
-let words = document.getElementById("words");
+let sent = document.getElementById("sents");
 let score = 0;
 
 /* Const function that allows us to continiously display what we want
  As long as we call it */
 
 const showOnScreen = () => {
-  document.getElementById("score_text").innerHTML = score;
+  document.getElementById("sents").innerHTML = sent;
 }
 
 //Hiding words, set to true if you want to hide
-words.hidden = false;
-
-
-/* Attempting loop through words and display them all
-Not working yet, will fix after work */
-
-var i;
-
-for (i= 0; i <= words.length; i++){
-  words += word[i] + "<li>";
-}
-
+sent.hidden = false;
 
 
 
 
 
 // Calls our main func
-window.onload = showOnScreen
+//window.onload = showOnScreen
 
 </script>
 

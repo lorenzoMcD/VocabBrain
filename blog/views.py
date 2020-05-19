@@ -428,13 +428,14 @@ def vocab_game(request, pk):
     random.shuffle(deflist)
 
     mylists = zip(words, sentlist)
+    mysent = (sentlist)
 
     # create new list here for sent randomize on view
     # then insert into template. have to do this from outside first or term and def will keep matching up
 
     context = {
 
-        'mylists': mylists
+        'mylists': mylists, 'mysent': sentlist
     }
 
     return render(request, 'blog/vocab_game.html', context)
