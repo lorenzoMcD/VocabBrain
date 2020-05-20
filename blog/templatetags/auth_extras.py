@@ -21,3 +21,8 @@ def shuffle(arg):
     tmp = list(arg)[:]
     random.shuffle(tmp)
     return tmp
+
+
+@register.filter
+def index(indexable, i): 
+	return indexable[i] 

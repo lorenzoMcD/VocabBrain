@@ -427,7 +427,7 @@ def vocab_game(request, pk):
     random.shuffle(sentlist)
     random.shuffle(deflist)
 
-    mylists = zip(words, sentlist)
+    mylists = (words)
     mysent = (sentlist)
 
     # create new list here for sent randomize on view

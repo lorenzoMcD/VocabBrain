@@ -14,11 +14,13 @@
 
 <header>
   <h3> <span id = "title"> Vocab Game  </span> </h3>
-        {% for word,sent in mylists|shuffle %}
+      
 <!-- <li id = "words" hidden> </li> -->
+        <li id = "a" > {{mylists|index:0}} </li>
+       <li> {{mylists|index:1}} </li>
+       <h3> Score <span id= "score"></span></h3>
+    
 
-       <li> {{word}} </li>
-{% endfor %}
 </header>
 
 <br> <br> <br> <br> 
@@ -27,10 +29,13 @@
 
 
 <body> 
-      {% for sent in mysent|shuffle %}
+      
       <div class = "sentbox"> 
-        <div class = "content"> {{sent}} 
-        <div class = "submit"> 
+        <div class = "content"> 
+          <p id = "test1"> {{mysent|index:0}} </p>
+        <button id = "try" onclick = "test()"> Click </button> 
+
+      
           <br> <br> 
        
          <button class="button">A</button>
@@ -40,13 +45,11 @@
          <button class="button button5">E</button>
 
 
-        </div> 
-
+      </div> 
     </div>
   </div> 
 
-        {% endfor %}
-
+  
 
 </body> 
      
@@ -64,25 +67,39 @@
 <script type = "text/javascript">
 
 //Declaring words/score
-let sent = document.getElementById("sents");
+let a = document.getElementById("a");
+let answer = document.getElementById("test1"); 
 let score = 0;
 
 /* Const function that allows us to continiously display what we want
  As long as we call it */
 
 const showOnScreen = () => {
-  document.getElementById("sents").innerHTML = sent;
+  document.getElementById("score").innerHTML = score; 
+  document.getElementbyId("try"); 
+
 }
 
+
+function test(a, answer){
+  if (a === answer){
+    alert ("nice"); 
+    }
+
+}
+
+
+
+
 //Hiding words, set to true if you want to hide
-sent.hidden = false;
+
 
 
 
 
 
 // Calls our main func
-//window.onload = showOnScreen
+window.onload = showOnScreen
 
 </script>
 
