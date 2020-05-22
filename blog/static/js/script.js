@@ -18,30 +18,45 @@ $(document).ready(function() {
 
     //$("#status").html(useranswer);
 
-    if (answertext == useranswer1) {
-      alert("correct on 1");
+    if (answertext === useranswer1) {
+      correct++;
+      showOnScreen(); 
+    }else {
+      incorrect++;
     }
 
-
-    else if (answertext2 == useranswer2){
-      alert("correct on 2");
+    if (answertext2 === useranswer2){
+      correct++;
+      showOnScreen();
+    }else {
+      incorrect++;
     }
-
-
-    else if ( answertext3 == useranswer3){
-
-      alert("correct on 3");
-    }
-
-
-
-
-    else {
-      alert("incorrect");
-
+    if (answertext3 === useranswer3){
+      correct++;
+      showOnScreen();
+    } else {
+      incorrect ++;
     };
 
   });
 
 
 });
+
+
+let correct = 0 
+let incorrect = 0 
+
+const showOnScreen = () => {
+  document.getElementById("correct").innerHTML = correct; 
+  document.getElementById("incorrect").innerHTML = incorrect; 
+  correct = Math.min(Math.max(correct,0),4);
+  incorrect = Math.min(Math.max(incorrect,0),4);
+
+}
+
+
+
+
+
+window.onload = showOnScreen

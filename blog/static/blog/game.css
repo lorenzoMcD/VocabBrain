@@ -74,3 +74,10 @@ body {
 .button3 {background-color: #f44336;} 
 .button4 {background-color: orange;}
 .button5 {background-color: purple;} 
+
+
+.progress {
+
+  display: inline-block;
+
+}
