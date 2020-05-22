@@ -41,10 +41,17 @@
 
  <input type=text id="answer1">
 
-<br> <br>
+<br><br>
 
  <input type=text id="answer2">
 
+    {% if mysent.length > 2 %}
+
+    <br><br>
+
+ <input type=text id="answer3">
+
+    {% endif %}
 
 </div>
 
@@ -53,15 +60,22 @@
 <div id="element2">
 
 <input id="def1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
-<li > {{mysent|index:0}}</li>
+<li> {{mysent|index:0}} </li>
 
 
-
-<br> <br>
-
+<br><br>
 
 <input id="def2"  type="hidden"  value="{{ terms|index:1 }}"> </input>
 <li> {{mysent|index:1}}</li>
+
+
+{% if mysent.length > 2 %}
+<br><br>
+<input id="def3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
+<li> {{mysent|index:2}}</li>
+
+ {% endif %}
+
 </div>
 
 

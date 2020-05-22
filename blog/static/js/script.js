@@ -12,17 +12,29 @@ $(document).ready(function() {
     var answertext2 = $("#answer2").val();
     var useranswer2 = $("#def2").val();
 
+    var answertext3 = $("#answer3").val();
+    var useranswer3 = $("#def3").val();
+
 
     //$("#status").html(useranswer);
 
     if (answertext == useranswer1) {
-      alert("correct");
+      alert("correct on 1");
     }
 
 
     else if (answertext2 == useranswer2){
       alert("correct on 2");
     }
+
+
+    else if ( answertext3 == useranswer3){
+
+      alert("correct on 3");
+    }
+
+
+
 
     else {
       alert("incorrect");

@@ -426,18 +426,20 @@ def vocab_game(request, pk):
         deflist.append(i.definition)
         termlist.append(i.term)
 
-    random.shuffle(deflist)
+    mylists = (words)
 
     terms = (termlist)
-    mylists = (words)
     mysent = (sentlist)
 
-    # create new list here for sent randomize on view
-    # then insert into template. have to do this from outside first or term and def will keep matching up
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+
+    terms, mysent = shuffle(terms, mysent)
 
     context = {
 
-        'mylists': mylists, 'mysent': sentlist, 'terms': terms
+        'mylists': mylists, 'mysent': mysent, 'terms': terms
     }
 
     return render(request, 'blog/vocab_game.html', context)
