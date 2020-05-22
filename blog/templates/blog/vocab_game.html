@@ -27,7 +27,8 @@
        <li> {{word}} </li>
        {% endfor %}
 
-       <h3> Score <span id= "score"></span></h3>
+       <h3> Correct <span id= "correct"></span></h3>
+       <h3> Incorrect <span id= "incorrect"></span></h3>
 
 
 </header>
@@ -61,7 +62,7 @@
 
 <div id="element2">
 
-<input id="def1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
+<input id="def1"  type="hidden"  placeholder= "Enter word" value="{{ terms|index:0 }}"> </input>
 <li> {{mysent|index:0}} </li>
 
 
