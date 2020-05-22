@@ -39,15 +39,19 @@ $(document).ready(function() {
 
 });
 
+// Defining correct answers and our button
 let correct = 0 
 let clickme = document.getElementById("clickme"); 
 
+//constant function that show and updates score
+// Capping the score at 5 
 const showOnScreen = () => {
   document.getElementById("correct").innerHTML = correct; 
   correct = Math.min(Math.max(correct,0),4);
 
 }
 
+// Click submit - Submit button disabled, reset button enabled 
 const finish = () =>{
   let clickme = document.getElementById("clickme"); 
   let reset = document.getElementById("reset"); 
@@ -56,6 +60,9 @@ const finish = () =>{
 } 
 
 
+
+
+//load our function
 
 
 window.onload = showOnScreen
