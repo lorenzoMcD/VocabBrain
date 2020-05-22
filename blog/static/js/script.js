@@ -21,40 +21,39 @@ $(document).ready(function() {
     if (answertext === useranswer1) {
       correct++;
       showOnScreen(); 
-    }else {
-      incorrect++;
     }
+    
 
     if (answertext2 === useranswer2){
       correct++;
       showOnScreen();
-    }else {
-      incorrect++;
     }
+    
     if (answertext3 === useranswer3){
       correct++;
       showOnScreen();
-    } else {
-      incorrect ++;
-    };
+    }
 
   });
 
 
 });
 
-
 let correct = 0 
-let incorrect = 0 
+let clickme = document.getElementById("clickme"); 
 
 const showOnScreen = () => {
   document.getElementById("correct").innerHTML = correct; 
-  document.getElementById("incorrect").innerHTML = incorrect; 
   correct = Math.min(Math.max(correct,0),4);
-  incorrect = Math.min(Math.max(incorrect,0),4);
 
 }
 
+const finish = () =>{
+  let clickme = document.getElementById("clickme"); 
+  let reset = document.getElementById("reset"); 
+  clickme.disabled = true; 
+  reset.hidden = false; 
+} 
 
 
 
