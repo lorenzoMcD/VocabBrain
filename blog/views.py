@@ -420,13 +420,15 @@ def vocab_game(request, pk):
 
     sentlist = []
     deflist = []
+    termlist = []
     for i in words:
         sentlist.append(i.sentence)
         deflist.append(i.definition)
+        termlist.append(i.term)
 
-    random.shuffle(sentlist)
     random.shuffle(deflist)
 
+    terms = (termlist)
     mylists = (words)
     mysent = (sentlist)
 
@@ -435,7 +437,29 @@ def vocab_game(request, pk):
 
     context = {
 
-        'mylists': mylists, 'mysent': sentlist
+        'mylists': mylists, 'mysent': sentlist, 'terms': terms
     }
 
     return render(request, 'blog/vocab_game.html', context)
+
+def print_vocab_sent(request, pk):
+
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+    sentlist = []
+    for i in words:
+        sentlist.append(i.sentence)
+
+    random.shuffle(sentlist)
+
+    mylists = (words)
+    mysent = (sentlist)
+
+    context = {
+
+        'words': words, 'sents': sentlist
+    }
+
+    return render(request, 'blog/print_vocab_sent.html', context)

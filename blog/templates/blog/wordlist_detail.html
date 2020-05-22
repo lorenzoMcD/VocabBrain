@@ -25,6 +25,8 @@
 
     <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-vocab_game' object.id %}">Vocab Game </a>
 
+    <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' object.id %}">Print Worksheet </a>
+
     </div>
     <h2><a class="article-title"> {{ object.title }}</a></h2>
     <p class="article-content">{{ object.description }}</p>

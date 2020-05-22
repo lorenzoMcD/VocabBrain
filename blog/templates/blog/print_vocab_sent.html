@@ -1,0 +1,52 @@
+{% load static %}
+{% load auth_extras %}
+
+<html>
+
+
+<style type="text/css">
+#element1 {display:inline-block; width:35%; padding:10px}
+#element2 {display:inline-block; width:35%; padding:10px}
+</style>
+
+
+
+
+<header>
+  <h3> <span id = "title"> Vocab Game  </span> </h3>
+<p>vocab worksheet draw line from the set of word that matches its sentence. </p>
+
+</header>
+
+<br> <br> <br> <br>
+
+<body>
+
+{%  for word in words %}
+
+
+<div id="element1">
+<ol>
+<li> __________________</li>
+</ol>
+</div>
+
+
+<div id="element2">
+<li> {{word.sentence}}</li>
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+</body>
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+</html>
