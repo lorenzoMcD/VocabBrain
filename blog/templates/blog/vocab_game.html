@@ -20,15 +20,15 @@
 
 
 <header>
-  <h3> <span id = "title"> Vocab Game  </span> </h3>
+  <h3> <span id = "title"> Guess The Word! </span> </h3>
 
 <!-- <li id = "words" hidden> </li> -->
        {% for word in mylists %}
        <li> {{word}} </li>
        {% endfor %}
 
-       <h3> Correct <span id= "correct"></span></h3>
-       <h3> Incorrect <span id= "incorrect"></span></h3>
+       <h3> Correct:   <span id= "correct"></span> /5</h3>
+      
 
 
 </header>
@@ -42,26 +42,23 @@
 
 <div id="element1">
 
- <input type=text id="answer1">
+ <input type=text id="answer1" placeholder = "Enter Word">
 
 <br><br>
 
- <input type=text id="answer2">
+ <input type=text id="answer2"placeholder = "Enter Word">
 
-
-{% if mysent|length_is:"3" %}
 
 <br><br>
 
- <input type=text id="answer3">
+ <input type=text id="answer3"placeholder = "Enter Word">
 
-{% endif %}
+
 </div>
 
 
 
 <div id="element2">
-
 <input id="def1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
 <li> {{mysent|index:0}} </li>
 
@@ -73,20 +70,20 @@
 
 
 
-{% if mysent|length_is:"3" %}
+
 
 <br><br>
 
 <input id="def3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
 <li> {{mysent|index:2}}</li>
 
-{% endif %}
 </div>
 
 
 
 <!-- need to put this submit button in spot that makes since.. -->
-<button id="clickme">Submit</button>
+<button id="clickme" onclick = "finish()">Submit</button>
+<button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
 </body>
 
 
