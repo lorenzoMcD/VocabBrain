@@ -46,4 +46,6 @@ urlpatterns = [
     path('word_list_sents/<int:pk>/', views.word_list_sents, name='word_list_sents'),
 
     path('vocab_game/<int:pk>/', views.vocab_game, name='blog-vocab_game'),
+
+    path('print_vocab_sent/<int:pk>/', views.print_vocab_sent, name='blog-print_vocab_sent'),
 ]
