@@ -23,8 +23,10 @@
   <h3> <span id = "title"> Vocab Game  </span> </h3>
 
 <!-- <li id = "words" hidden> </li> -->
-        <li id = "a" > {{mylists|index:0}} </li>
-       <li> {{mylists|index:1}} </li>
+       {% for word in mylists %}
+       <li> {{word}} </li>
+       {% endfor %}
+
        <h3> Score <span id= "score"></span></h3>
 
 
@@ -45,14 +47,14 @@
 
  <input type=text id="answer2">
 
-    {% if mysent.length > 2 %}
 
-    <br><br>
+{% if mysent|length_is:"3" %}
+
+<br><br>
 
  <input type=text id="answer3">
 
-    {% endif %}
-
+{% endif %}
 </div>
 
 
@@ -69,13 +71,15 @@
 <li> {{mysent|index:1}}</li>
 
 
-{% if mysent.length > 2 %}
+
+{% if mysent|length_is:"3" %}
+
 <br><br>
+
 <input id="def3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
 <li> {{mysent|index:2}}</li>
 
- {% endif %}
-
+{% endif %}
 </div>
 
 
