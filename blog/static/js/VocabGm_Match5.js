@@ -5,8 +5,8 @@ $(document).ready(function() {
   // EVENT HANDLER
 
   $("#clickme").click(function() {
-    var useranswer1 = $("#answer1").val();
-    var answertext = $("#sent1").val();
+    var useranswer1 = $("#sent1").val();
+    var answertext = $("#answer1").val();
 
     var answertext2 = $("#answer2").val();
     var useranswer2 = $("#sent2").val();
@@ -19,7 +19,7 @@ $(document).ready(function() {
     var useranswer4 = $("#sent4").val();
 
     var answertext5 = $("#answer5").val();
-    var useranswer5 = $("sent5").val();
+    var useranswer5 = $("#sent5").val();
 
 
     //$("#status").html(useranswer);
@@ -49,6 +49,7 @@ $(document).ready(function() {
       correct++;
       showOnScreen();
     }
+
 
   });
 
