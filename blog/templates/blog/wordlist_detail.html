@@ -13,21 +13,59 @@
     <p> note: to update the terms within this list</p>
     <p> click "update terms" to update terms,sentences and </p>
     <p> defintions for your list.</p>
+    <p>__________________________________________________________</p>
+    <p> in order to have vocabulary games for students, your list</p>
+    <p> must have at least 3 terms </p>
     <div>
     <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-update' object.id %}">Update description/title</a>
 
     <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog-create_word_list' object.id %}">Update Terms </a>
 
     <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'list-delete' object.id %}">Delete </a>
+
 </div>
 
     {% endif %}
 
-    <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-vocab_game' object.id %}">Vocab Game </a>
+ <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' object.id %}">Print Worksheet </a>
+    {% if words|length < 3%}
 
-    <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' object.id %}">Print Worksheet </a>
 
+    {%else%}
+    <div class = "dropdown show">
+      <a class = "btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Games</a>
+
+
+<div class ="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+    {% if words|length >= 5 %}
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_5' object.id %}">5 term sentence matching game  </a>
+
+    <a class = "dropdown-item" href="{% url 'blog-def_match_5' object.id %}">5 term definition matching game  </a>
+
+    {% endif %}
+
+
+    {% if words|length >= 4 %}
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_4' object.id %}">4 term sentence matching game  </a>
+
+    <a class = "dropdown-item" href="{% url 'blog-def_match_4' object.id %}">4 term definition matching game  </a>
+
+
+    {% endif %}
+
+
+    {% if words|length >= 3 %}
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_3' object.id %}">3 term sentence matching game  </a>
+
+    <a class = "dropdown-item" href="{% url 'blog-def_match_3' object.id %}">3 term definition matching game  </a>
+
+    {% endif %}
     </div>
+  </div>
+{% endif %}
+
+
     <h2><a class="article-title"> {{ object.title }}</a></h2>
     <p class="article-content">{{ object.description }}</p>
 
