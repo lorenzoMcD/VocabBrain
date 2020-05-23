@@ -45,7 +45,17 @@ urlpatterns = [
 
     path('word_list_sents/<int:pk>/', views.word_list_sents, name='word_list_sents'),
 
-    path('vocab_game/<int:pk>/', views.vocab_game, name='blog-vocab_game'),
+    path('sent_match_5/<int:pk>/', views.sent_match_5, name='blog-sent_match_5'),
+
+    path('sent_match_4/<int:pk>/', views.sent_match_4, name='blog-sent_match_4'),
+
+    path('sent_match_3/<int:pk>/', views.sent_match_3, name='blog-sent_match_3'),
+
+    path('def_match_3/<int:pk>/', views.def_match_3, name='blog-def_match_3'),
+
+    path('def_match_4/<int:pk>/', views.def_match_4, name='blog-def_match_4'),
+
+    path('def_match_5/<int:pk>/', views.def_match_5, name='blog-def_match_5'),
 
     path('print_vocab_sent/<int:pk>/', views.print_vocab_sent, name='blog-print_vocab_sent'),
 ]

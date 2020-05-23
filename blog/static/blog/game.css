@@ -22,7 +22,7 @@ header {
     overflow:hidden;
  	  justify-content: space-between;
  	  margin-top: 40px;
-  
+
 }
 
 .sentbox:after {
@@ -52,7 +52,7 @@ body {
 	font-size:20px;
 	font-weight:bold;
 
-}		
+}
 
 
 .button{
@@ -68,12 +68,12 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   margin-top:60px;
-}	
+}
 
-.button2 {background-color: #008CBA;} 
-.button3 {background-color: #f44336;} 
+.button2 {background-color: #008CBA;}
+.button3 {background-color: #f44336;}
 .button4 {background-color: orange;}
-.button5 {background-color: purple;} 
+.button5 {background-color: purple;}
 
 
 .progress {

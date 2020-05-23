@@ -411,13 +411,11 @@ def word_list_sents(request, pk):
     return render(request, 'blog/word_list_sents.html', context)
 
 
-def vocab_game(request, pk):
-
+def sent_match_5(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
     sentences = Word.objects.filter(wordlist__id=a)
-
     sentlist = []
     deflist = []
     termlist = []
@@ -425,24 +423,232 @@ def vocab_game(request, pk):
         sentlist.append(i.sentence)
         deflist.append(i.definition)
         termlist.append(i.term)
-
-    mylists = (words)
-
-    terms = (termlist)
-    mysent = (sentlist)
-
+    # if user has more than 5 terms create new list that adds random 5 terms to list
+    new_list_terms = []
+    new_list_sents = []
+    # if length of term list > 5 take random 5 items from terms
+    # then find the matching sents from the word model and match
+    # them with terms
+    if len(termlist) > 5:
+        new_list_terms += random.sample(termlist, 5)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_sents.append(word.sentence)
+        terms = (new_list_terms)
+        mysent = (new_list_sents)
+    else:
+        terms = (termlist)
+        mysent = (sentlist)
     # this mod will shuffle both lists at same time
     # but keep their order
     from sklearn.utils import shuffle
+    terms, mysent = shuffle(terms, mysent)
+    context = {
+        'mysent': mysent, 'terms': terms
+    }
+    return render(request, 'blog/sent_match_5.html', context)
 
+
+def sent_match_4(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+    sentlist = []
+    deflist = []
+    termlist = []
+    for i in words:
+        sentlist.append(i.sentence)
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 4 terms create new list that adds random 4 terms to list
+    new_list_terms = []
+    new_list_sents = []
+    # if length of term list > 4 take random 4 items from terms
+    # then find the matching sents from the word model and match
+    # them with terms
+    if len(termlist) > 4:
+        new_list_terms += random.sample(termlist, 4)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_sents.append(word.sentence)
+        terms = (new_list_terms)
+        mysent = (new_list_sents)
+    else:
+        terms = (termlist)
+        mysent = (sentlist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mysent = shuffle(terms, mysent)
+    context = {
+        'mysent': mysent, 'terms': terms
+    }
+    return render(request, 'blog/sent_match_4.html', context)
+
+
+def sent_match_3(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+    sentlist = []
+    deflist = []
+    termlist = []
+    for i in words:
+        sentlist.append(i.sentence)
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 3 terms create new list that adds random 3 terms to list
+    new_list_terms = []
+    new_list_sents = []
+    # if length of term list > 3 take random 3 items from terms
+    # then find the matching sents from the word model and match
+    # them with terms
+    if len(termlist) > 3:
+        new_list_terms += random.sample(termlist, 3)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_sents.append(word.sentence)
+        terms = (new_list_terms)
+        mysent = (new_list_sents)
+    else:
+        terms = (termlist)
+        mysent = (sentlist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
     terms, mysent = shuffle(terms, mysent)
 
     context = {
-
-        'mylists': mylists, 'mysent': mysent, 'terms': terms
+        'mysent': mysent, 'terms': terms
     }
 
-    return render(request, 'blog/vocab_game.html', context)
+    return render(request, 'blog/sent_match_3.html', context)
+
+
+def def_match_5(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 5 terms create new list that adds random 5 terms to list
+    new_list_terms = []
+    new_list_defs = []
+    # if length of term list > 5 take random 5 items from terms
+    # then find the matching defs from the word model and match
+    # them with terms
+    if len(termlist) > 5:
+        new_list_terms += random.sample(termlist, 5)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/def_match_5.html', context)
+
+
+def def_match_4(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 4 terms create new list that adds random 4 terms to list
+    new_list_terms = []
+    new_list_defs = []
+    # if length of term list > 4 take random 4 items from terms
+    # then find the matching defs from the word model and match
+    # them with terms
+    if len(termlist) > 4:
+        new_list_terms += random.sample(termlist, 4)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/def_match_4.html', context)
+
+
+def def_match_3(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 3 terms create new list that adds random 3 terms to list
+    new_list_terms = []
+    new_list_defs = []
+    # if length of term list > 3 take random 3 items from terms
+    # then find the matching defs from the word model and match
+    # them with terms
+    if len(termlist) > 3:
+        new_list_terms += random.sample(termlist, 3)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/def_match_3.html', context)
+
 
 def print_vocab_sent(request, pk):
 
