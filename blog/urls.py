@@ -58,4 +58,8 @@ urlpatterns = [
     path('def_match_5/<int:pk>/', views.def_match_5, name='blog-def_match_5'),
 
     path('print_vocab_sent/<int:pk>/', views.print_vocab_sent, name='blog-print_vocab_sent'),
+
+    path('test/<int:pk>/', views.test, name='blog-test'),
+
+
 ]

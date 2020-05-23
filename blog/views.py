@@ -650,6 +650,28 @@ def def_match_3(request, pk):
     return render(request, 'blog/def_match_3.html', context)
 
 
+def test(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+
+    sentlist = []
+    for i in words:
+        sentlist.append(i.sentence)
+
+    random.shuffle(sentlist)
+
+    mylists = (words)
+    mysent = (sentlist)
+
+    context = {
+
+        'words': words, 'sents': sentlist
+    }
+
+    return render(request, 'blog/test.html', context)
+
+
 def print_vocab_sent(request, pk):
 
     wordlist = WordList.objects.get(pk=pk)

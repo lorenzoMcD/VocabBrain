@@ -75,4 +75,16 @@ class Word(models.Model):
             return(sentences)
 
         except:
-            retutn("could not find sentences!")
+            return("could not find sentences!")
+
+
+class Quiz(models.Model):
+
+    title = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.PositiveSmallIntegerField()
+    wordlist = models.ForeignKey(WordList, on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
