@@ -754,3 +754,65 @@ def test_create(request):
         # this gives teacher drop down list of wordlists that they have created
         form.fields['wordlist'].queryset = WordList.objects.filter(author=request.user)
     return render(request, 'blog/test_create.html', {'form': form})
+
+
+def vocab_test(request, pk):
+    test = Test.objects.get(pk=pk)
+    a = test.wordlist_id
+    #wordlist = WordList.objects.get(pk=pk)
+    #a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+
+    new_list_terms = []
+    new_list_defs = []
+
+    if len(termlist) >= 5:
+        new_list_terms += random.sample(termlist, 5)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+
+    elif len(termlist) >= 4:
+
+        new_list_terms += random.sample(termlist, 4)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+
+    elif len(termlist) >= 3:
+
+        new_list_terms += random.sample(termlist, 3)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/vocab_test.html', context)

@@ -78,6 +78,8 @@ urlpatterns = [
 
     path('user/test/<str:username>/', UserTestListView.as_view(), name='user-tests'),
 
+    path('vocab_test/<int:pk>/', views.vocab_test, name='blog-vocab_test'),
+
 
 
 
