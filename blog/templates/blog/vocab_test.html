@@ -110,16 +110,18 @@
 
 </div>
 
-
+<form method = "POST">{% csrf_token %}
+        <button class="btn btn-primary" button id = "clickme" onclick="finish()" type="submit" >Submit</button>
+        </form>
 
 <!-- need to put this submit button in spot that makes since.. -->
-<button id="clickme" onclick = "finish()">Submit</button>
-<button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
+
+<!-- <button id="clickme" onclick = "finish()">Submit</button> -->
 </body>
 
 
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'js/VocabGm_Match5.js' %}"></script>
+<script src="{% static 'js/Vocab_Test.js' %}"></script>
 
 
 

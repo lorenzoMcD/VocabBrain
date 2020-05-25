@@ -815,4 +815,7 @@ def vocab_test(request, pk):
         'mydefs': mydefs, 'terms': terms
     }
 
+    if request.method == "POST":
+        score = request.POST.get('data')
+        print(score)
     return render(request, 'blog/vocab_test.html', context)
