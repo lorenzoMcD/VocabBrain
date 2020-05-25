@@ -1,24 +1,16 @@
 {% extends "blog/base.html" %}
 {% block content%}
-<h1 class = "mb-3"> lists by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
-
+<h1 class = "mb-3"> Tests by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
 
     {% for post in posts%}
-
-    <a class="mr-2" style="font-size:30px; color:red" href="{% url 'user-tests' post.author.username %}"> click me to view Tests</a>
-
-
-
-
         <article class="media content-section">
   <img class = "rounded-circle article-img" src="{{post.author.profile.image.url }}">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-lists' post.author.username %}">{{ post.author }}</a>
-
+      <a class="mr-2" href="{% url 'user-tests' post.author.username %}">{{ post.author }}</a>
       <small class="text-muted">{{ post.date_posted|date:"F d , Y" }}</small>
     </div>
-    <h2><a class="article-title" href="{% url 'list-detail' post.id %}">{{ post.title }}</a></h2>
+    <h2><a class="article-title" href="{% url 'test-detail' post.id %}">{{ post.title }}</a></h2>
     <p class="article-content">{{ post.description }}</p>
   </div>
 </article>

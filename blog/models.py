@@ -78,13 +78,22 @@ class Word(models.Model):
             return("could not find sentences!")
 
 
-class Quiz(models.Model):
+class Test(models.Model):
 
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.PositiveSmallIntegerField()
     wordlist = models.ForeignKey(WordList, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
+    description = models.TextField()
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('test-detail', kwargs={'pk': self.pk})
+
+
+class Testtaker(models.Model):
+    tester = models.ForeignKey(User, on_delete=models.CASCADE)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    score = models.PositiveSmallIntegerField()

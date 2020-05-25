@@ -1,30 +1,39 @@
 {% extends "blog/base.html" %}
 {% block content%}
-<h1 class = "mb-3"> lists by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+
+<h2>Page to demo Tests</h2>
 
 
-    {% for post in posts%}
-
-    <a class="mr-2" style="font-size:30px; color:red" href="{% url 'user-tests' post.author.username %}"> click me to view Tests</a>
+<!-- if user is not in group teacher dont show posts on home page-->
 
 
-
+    {% for list in lists%}
 
         <article class="media content-section">
-  <img class = "rounded-circle article-img" src="{{post.author.profile.image.url }}">
+  <img class = "rounded-circle article-img" src="{{list.author.profile.image.url }}">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-lists' post.author.username %}">{{ post.author }}</a>
+      <a class="mr-2" href="{% url 'user-tests' list.author.username %}">{{ list.author }}</a>
+      <small class="text-muted">{{ list.date_posted|date:"F d , Y" }}</small>
 
-      <small class="text-muted">{{ post.date_posted|date:"F d , Y" }}</small>
     </div>
-    <h2><a class="article-title" href="{% url 'list-detail' post.id %}">{{ post.title }}</a></h2>
-    <p class="article-content">{{ post.description }}</p>
+    <h2><a class="article-title" href="{% url 'test-detail' list.id %}">{{ list.title }}</a></h2>
+    <p class="article-content">{{ list.description }}</p>
   </div>
 </article>
+
     {% endfor %}
 
 
+
+
+
+
+
+
+<!-- if user is not in group teacher dont show posts on home page-->
+{% for group in user.groups.all %}
+{% if group.name == 'Teacher' %}
 
     {% if is_paginated %}
 
@@ -47,4 +56,8 @@
       {% endif %}
 
     {% endif %}
+
+
+{% endif %}
+{% endfor %}
 {% endblock content %}

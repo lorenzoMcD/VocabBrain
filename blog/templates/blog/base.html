@@ -48,6 +48,12 @@
                       {% if group.name == 'Teacher' %}
           <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
           <a class="nav-item nav-link" href="{% url 'blog-temp' %}">view all created lists</a>
+
+          <a class="nav-item nav-link" href="{% url 'blog-temp2' %}">view all created tests</a>
+
+
+
+
           {% endif %}
           {% endfor %}
           <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
@@ -92,6 +98,10 @@
                       {% if group.name == 'Teacher' %}
 
                       <li class="list-group-item list-group-item-light"><a href="{% url 'list-create' %}" >Create new WordList</a></li>
+
+
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'test-create' %}" >Create new Test</a></li>
+
 
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Students in Your Class</a></li>
 

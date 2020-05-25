@@ -4,7 +4,11 @@ from .views import PostDeleteView
 from .views import PostDetailView
 from .views import PostListView
 from .views import PostUpdateView
+from .views import TestDeleteView
+from .views import TestDetailView
+from .views import TestUpdateView
 from .views import UserPostListView
+from .views import UserTestListView
 from .views import UserWordListView
 from .views import WordListDeleteView
 from .views import WordListDetailView
@@ -22,7 +26,9 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='blog-about'),
     path('teacher_lookup/', views.teacher_lookup, name='blog-teacher_lookup'),
+
     path('create_word_list/<int:pk>/', views.create_word_list, name='blog-create_word_list'),
+
     path('faq/', views.faq, name='blog-faq'),
 
     path('student_tracker/', views.student_tracker, name='blog-student_tracker'),
@@ -40,6 +46,8 @@ urlpatterns = [
     path('user/wordlist/<str:username>/', UserWordListView.as_view(), name='user-lists'),
 
     path('temp/', views.temp, name='blog-temp'),
+
+    path('temp2/', views.temp2, name='blog-temp2'),
 
     path('word_list_defs/<int:pk>/', views.word_list_defs, name='word_list_defs'),
 
@@ -59,7 +67,18 @@ urlpatterns = [
 
     path('print_vocab_sent/<int:pk>/', views.print_vocab_sent, name='blog-print_vocab_sent'),
 
-    path('test/<int:pk>/', views.test, name='blog-test'),
+    path('test_create/new/', views.test_create, name='test-create'),
+
+
+    path('test_form/<int:pk>/update/', TestUpdateView.as_view(), name='test-update'),
+
+    path('test/<int:pk>/delete/', TestDeleteView.as_view(), name='test-delete'),
+
+    path('test/<int:pk>/', TestDetailView.as_view(), name='test-detail'),
+
+    path('user/test/<str:username>/', UserTestListView.as_view(), name='user-tests'),
+
+
 
 
 ]

@@ -20,7 +20,9 @@ from django.views.generic import UpdateView
 from wiktionaryparser import WiktionaryParser
 from.models import WordList
 from.models import Word
+from.models import Test
 from.form import WordListForm
+from.form import TestCreateForm
 import random
 
 # page that shows posts by every user on site
@@ -172,6 +174,57 @@ class UserWordListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return WordList.objects.filter(author=user)
+
+
+class UserTestListView(ListView):
+
+    model = Test
+    template_name = 'blog/user_tests.html'
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
+    paginate_by = 4  # this will change number of posts visible per page
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Test.objects.filter(author=user)
+
+class TestDetailView(DetailView):
+
+    model = Test
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['words'] = Word.objects.filter(wordlist__id=self.kwargs['pk'])
+        return context
+
+class TestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
+    model = Test
+    success_url = '/'
+
+    def test_func(self):
+        test = self.get_object()
+        if self.request.user == test.author:
+            return True
+        return False
+
+class TestUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
+    model = Test
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        # function -- if user that posts blog is log in then they can post to blog.... else they can't
+        test = self.get_object()
+        if self.request.user == test.author:
+            return True
+        return False
 
 
 # class for delete a blog post
@@ -339,6 +392,16 @@ def temp(request):
     }
 
     return render(request, 'blog/temp.html', context)
+
+
+# temp html to test out the test views
+def temp2(request):
+    context = {
+
+        'lists': Test.objects.all()
+    }
+
+    return render(request, 'blog/temp2.html', context)
 
 
 def word_list_defs(request, pk):
@@ -649,29 +712,6 @@ def def_match_3(request, pk):
 
     return render(request, 'blog/def_match_3.html', context)
 
-
-def test(request, pk):
-    wordlist = WordList.objects.get(pk=pk)
-    a = wordlist.id
-    words = Word.objects.filter(wordlist__id=a)
-
-    sentlist = []
-    for i in words:
-        sentlist.append(i.sentence)
-
-    random.shuffle(sentlist)
-
-    mylists = (words)
-    mysent = (sentlist)
-
-    context = {
-
-        'words': words, 'sents': sentlist
-    }
-
-    return render(request, 'blog/test.html', context)
-
-
 def print_vocab_sent(request, pk):
 
     wordlist = WordList.objects.get(pk=pk)
@@ -693,3 +733,24 @@ def print_vocab_sent(request, pk):
     }
 
     return render(request, 'blog/print_vocab_sent.html', context)
+
+
+# create new test for students
+# allows teacher to import their wordlist to the test
+@login_required
+def test_create(request):
+    if request.method == 'POST':
+        form = TestCreateForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.author = request.user
+            user.save()
+
+            messages.success(request, f'Your Test has been created')
+
+            return redirect('blog-home')
+    else:
+        form = TestCreateForm()
+        # this gives teacher drop down list of wordlists that they have created
+        form.fields['wordlist'].queryset = WordList.objects.filter(author=request.user)
+    return render(request, 'blog/test_create.html', {'form': form})
