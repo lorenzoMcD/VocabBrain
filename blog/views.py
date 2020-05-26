@@ -21,8 +21,10 @@ from wiktionaryparser import WiktionaryParser
 from.models import WordList
 from.models import Word
 from.models import Test
+from.models import Testtaker
 from.form import WordListForm
 from.form import TestCreateForm
+from.form import TestSubmitForm
 import random
 
 # page that shows posts by every user on site
@@ -811,11 +813,16 @@ def vocab_test(request, pk):
     from sklearn.utils import shuffle
     terms, mydefs = shuffle(terms, mydefs)
 
+    if request.method == "POST":
+        score = request.POST.get("count")
+        final_score = (int(score) / len(terms)) * 100
+        obj = Testtaker.objects.create(tester=request.user, test=test, score=final_score)
+        obj.save()
+        messages.success(request, f'You have completed test')
+        return redirect('blog-home')
+
     context = {
         'mydefs': mydefs, 'terms': terms
     }
 
-    if request.method == "POST":
-        score = request.POST.get('data')
-        print(score)
     return render(request, 'blog/vocab_test.html', context)

@@ -24,7 +24,7 @@ $(document).ready(function() {
 
     //$("#status").html(useranswer);
 
-    if (answertext === useranswer1) {
+    if (answertext.toLowerCase() === useranswer1.toLowerCase()) {
       correct++;
       showOnScreen();
     }
