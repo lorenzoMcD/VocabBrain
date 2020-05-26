@@ -16,8 +16,11 @@
 
     <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'test-delete' object.id %}">Delete </a>
 {% endif %}
-<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-vocab_test' object.id %}">take test  </a>
 
+
+{% if words|length >= 5 %}
+<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-vocab_test' object.id %}">take test  </a>
+ {% endif %}
 </div>
 
 
