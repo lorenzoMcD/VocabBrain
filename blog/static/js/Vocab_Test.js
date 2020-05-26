@@ -4,6 +4,8 @@ $(document).ready(function() {
 
   var csrf = $("input[name = csrfmiddlewaretoken]").val();
 
+
+
   // EVENT HANDLER
 
   $("#clickme").click(function() {
@@ -66,6 +68,7 @@ let clickme = document.getElementById("clickme");
 // Capping the score at 5
 const showOnScreen = () => {
   document.getElementById("correct").innerHTML = correct;
+  document.getElementById("score").value = correct;
   correct = Math.min(Math.max(correct,0),4);
 
 }
@@ -73,19 +76,13 @@ const showOnScreen = () => {
 // Click submit - Submit button disabled, reset button enabled
 const finish = () =>{
   let clickme = document.getElementById("clickme");
-
-  $.ajax({
-         url: '',
-         data: {'correct': correct}, csrfmiddlewaretoken:csrf,
-         type: 'POST'
-       }).done(function(response){
-
-          console.log(response);
-        });
-
   clickme.disabled = true;
 
-}
+       }
+
+
+
+
 
 
 

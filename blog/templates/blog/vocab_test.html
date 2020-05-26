@@ -1,5 +1,6 @@
 {% load static %}
 {% load auth_extras %}
+{% load crispy_forms_tags %}
 
 <html>
 <!--  index.html -->
@@ -12,6 +13,17 @@
 <style type="text/css">
 #element1 {display:inline-block; width:35%; padding:10px}
 #element2 {display:inline-block; width:35%; padding:10px}
+
+
+#buttons p {
+  appearance:button;
+  -moz-appearance:button;
+  -webkit-appearance:button;
+  display: inline-block;
+  padding: 2px 5px;
+}
+
+
 </style>
 
 
@@ -23,9 +35,21 @@
   <h3> <span id = "title"> Guess The Word! </span> </h3>
 
 <!-- <li id = "words" hidden> </li> -->
-       {% for term in terms %}
-       <li> {{term}} </li>
-       {% endfor %}
+
+      <div id="buttons">
+  <p draggable="true" id="1">{{terms|index:0}}</p>
+  <p draggable="true" id="2">{{terms|index:1}}</p>
+  {% if terms|length >= 3 %}
+  <p draggable="true" id="3">{{terms|index:2}}</p>
+  {% if terms|length >= 4 %}
+  <p draggable="true" id="4">{{terms|index:3}}</p>
+  {% if terms|length >= 5 %}
+  <p draggable="true" id="5">{{terms|index:4}}</p>
+
+    {% endif %}
+    {% endif %}
+    {% endif %}
+</div>
 
        <h3> Correct:   <span id= "correct"></span> /5</h3>
 
@@ -42,7 +66,7 @@
 
 <div id="element1">
 
- <input type=text id="answer1" placeholder = "Enter Word">
+ <input type=text id="answer1" placeholder = "Enter Word" >
 
 <br><br>
 
@@ -111,7 +135,10 @@
 </div>
 
 <form method = "POST">{% csrf_token %}
-        <button class="btn btn-primary" button id = "clickme" onclick="finish()" type="submit" >Submit</button>
+
+        <input name="count" type = hidden id= "score" ></input>
+
+        <button class="btn btn-primary" button id = "clickme"  type="submit" >Submit</button>
         </form>
 
 <!-- need to put this submit button in spot that makes since.. -->
@@ -122,7 +149,13 @@
 
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
 <script src="{% static 'js/Vocab_Test.js' %}"></script>
+<script>
 
+document.addEventListener('dragstart', function (event) {
+      event.dataTransfer.setData('text', event.target.innerHTML);
+    });
+
+</script>
 
 
 
