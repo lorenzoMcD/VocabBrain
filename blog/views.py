@@ -826,3 +826,44 @@ def vocab_test(request, pk):
     }
 
     return render(request, 'blog/vocab_test.html', context)
+
+
+
+def flash_card(request,pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 5 terms create new list that adds random 5 terms to list
+    new_list_terms = []
+    new_list_defs = []
+    # if length of term list > 5 take random 5 items from terms
+    # then find the matching defs from the word model and match
+    # them with terms
+    if len(termlist) > 5:
+        new_list_terms += random.sample(termlist, 5)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/flash_card.html', context)
