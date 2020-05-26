@@ -3,6 +3,10 @@
 {% block content%}
 
 <p> NOTE: Before you can create a new test, you must already have created a wordlist. If you have not created any wordlists the dropdown list below will be empty!!</p>
+
+<h2 style="color:red"> Your wordlist must have minimum 5 words to create a Test</h2>
+
+
     <div class="content-section">
        <form method="POST">
             {% csrf_token %}

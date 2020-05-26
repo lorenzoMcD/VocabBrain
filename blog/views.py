@@ -197,8 +197,13 @@ class TestDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['words'] = Word.objects.filter(wordlist__id=self.kwargs['pk'])
+
+        test = Test.objects.get(pk=self.kwargs['pk'])
+        a = test.wordlist_id
+        #wordlist = WordList.objects.get(pk=pk)
+        #a = wordlist.id
+
+        context['words'] = Word.objects.filter(wordlist__id=a)
         return context
 
 class TestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -754,7 +759,9 @@ def test_create(request):
     else:
         form = TestCreateForm()
         # this gives teacher drop down list of wordlists that they have created
+
         form.fields['wordlist'].queryset = WordList.objects.filter(author=request.user)
+
     return render(request, 'blog/test_create.html', {'form': form})
 
 
@@ -777,26 +784,6 @@ def vocab_test(request, pk):
 
     if len(termlist) >= 5:
         new_list_terms += random.sample(termlist, 5)
-        for i in new_list_terms:
-            for word in words:
-                if i == word.term:
-                    new_list_defs.append(word.definition)
-        terms = (new_list_terms)
-        mydefs = (new_list_defs)
-
-    elif len(termlist) >= 4:
-
-        new_list_terms += random.sample(termlist, 4)
-        for i in new_list_terms:
-            for word in words:
-                if i == word.term:
-                    new_list_defs.append(word.definition)
-        terms = (new_list_terms)
-        mydefs = (new_list_defs)
-
-    elif len(termlist) >= 3:
-
-        new_list_terms += random.sample(termlist, 3)
         for i in new_list_terms:
             for word in words:
                 if i == word.term:
