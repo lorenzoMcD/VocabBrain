@@ -99,6 +99,7 @@ class Testtaker(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     score = models.PositiveSmallIntegerField()
     date_posted = models.DateTimeField(default=timezone.now)
+    wrong_terms = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(self.tester)
