@@ -7,6 +7,9 @@ from .views import PostUpdateView
 from .views import TestDeleteView
 from .views import TestDetailView
 from .views import TestUpdateView
+from .views import TesttakerDeleteView
+from .views import TesttakerDetailView
+from .views import TesttakerListView
 from .views import UserPostListView
 from .views import UserTestListView
 from .views import UserWordListView
@@ -49,6 +52,8 @@ urlpatterns = [
 
     path('temp2/', views.temp2, name='blog-temp2'),
 
+    path('temp3/', views.temp3, name='blog-temp3'),
+
     path('word_list_defs/<int:pk>/', views.word_list_defs, name='word_list_defs'),
 
     path('word_list_sents/<int:pk>/', views.word_list_sents, name='word_list_sents'),
@@ -79,6 +84,12 @@ urlpatterns = [
     path('user/test/<str:username>/', UserTestListView.as_view(), name='user-tests'),
 
     path('vocab_test/<int:pk>/', views.vocab_test, name='blog-vocab_test'),
+
+    path('user/results/<str:username>/', TesttakerListView.as_view(), name='user-testtaker'),
+
+    path('testtaker/<int:pk>/', TesttakerDetailView.as_view(), name='testtaker-detail'),
+
+    path('testtaker/<int:pk>/delete/', TesttakerDeleteView.as_view(), name='testtaker-delete'),
 
     path('flash_card/<int:pk>/', views.flash_card, name='blog-flash_card'),
 
