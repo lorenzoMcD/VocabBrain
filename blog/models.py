@@ -1,7 +1,8 @@
+from django.contrib.auth.models import Group
+from django.contrib.auth.models import User
 from django.db import models
-from django.utils import timezone
-from django.contrib.auth.models import User, Group
 from django.urls import reverse
+from django.utils import timezone
 from wiktionaryparser import WiktionaryParser
 
 
@@ -101,3 +102,6 @@ class Testtaker(models.Model):
 
     def __str__(self):
         return str(self.tester)
+
+    def get_absolute_url(self):
+        return reverse('testtaker-detail', kwargs={'pk': self.pk})

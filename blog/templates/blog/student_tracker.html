@@ -41,7 +41,7 @@
            {% if user.username != request.user.username%}
        <tr>
             <th>
-              {{ user.username}}
+              <a href="{% url 'user-testtaker' user.username %}"> {{ user.username}} </a
             </th>
 
 

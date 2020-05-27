@@ -190,6 +190,36 @@ class UserTestListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Test.objects.filter(author=user)
 
+
+class TesttakerListView(ListView):
+
+    model = Testtaker
+    template_name = 'blog/user_testtakers.html'
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
+    paginate_by = 4  # this will change number of posts visible per page
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Testtaker.objects.filter(tester=user)
+
+class TesttakerDetailView(DetailView):
+
+    model = Testtaker
+
+
+class TesttakerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
+    model = Testtaker
+    success_url = '/'
+
+    def test_func(self):
+        testtaker = self.get_object()
+        if self.request.user == testtaker.tester:
+            return True
+        return False
+
+
 class TestDetailView(DetailView):
 
     model = Test
@@ -200,8 +230,8 @@ class TestDetailView(DetailView):
 
         test = Test.objects.get(pk=self.kwargs['pk'])
         a = test.wordlist_id
-        #wordlist = WordList.objects.get(pk=pk)
-        #a = wordlist.id
+        # wordlist = WordList.objects.get(pk=pk)
+        # a = wordlist.id
 
         context['words'] = Word.objects.filter(wordlist__id=a)
         return context
@@ -409,6 +439,15 @@ def temp2(request):
     }
 
     return render(request, 'blog/temp2.html', context)
+
+
+def temp3(request):
+    context = {
+
+        'lists': Testtaker.objects.all()
+    }
+
+    return render(request, 'blog/temp3.html', context)
 
 
 def word_list_defs(request, pk):
@@ -768,8 +807,8 @@ def test_create(request):
 def vocab_test(request, pk):
     test = Test.objects.get(pk=pk)
     a = test.wordlist_id
-    #wordlist = WordList.objects.get(pk=pk)
-    #a = wordlist.id
+    # wordlist = WordList.objects.get(pk=pk)
+    # a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
     sentences = Word.objects.filter(wordlist__id=a)
 
