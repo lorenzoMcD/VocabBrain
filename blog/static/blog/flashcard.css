@@ -1,74 +1,89 @@
-.card1{
-    background-color: #DCE218;
-    float:left;
-    height:30%;
-    width:20%;
-    text-align:center;
-    vertical-align: middle;
-    font-size:30px;
-    font-weight:bold;
-    margin:5px;
-    overflow:auto;
+div.flashcard {  
+    margin:0 10px 30px 0;
 
 }
 
-.card2{
-    background-color: #DCE218;
-    float:left;
-    height:30%;
-    width:20%;
+
+div.flashcard div.term {
+    width: 400px; 
+    height:50px;       
+    padding: 5px;  
+    cursor: hand;    
+    cursor: pointer;
     text-align:center;
-    vertical-align: middle;
     font-size:30px;
+    background-color:#f8fc00;
+    font-family: 'Permanent Marker';
+    outline:1px solid black;
+    margin: 0 auto;
+ }
+           
+div.flashcard div.def {
+    width: 400px;
+    padding: 5px;    
+    display: none;  
+    font-size:20px;
+    background-color:#f8fc00;
+    outline:1px solid black;
     font-weight:bold;
-    margin:5px;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+}   
+
+
+.instruc{
+
+    font-family: 'Open Sans', sans-serif;
+    text-align:center;
+    margin: 20px 0px;
+    font-weight:bold;
 }
 
-.card3{
-    background-color: #DCE218;
-    float:left;
-    height:30%;
-    width:20%;
-    text-align:center;
-    vertical-align: middle;
+
+#first {
+    font-size:40px;
+    color:#3148DA;
+    font-weight:900;
+}    
+
+
+#second {
+    color: #E703D2;
     font-size:30px;
-    font-weight:bold;
-    margin:5px;
 }
 
-.card4{
-    background-color: #DCE218;
-    float:left;
-    height:30%;
-    width:20%;
-    text-align:center;
-    vertical-align: middle;
-    font-size:30px;
-    font-weight:bold;
-    margin:5px;
+#third{
+    color: #EA0808;
+    font-size:25px;
 }
 
-.card5{
-    background-color: #DCE218;
-    float:left;
-    height:30%;
-    width:20%;
-    text-align:center;
-    vertical-align: middle;
-    font-size:30px;
-    font-weight:bold;
-    margin:5px;
+
+#finished{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    
+}   
+
+.button {
+  margin: 0 auto; 
+  display: block;
+  background-color:#f8fc00;
+  border: 1px solid black;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+
+  font-size: 20px;
+  font-weight:bold;
+ 
 }
 
-#word1 { margin:top 30px; }
-	background-color: #DCE218;
-	float:left;
-	height:30%;
-	width:20%;
-	text-align:center;
-	vertical-align: middle;
-	font-size:30px;
-	font-weight:bold;
-	margin:5px;
-	overflow:auto;
+.button:hover {
+    background-color: white;
+  
+}
 
