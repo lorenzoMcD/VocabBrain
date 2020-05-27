@@ -11,13 +11,13 @@ window.onload= function() {
   // flip it back           
 function flip(div) {
     var state= false;
-    var fliped= div.nextSibling;
-    while (fliped.nodeType!==1)
-        fliped= fliped.nextSibling;
+    var flipped= div.nextSibling;
+    while (flipped.nodeType!==1)
+        flipped= flipped.nextSibling;
 
 // Flips on click                   
 div.onclick= function() {
     state= !state;
-    fliped.style.display= state? 'block' : 'none';
+    flipped.style.display= state? 'block' : 'none';
   };
 };
