@@ -208,7 +208,7 @@ class TesttakerDetailView(DetailView):
     model = Testtaker
 
 
-class TesttakerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class TesttakerDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Testtaker
     success_url = '/'
@@ -841,8 +841,9 @@ def vocab_test(request, pk):
 
     if request.method == "POST":
         score = request.POST.get("count")
+        wrong = request.POST.get("count_wrong")
         final_score = (int(score) / len(terms)) * 100
-        obj = Testtaker.objects.create(tester=request.user, test=test, score=final_score)
+        obj = Testtaker.objects.create(tester=request.user, test=test, score=final_score, wrong_terms=wrong)
         obj.save()
         messages.success(request, f'You have completed test')
         return redirect('blog-home')

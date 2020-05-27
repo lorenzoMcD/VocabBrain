@@ -70,7 +70,7 @@
 
 <br><br>
 
- <input type=text id="answer2"placeholder = "Enter Word">
+ <input type=text id="answer2" placeholder = "Enter Word">
 
 {% if terms|length >= 3 %}
 <br><br>
@@ -137,6 +137,7 @@
 <form method = "POST">{% csrf_token %}
 
         <input name="count" type = hidden id= "score" ></input>
+        <input name="count_wrong" type = hidden id= "w" ></input>
 
         <button class="btn btn-primary" button id = "clickme"  type="submit" >Submit</button>
         </form>

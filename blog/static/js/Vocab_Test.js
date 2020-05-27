@@ -1,8 +1,10 @@
 // vocab matching game 5 words for terms and sentences/definitions
+  let wrong = "";
 
 $(document).ready(function() {
 
   var csrf = $("input[name = csrfmiddlewaretoken]").val();
+
 
 
 
@@ -26,36 +28,61 @@ $(document).ready(function() {
     var useranswer5 = $("#sent5").val();
 
 
-    //$("#status").html(useranswer);
+    let word = "";
 
     if (answertext === useranswer1) {
       correct++;
       showOnScreen();
+    }else{
+      word = useranswer1 + ',';
+    document.getElementById("w").value += word;
     }
 
 
     if (answertext2 === useranswer2){
       correct++;
       showOnScreen();
+    }else{
+      word = useranswer2 + ',';
+    document.getElementById("w").value += word;
     }
 
     if (answertext3 === useranswer3){
       correct++;
       showOnScreen();
+    }else{
+       word = useranswer3 + ',';
+    document.getElementById("w").value += word;
     }
+
 
     if (answertext4 === useranswer4){
       correct++;
       showOnScreen();
+    }else{
+       word = useranswer4 + ',';
+    document.getElementById("w").value += word;
     }
+
 
     if (answertext5 === useranswer5){
       correct++;
       showOnScreen();
+
+    }else{
+       word = useranswer5 + ',';
+    document.getElementById("w").value += word;
     }
 
 
+
+
   });
+
+
+
+
+
 
 
 });
@@ -63,6 +90,7 @@ $(document).ready(function() {
 // Defining correct answers and our button
 let correct = 0
 let clickme = document.getElementById("clickme");
+
 
 //constant function that show and updates score
 // Capping the score at 5
@@ -79,12 +107,6 @@ const finish = () =>{
   clickme.disabled = true;
 
        }
-
-
-
-
-
-
 
 //load our function
 
