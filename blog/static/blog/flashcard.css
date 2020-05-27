@@ -1,0 +1,63 @@
+.card1{
+	background-color: #DCE218;
+	float:left;
+	height:30%;
+	width:20%;
+	text-align:center;
+	vertical-align: middle; 
+	font-size:30px;
+	font-weight:bold;
+	margin:5px;
+	overflow:auto;
+
+} 
+
+.card2{
+	background-color: #DCE218;
+	float:left;
+	height:30%;
+	width:20%;
+	text-align:center;
+	vertical-align: middle; 
+	font-size:30px;
+	font-weight:bold;
+	margin:5px;
+} 
+
+.card3{
+	background-color: #DCE218;
+	float:left;
+	height:30%;
+	width:20%;
+	text-align:center;
+	vertical-align: middle; 
+	font-size:30px;
+	font-weight:bold;
+	margin:5px;
+} 
+
+.card4{
+	background-color: #DCE218;
+	float:left;
+	height:30%;
+	width:20%;
+	text-align:center;
+	vertical-align: middle; 
+	font-size:30px;
+	font-weight:bold;
+	margin:5px;
+} 	
+
+.card5{
+	background-color: #DCE218;
+	float:left;
+	height:30%;
+	width:20%;
+	text-align:center;
+	vertical-align: middle; 
+	font-size:30px;
+	font-weight:bold;
+	margin:5px;
+} 
+
+#word1 { margin:top 30px; }

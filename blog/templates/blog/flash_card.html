@@ -1,0 +1,95 @@
+{% load static %}
+{% load auth_extras %}
+
+<html>
+<!--  index.html -->
+
+
+
+<!--  Required meta tags  -->
+
+<!-- Css tags -->
+
+
+
+
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/flashcard.css'%}">
+
+
+<header>
+  <h3> <span id = "title"> Flash Cards! </span> </h3>
+
+
+</div>
+
+
+
+
+
+
+
+</header>
+
+<br> <br> <br> <br>
+
+
+<body>
+
+
+<div class = "container"> 
+<div class = "card1"> 
+<span id = "word1">{{terms|index:0}}</span>
+  <span id = "def1" hidden> {{mydefs|index:0}} </span> 
+  <p><button onclick="flipOne()">Flip!</button></p>
+
+
+</div>
+<div class = "card2"> 
+<span id = "word2">{{terms|index:1}}</span>
+  <span id = "def2" hidden> {{mydefs|index:1}} </span> 
+  <p><button onclick="flipTwo()">Flip!</button></p>
+
+
+</div>
+
+<div class = "card3"> 
+<span id = "word3">{{terms|index:2}}</span>
+  <span id = "def3" hidden> {{mydefs|index:2}} </span> 
+  <p><button onclick="flipThree()">Flip!</button></p>
+<br>
+
+</div>
+
+<div class = "card4"> 
+<span id = "word4">{{terms|index:3}}</span>
+  <span id = "def4" hidden> {{mydefs|index:3}} </span> 
+  <p><button onclick="flipFour()">Flip!</button></p>
+
+<br>
+</div>
+
+<div class = "card5"> 
+<span id = "word5">{{terms|index:4}}</span>
+  <span id = "def5" hidden> {{mydefs|index:4}} </span> 
+  <p><button onclick="flipFive()">Flip!</button></p>
+
+
+  </div>
+</div> 
+
+
+<button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
+</body>
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/flash.js' %}"></script>
+
+<script>
+
+
+
+</script>
+
+
+</html>

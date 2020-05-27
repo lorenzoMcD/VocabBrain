@@ -80,6 +80,7 @@ urlpatterns = [
 
     path('vocab_test/<int:pk>/', views.vocab_test, name='blog-vocab_test'),
 
+    path('flash_card/<int:pk>/', views.flash_card, name='blog-flash_card'),
 
 
 
