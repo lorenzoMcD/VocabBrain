@@ -91,6 +91,7 @@ urlpatterns = [
 
     path('testtaker/<int:pk>/delete/', TesttakerDeleteView.as_view(), name='testtaker-delete'),
 
+    path('flash_card/<int:pk>/', views.flash_card, name='blog-flash_card'),
 
 
 
