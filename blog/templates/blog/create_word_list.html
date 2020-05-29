@@ -2,7 +2,7 @@
 {% block content%}
 
 
-<h2>Add terms to your word list </h2>
+<h2>Add Terms to your Word List </h2>
 
 <form method= "POST">
   {% csrf_token %}
@@ -11,7 +11,7 @@
 {{form.as_p}}
 {% endfor %}
 
-<button type = "submit">add more words</button>
+<button type = "submit">Add Word</button>
 <button type = "Done" name = "done">Done</button>
 </form>
 

@@ -23,7 +23,7 @@
     <header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
     <div class="container">
-      <a class="navbar-brand mr-4" href="/">Django Blog</a>
+      <a class="navbar-brand mr-4" href="/">Good To Know </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,12 +47,12 @@
                 {% for group in user.groups.all %}
                       {% if group.name == 'Teacher' %}
           <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
-          <a class="nav-item nav-link" href="{% url 'blog-temp' %}">view all created lists</a>
+          <a class="nav-item nav-link" href="{% url 'blog-temp' %}">Word List</a>
 
-          <a class="nav-item nav-link" href="{% url 'blog-temp2' %}">view all created tests</a>
+          <a class="nav-item nav-link" href="{% url 'blog-temp2' %}">Test</a>
 
 
-          <a class="nav-item nav-link" href="{% url 'blog-temp3' %}">view all created testtakers</a>
+          <a class="nav-item nav-link" href="{% url 'blog-temp3' %}">Test-Takers-TEMP</a>
 
 
 
@@ -99,10 +99,10 @@
                 {% for group in user.groups.all %}
                       {% if group.name == 'Teacher' %}
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'list-create' %}" >Create new WordList</a></li>
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'list-create' %}" >Create WordList</a></li>
 
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'test-create' %}" >Create new Test</a></li>
+                      <li class="list-group-item list-group-item-light"><a href="{% url 'test-create' %}" >Create Test</a></li>
 
 
                       <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Students in Your Class</a></li>
