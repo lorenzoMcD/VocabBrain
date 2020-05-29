@@ -1,14 +1,12 @@
 {% extends "blog/base.html" %}
 {% block content%}
-<h1 class = "mb-3"> lists by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+<h1 class = "mb-3"> vocabulary lists by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
 
+
+
+<button class = "btn btn-warning" onclick="window.location.href='{% url 'user-tests' view.kwargs.username %}'">View vocabulary Tests by {{ view.kwargs.username }} </button>
 
     {% for post in posts%}
-
-    <a class="mr-2" style="font-size:30px; color:red" href="{% url 'user-tests' post.author.username %}"> click me to view Tests</a>
-
-
-
 
         <article class="media content-section">
   <img class = "rounded-circle article-img" src="{{post.author.profile.image.url }}">
