@@ -175,7 +175,7 @@ class UserWordListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return WordList.objects.filter(author=user)
+        return WordList.objects.filter(author=user).order_by('-date_posted')
 
 
 class UserTestListView(ListView):
@@ -188,7 +188,7 @@ class UserTestListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Test.objects.filter(author=user)
+        return Test.objects.filter(author=user).order_by('-date_posted')
 
 
 class TesttakerListView(ListView):
@@ -201,7 +201,7 @@ class TesttakerListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Testtaker.objects.filter(tester=user)
+        return Testtaker.objects.filter(tester=user).order_by('-date_posted')
 
 class TesttakerDetailView(DetailView):
 
@@ -368,6 +368,7 @@ def student_tracker(request):
     name = request.user.username
 
     users = User.objects.filter(groups__name=name)
+
     myFilter = OrderFilter(request.GET, queryset=users)
     users = myFilter.qs
 
@@ -388,12 +389,10 @@ def student_tracker(request):
 # this page will show all groups that user is part of
 # will have button for user to leave group
 def groups(request):
-    users = User.objects.filter(groups__name='Teacher')
-    myFilter = OrderFilter(request.GET, queryset=users)
-    users = myFilter.qs
+    users = request.user.groups.all()
 
     context = {
-        'users': users, 'myFilter': myFilter
+        'users': users
     }
 
     # checks if button is pushed on page
@@ -407,9 +406,6 @@ def groups(request):
 
         nme = request.POST.get('group_name')
         group = Group.objects.get(name=nme)
-
-    # adds that user to the group
-        # request.user.groups.add(group)
 
     # removes user from group
         group.user_set.remove(request.user)

@@ -2,23 +2,11 @@
 {% block content%}
 {% load auth_extras %}
     <h1>Group Lookup Page</h1>
-    <p> This page lets you check what groups you are a member of.</p>
+    <p> This page shows what groups you are a member of.</p>
     <p>If you want to leave a group, click the "leave" button.</p>
 
 
-    <div class = "card card-body">
-      <form method="get">
-        {{myFilter.form}}
 
-      <button class="btn btn-primary" type="submit">Search</button>
-      </form>
-
-
-      <form method = "POST">{% csrf_token %}
-        <button class="btn btn-primary" type="submit" name= "reset">Reset Search</button>
-        </form>
-
-    </div>
 
 
 <div class = "row">
@@ -29,37 +17,44 @@
     <thead>
         <tr>
 
-            <th width="30%">Name</th>
-            <th width ="30%">Email</th>
+            <th width="30%">Username</th>
+            <th width ="30%">Wordlists</th>
+            <th width ="30%">Tests</th>
             <th width ="30%">Action</th>
 
         </tr>
     </thead>
     <tbody>
-           {% for user in users %}
+           {% for user in users|slice:"1:"  %}
        <tr>
             <th>
-              <a href= "{% url 'user-lists' user.username %}" > {{ user.username}} </a>
+               {{ user}}
             </th>
 
 
-            <th>  {{user.email}} </th>
 
+
+
+
+
+            <th>  <button class = "btn btn-primary" onclick="window.location.href='{% url 'user-lists' user.name %}'"> {{user}}'s Word Lists </button> </th>
+
+              <th>  <button class = "btn btn-warning" onclick="window.location.href='{% url 'user-tests' user.name %}'"> {{user}}'s Tests </button> </th>
 
             <th>
 
 
-              {% if request.user|has_group:user.username %}
+
 
                    <form method = "POST">{% csrf_token %}
-              <button class="btn btn-primary" type="submit" name="group_name" value= "{{ user.username }}">Leave</button> </th>
+              <button class="btn btn-danger" type="submit" name="group_name" value= "{{ user.name }}">Leave</button> </th>
               </form>
 
-              {% else %}
 
-             <p>You are not member of this group</p>
+
+
         </tr>
-          {% endif %}
+
           {% endfor %}
       </tbody>
     </table>
