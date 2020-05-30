@@ -93,6 +93,8 @@ urlpatterns = [
 
     path('flash_card/<int:pk>/', views.flash_card, name='blog-flash_card'),
 
+    path('track_progress/', views.track_progress, name='blog-track_progress'),
+
 
 
 ]
