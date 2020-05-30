@@ -10,9 +10,7 @@
 
 <!-- Css tags -->
 <style type="text/css">
-#element1 {display:inline-block; width:35%; padding:10px}
-#element2 {display:inline-block; width:35%; padding:10px}
-
+#element2 {display:inline-block; width:35%; padding:10px; margin-top:-100px; border:1px solid black;}
 
 
 #buttons p {
@@ -21,20 +19,67 @@
   -webkit-appearance:button;
   display: inline-block;
   padding: 2px 5px;
+  margin-top:-25%;
+  color:black;
+  border:1px solid black;
+  border-radius:12px;
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
+
+}
+/* here for now because it's not inheriting from game.css for some reason */
+
+#instruct1{
+  font-size:25px;
+  text-decoration:underline;
+  background: rgb(0,255,118);
+  background: linear-gradient(0deg, rgba(0,255,118,0.6334908963585435) 42%, rgba(255,255,255,0.48783263305322133) 92%);
+
+
+}
+#instruct2{
+  font-size:25px;
+  text-decoration:underline;
+  background: rgb(186,12,185);
+  background: linear-gradient(0deg, rgba(186,12,185,0.5662640056022409) 0%, rgba(245,230,243,1) 100%);
+}
+#instruct3{
+  font-size:25px;;
+  background: rgb(255,0,0);
+  background: linear-gradient(0deg, rgba(255,0,0,0.5158438375350141) 42%, rgba(255,255,255,0.48783263305322133) 100%);
+   text-decoration:underline;
+}
+
+.answer{
+  border:1px solid black;
+  border-radius:4px;
+  font-size:20px;
+  padding:10px 0;
+  text-align:center;
+}
+
+#title {
+  background: rgb(241,255,0);
+  background: linear-gradient(0deg, rgba(241,255,0,0.48783263305322133) 76%, rgba(255,255,255,0.5158438375350141) 93%);
 }
 
 </style>
 
-
-
- <link rel="stylesheet" type="text/css" href="{% static 'blog/game.css'%}">
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/game.css'%}" >
 
 
 <header>
-  <h3> <span id = "title"> Guess The Word! </span> </h3>
+  <h4> <span id = "title"> Guess The Word! </span> </h4>
+  <h3> <span id = "instruct1"> Find the Term that Matches the Definition </span> </h3>
+  <h3> <span id = "instruct2"> Then Drag the Word into the correct Box </span> </h3>
+  <h4> <span id = "instruct3"> Click the Box and Delete the Word to Change Your Answer </span> </h4>
+  
 
 <!-- <li id = "words" hidden> </li> -->
          <div id="buttons">
+
+
+
   <p draggable="true" id="1">{{terms|index:0}}</p>
   <p draggable="true" id="2">{{terms|index:1}}</p>
   {% if terms|length >= 3 %}
@@ -48,7 +93,7 @@
     {% endif %}
     {% endif %}
 </div>
-       <h3> Correct:   <span id= "correct"></span> /5</h3>
+    
 
 
 
@@ -60,71 +105,49 @@
 <body>
 
 
-
-<div id="element1">
-
- <input type=text id="answer1" placeholder = "Enter Word">
-
-<br><br>
-
- <input type=text id="answer2"placeholder = "Enter Word">
-
-
-<br><br>
-
- <input type=text id="answer3"placeholder = "Enter Word">
-
-
-<br><br>
-
- <input type=text id="answer4"placeholder = "Enter Word">
-
-
-<br><br>
-
- <input type=text id="answer5"placeholder = "Enter Word">
-
-
-
-</div>
-
-
-
 <div id="element2">
 <input id="sent1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
 <li> {{mydefs|index:0}} </li>
-
+<br><br>
+<input type=text id="answer1" class= "answer">
 
 <br><br>
 
 <input id="sent2"  type="hidden"  value="{{ terms|index:1 }}"> </input>
 <li> {{mydefs|index:1}}</li>
-
+<br><br>
+<input type=text id="answer2" class= "answer">
 
 
 <br><br>
 
 <input id="sent3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
 <li> {{mydefs|index:2}}</li>
-
+<br><br>
+ <input type=text id="answer3" class= "answer">
 <br><br>
 
 <input id="sent4"  type="hidden"  value="{{ terms|index:3 }}"> </input>
 <li> {{mydefs|index:3}}</li>
-
+<br><br> 
+ <input type=text id="answer4" class= "answer">
 
 <br><br>
 
 <input id="sent5"  type="hidden"  value="{{ terms|index:4 }}"> </input>
 <li> {{mydefs|index:4}}</li>
-
+<br> <br>
+ <input type=text id="answer5" class= "answer">
+ <p> Correct:   <span id= "correct"></span> /5</p>
+ <button id="clickme" onclick = "finish()">Submit</button>
+ <button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
 </div>
 
 
 
 <!-- need to put this submit button in spot that makes since.. -->
-<button id="clickme" onclick = "finish()">Submit</button>
-<button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
+
+
 </body>
 
 
