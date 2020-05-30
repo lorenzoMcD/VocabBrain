@@ -1,4 +1,5 @@
 from .filters import OrderFilter
+from .filters import ProgressFilter
 from .models import Post
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -26,6 +27,7 @@ from.form import WordListForm
 from.form import TestCreateForm
 from.form import TestSubmitForm
 import random
+
 
 # page that shows posts by every user on site
 def home(request):
@@ -889,3 +891,22 @@ def flash_card(request, pk):
     }
 
     return render(request, 'blog/flash_card.html', context)
+
+
+def track_progress(request):
+    users = Testtaker.objects.filter(tester=request.user)
+    myFilter = ProgressFilter(request.GET, queryset=users)
+    users = myFilter.qs
+
+    if request.method == 'POST':
+
+        # this resets the filter if the reset button is pushed
+        if 'reset' in request.POST:
+            return redirect('blog-track_progress')
+
+    context = {
+
+        'users': users, 'myFilter': myFilter
+    }
+
+    return render(request, 'blog/track_progress.html', context)

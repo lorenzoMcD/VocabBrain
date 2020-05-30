@@ -1,8 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content%}
 {% load auth_extras %}
-{% load static %}
-    <h1>Teacher Lookup Page</h1>
+    <h1>Track Your Progress : {{request.user.username}}</h1>
 
 
     <div class = "card card-body">
@@ -20,7 +19,6 @@
 
     </div>
 
-
 <div class = "row">
 <div class = "col-md">
 <div class = "card card-body">
@@ -29,10 +27,12 @@
     <thead>
         <tr>
 
-            <th width="30%">Username</th>
-            <th width ="30%">Teacher Name</th>
-            <th width ="30%">Email</th>
-             <th width ="30%">Action</th>
+
+            <th >Test Name</th>
+            <th>Score</th>
+             <th>Terms Missed</th>
+             <th>date taken</th>
+
 
 
         </tr>
@@ -40,36 +40,24 @@
     <tbody>
            {% for user in users %}
        <tr>
-            <th>
-              <a href="{% url 'user-lists' user.username %}"> {{ user.username}} </a>
-            </th>
 
 
-            <th>  {{user.first_name}}  {{user.last_name}}  </th>
+            <th>  {{user.test}}</th>
 
 
-            <th>  {{user.email}} </th>
+            <th>  {{user.score}} </th>
+
+            <th>  {{user.wrong_terms}} </th>
+
+            <th>  {{user.date_posted|date:"SHORT_DATE_FORMAT" }} </th>
 
 
-
-
-
-            <th>
-
-              {% if request.user|has_group:user.username %}
-                <p>You are in this group</p>
-
-              {% else %}
-              <form method = "POST">{% csrf_token %}
-              <button class="btn btn-primary" type="submit" name="group_name" value= "{{ user.username }}">Join</button> </th>
-              </form>
         </tr>
-          {% endif %}
+
           {% endfor %}
       </tbody>
     </table>
     </div>
   </div>
 </div>
-
 {% endblock content %}
