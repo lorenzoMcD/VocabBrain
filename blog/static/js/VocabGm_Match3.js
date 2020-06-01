@@ -17,18 +17,18 @@ $(document).ready(function() {
 
     //$("#status").html(useranswer);
 
-    if (answertext === useranswer1) {
+    if (answertext.toLowerCase() === useranswer1.toLowerCase()) {
       correct++;
       showOnScreen();
     }
 
 
-    if (answertext2 === useranswer2){
+    if (answertext2.toLowerCase() === useranswer2.toLowerCase()){
       correct++;
       showOnScreen();
     }
 
-    if (answertext3 === useranswer3){
+    if (answertext3.toLowerCase() === useranswer3.toLowerCase()){
       correct++;
       showOnScreen();
     }

@@ -30,22 +30,22 @@ $(document).ready(function() {
     }
 
 
-    if (answertext2 === useranswer2){
+    if (answertext2.toLowerCase() === useranswer2.toLowerCase()){
       correct++;
       showOnScreen();
     }
 
-    if (answertext3 === useranswer3){
+    if (answertext3.toLowerCase() === useranswer3.toLowerCase()){
       correct++;
       showOnScreen();
     }
 
-    if (answertext4 === useranswer4){
+    if (answertext4.toLowerCase() === useranswer4.toLowerCase()){
       correct++;
       showOnScreen();
     }
 
-    if (answertext5 === useranswer5){
+    if (answertext5.toLowerCase() === useranswer5.toLowerCase()){
       correct++;
       showOnScreen();
     }
@@ -57,7 +57,7 @@ $(document).ready(function() {
 });
 
 // Defining correct answers and our button
-let correct = 0
+let correct = 2
 let clickme = document.getElementById("clickme");
 
 //constant function that show and updates score

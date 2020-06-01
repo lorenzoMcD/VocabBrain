@@ -8,31 +8,16 @@
 
 <!--  Required meta tags  -->
 
-<!-- Css tags -->
-<style type="text/css">
-#element1 {display:inline-block; width:35%; padding:10px}
-#element2 {display:inline-block; width:35%; padding:10px}
 
 
-
-#buttons p {
-  appearance:button;
-  -moz-appearance:button;
-  -webkit-appearance:button;
-  display: inline-block;
-  padding: 2px 5px;
-}
-
-
-</style>
-
-
-
- <link rel="stylesheet" type="text/css" href="{% static 'blog/game.css'%}">
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/games.css'%}">
 
 
 <header>
-  <h3> <span id = "title"> Guess The Word! </span> </h3>
+  <h4> <span id = "title"> Guess The Word! </span> </h4>
+  <h3> <span id = "instruct1"> Find the Term that Matches the Sentence </span> </h3>
+  <h3> <span id = "instruct2"> Then Drag the Word into the correct Box </span> </h3>
+  <h4> <span id = "instruct3"> Click the Box and Delete the Word to Change Your Answer </span> </h4>
 
 <!-- <li id = "words" hidden> </li> -->
          <div id="buttons">
@@ -50,7 +35,6 @@
     {% endif %}
 </div>
 
-       <h3> Correct:   <span id= "correct"></span> /4</h3>
 
 
 
@@ -63,58 +47,39 @@
 
 
 
-<div id="element1">
-
- <input type=text id="answer1" placeholder = "Enter Word">
-
-<br><br>
-
- <input type=text id="answer2"placeholder = "Enter Word">
-
-
-<br><br>
-
- <input type=text id="answer3"placeholder = "Enter Word">
-
-
-<br><br>
-
- <input type=text id="answer4"placeholder = "Enter Word">
-
-
-</div>
-
-
 
 <div id="element2">
 <input id="sent1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
 <li> {{mysent|index:0}} </li>
-
+<br><br>
+<input type=text id="answer1" class= "answer">
 
 <br><br>
 
 <input id="sent2"  type="hidden"  value="{{ terms|index:1 }}"> </input>
 <li> {{mysent|index:1}}</li>
-
+<br><br>
+<input type=text id="answer2" class= "answer">
 
 
 <br><br>
 
 <input id="sent3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
 <li> {{mysent|index:2}}</li>
-
+<br><br>
+ <input type=text id="answer3" class= "answer">
 <br><br>
 
 <input id="sent4"  type="hidden"  value="{{ terms|index:3 }}"> </input>
 <li> {{mysent|index:3}}</li>
+<br><br> 
+ <input type=text id="answer4" class= "answer">
 
+<br><br>
+ <p> Correct:   <span id= "correct"></span> /4</p>
+ <button id="clickme" onclick = "finish()">Submit</button>
+ <button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
 </div>
-
-
-
-<!-- need to put this submit button in spot that makes since.. -->
-<button id="clickme" onclick = "finish()">Submit</button>
-<button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
 </body>
 
 
