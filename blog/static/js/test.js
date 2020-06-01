@@ -4,6 +4,13 @@ let data2 = document.getElementById("data2");
 let data3 = document.getElementById("data3"); 
 let data4 = document.getElementById("data4"); 
 let data5 = document.getElementById("data5"); 
+
+
+
+var customalert = document.getElementById("customAlert");
+
+
+
 $(document).ready(function() {
 
   // EVENT HANDLER
@@ -79,11 +86,13 @@ $(document).ready(function() {
 let correct = 0
 let clickme = document.getElementById("clickme");
 
+
 //constant function that show and updates score
 // Capping the score at 5
 const showOnScreen = () => {
-  document.getElementById("correct").innerHTML = correct;
+  document.getElementById("content").innerHTML = "You've scored "  + correct+ " out of 5!" ;
   correct = Math.min(Math.max(correct,0),4);
+
 
 }
 
@@ -93,14 +102,22 @@ const finish = () =>{
   let reset = document.getElementById("reset");
   clickme.disabled = true;
   reset.hidden = false;
+  showCustom();
 
+ 
 }
 
 
+var customalert = document.getElementById("customAlert");
 
+// Custom Alert function 
+function showCustom(){
+  customalert.style.display = 'block';
+}
 
-
-
+function hideCustom(){
+  customalert.style.display = 'none';
+}
 
 
 
