@@ -171,39 +171,33 @@ class UserWordListView(ListView):
 
     model = WordList
     template_name = 'blog/user_lists.html'
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 4  # this will change number of posts visible per page
+    context_object_name = 'lists'
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return WordList.objects.filter(author=user).order_by('-date_posted')
+        return WordList.objects.filter(author=user)
 
 
 class UserTestListView(ListView):
 
     model = Test
     template_name = 'blog/user_tests.html'
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 4  # this will change number of posts visible per page
+    context_object_name = 'users'
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Test.objects.filter(author=user).order_by('-date_posted')
+        return Test.objects.filter(author=user)
 
 
 class TesttakerListView(ListView):
 
     model = Testtaker
     template_name = 'blog/user_testtakers.html'
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-    paginate_by = 4  # this will change number of posts visible per page
+    context_object_name = 'users'
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Testtaker.objects.filter(tester=user).order_by('-date_posted')
+        return Testtaker.objects.filter(tester=user)
 
 class TesttakerDetailView(DetailView):
 
