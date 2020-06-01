@@ -144,28 +144,68 @@ body {
 }
 
 
+#customAlert{
+ 
+  position:absolute;
+  top:0;
+  left:300px;
+  right: 0;
+  bottom:0;
+  z-index:999;
+  display:none;
 
 
-#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
-#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
-#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
-
-style>
-#dialogoverlay{
-  display: none;
-  opacity: .8;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  background: #FFF;
-  width: 100%;
-  z-index: 10;
 }
-#dialogbox{
-  display: none;
-  position: fixed;
-  background: #000;
-  border-radius:7px; 
-  width:550px;
-  z-index: 10;
+
+#box {
+  border-radius:5px;
+  margin-top:100px;
+  margin-left:400px;
+  height:15%;
+  width: 500px;
+  text-align:center;
+  box-shadow:2px 2px 8px black; 
+  background-color:white;
+
+}
+
+.boxHead{
+  background-color:#118FEB;
+  color:black;
+  font-size:12px
+  padding:5px;
+}
+
+#content {
+  margin-top: 30px;
+  text-align:center;
+
+}
+
+#closeAlert{
+
+  height:25px;
+  width:80px;
+  border-radius:8px;
+  background-color:#118FEB;
+  cursor:pointer;
+}
+
+
+#clickme{
+   height:25px;
+   width:80px;
+   border-radius:8px;
+   background: rgb(34,193,195);
+   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
+   cursor:pointer;
+}
+
+#reset{
+  height:25px;
+  width:80px;
+  border-radius:8px;
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
+  cursor:pointer;
 }

@@ -13,7 +13,7 @@
 </style>
 
 
-
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" type="text/css" href="{% static 'blog/games.css'%}">
 
 
@@ -52,12 +52,17 @@
 
 
 <body>
-<div id="dialogoverlay"></div>
-<div id="dialogbox">
-  <div>
-    <div id="dialogboxhead"></div>
-    <div id="dialogboxbody"></div>
-    <div id="dialogboxfoot"></div>
+<div id  ="customAlert">
+  <div id = "box">
+  <div class = "boxHead"> 
+    <p> Score</p>
+
+  </div> 
+    <div id = "content">
+      <p> // </p> 
+    </div>
+    <br> 
+    <button id = "closeAlert" onclick = "hideCustom()"> Ok </button>
   </div>
 </div>
 
@@ -95,7 +100,7 @@
 <li id = "data5"> {{mysent|index:4}}</li>
 <br> <br>
  <input type=text id="answer5" class= "answer">
- <p> Correct:   <span id= "correct"></span> /5</p>
+ <br><br>
  <button id="clickme" onclick = "finish()">Submit</button>
  <button id = "reset" onClick ="window.location.reload()" hidden>Restart</button>
 </div>
@@ -112,6 +117,7 @@
 document.addEventListener('dragstart', function (event) {
       event.dataTransfer.setData('text', event.target.innerHTML);
     });
+  
 
 </script>
 
