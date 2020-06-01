@@ -57,7 +57,7 @@ $(document).ready(function() {
 });
 
 // Defining correct answers and our button
-let correct = 2
+let correct = 0
 let clickme = document.getElementById("clickme");
 
 //constant function that show and updates score
