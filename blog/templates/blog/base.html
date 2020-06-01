@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css'%}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+
 
     {% if title %}
     <title>Django Blog - {{ title }}</title>
@@ -118,10 +120,9 @@
                       {% endif %}
                           {% endfor %}
                             {% endif %}
-            <!-- <li class="list-group-item list-group-item-light"><a href="#" >Track Your Progress</a></li>  -->
-            <li class="list-group-item list-group-item-light"> <a href= "{% url 'blog-faq' %}">FAQ </a></li>  <!-- Eventually will add a if statement/ WIll be Track if you're a student -->
-            <li class="list-group-item list-group-item-light"><a href="#" >Help</a></li>                 <!-- Track your students progress if a teacher -->
 
+            <li class="list-group-item list-group-item-light"> <a href= "{% url 'blog-faq' %}">FAQ </a></li>
+            <li class="list-group-item list-group-item-light"><a href="#" >Help</a></li>
           </ul>
         </p>
         {% endblock %}
@@ -136,17 +137,25 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+
+
+<!-- this is js for the table pagination-->
+<script> $('.mydatatable').DataTable({
+            order: [[3, 'desc']],
+            pagingType: 'full_numbers',
+            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,"All"]]
+});
+</script>
+
+<!-- This code sets timer for how long message appears at top of screen.-->
     <script>
-
-    // This code sets timer for how long message appears at top of screen.
     var message_ele = document.getElementById("message_container");
-
     setTimeout(function(){
    message_ele.style.display = "none";
-  }, 3000);
-  // Timeout is 3 sec, you can change it
-
-
+}, 3000);       // Timeout is 3 sec, you can change it
     </script>
 </body>
 </html>
