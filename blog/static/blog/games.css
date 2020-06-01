@@ -48,7 +48,6 @@ li{
 body {
 
   text-align:center;
-  color:black;
   font-size:20px;
   font-weight:bold;
 
@@ -142,4 +141,31 @@ body {
 #title {
   background: rgb(241,255,0);
   background: linear-gradient(0deg, rgba(241,255,0,0.48783263305322133) 76%, rgba(255,255,255,0.5158438375350141) 93%);
+}
+
+
+
+
+#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
+#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
+
+style>
+#dialogoverlay{
+  display: none;
+  opacity: .8;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #FFF;
+  width: 100%;
+  z-index: 10;
+}
+#dialogbox{
+  display: none;
+  position: fixed;
+  background: #000;
+  border-radius:7px; 
+  width:550px;
+  z-index: 10;
 }

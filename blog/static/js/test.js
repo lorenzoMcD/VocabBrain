@@ -1,11 +1,16 @@
-// vocab matching game 4 words for terms and sentences/ definitions
+// vocab matching game 5 words for terms and sentences/definitions
+let data1 = document.getElementById("data1"); 
+let data2 = document.getElementById("data2"); 
+let data3 = document.getElementById("data3"); 
+let data4 = document.getElementById("data4"); 
+let data5 = document.getElementById("data5"); 
 $(document).ready(function() {
 
   // EVENT HANDLER
 
   $("#clickme").click(function() {
-    var useranswer1 = $("#answer1").val();
-    var answertext = $("#sent1").val();
+    var useranswer1 = $("#sent1").val();
+    var answertext = $("#answer1").val();
 
     var answertext2 = $("#answer2").val();
     var useranswer2 = $("#sent2").val();
@@ -17,27 +22,53 @@ $(document).ready(function() {
     var answertext4 = $("#answer4").val();
     var useranswer4 = $("#sent4").val();
 
+    var answertext5 = $("#answer5").val();
+    var useranswer5 = $("#sent5").val();
 
-    if (answertex.toLowerCase()t === useranswer1.toLowerCase()) {
+
+    //$("#status").html(useranswer);
+
+    if (answertext.toLowerCase() === useranswer1.toLowerCase()) {
       correct++;
+      data1.style.color = "#0ead38";
       showOnScreen();
+    }else{
+      data1.style.color = "#EB1111"
     }
 
 
     if (answertext2.toLowerCase() === useranswer2.toLowerCase()){
       correct++;
+      data2.style.color = "#0ead38";
       showOnScreen();
+    }else{
+      data2.style.color = "#EB1111"
     }
 
     if (answertext3.toLowerCase() === useranswer3.toLowerCase()){
       correct++;
+     data3.style.color = "#0ead38";
       showOnScreen();
+    }else{
+      data3.style.color = "#EB1111"
     }
 
     if (answertext4.toLowerCase() === useranswer4.toLowerCase()){
       correct++;
+      data4.style.color = "#0ead38";
       showOnScreen();
+    }else{
+      data4.style.color = "#EB1111"
     }
+
+    if (answertext5.toLowerCase() === useranswer5.toLowerCase()){
+      correct++;
+      data5.style.color = "#0ead38";      
+      showOnScreen();
+    }else{
+      data5.style.color = "#EB1111"
+    }
+
 
   });
 
@@ -49,10 +80,10 @@ let correct = 0
 let clickme = document.getElementById("clickme");
 
 //constant function that show and updates score
-// Capping the score at 4
+// Capping the score at 5
 const showOnScreen = () => {
   document.getElementById("correct").innerHTML = correct;
-  correct = Math.min(Math.max(correct,0),3);
+  correct = Math.min(Math.max(correct,0),4);
 
 }
 
@@ -62,7 +93,15 @@ const finish = () =>{
   let reset = document.getElementById("reset");
   clickme.disabled = true;
   reset.hidden = false;
+
 }
+
+
+
+
+
+
+
 
 
 //load our function
