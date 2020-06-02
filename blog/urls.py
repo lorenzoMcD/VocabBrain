@@ -96,5 +96,9 @@ urlpatterns = [
     path('track_progress/', views.track_progress, name='blog-track_progress'),
 
 
+    path('jumbled_game/<int:pk>/', views.jumbled_game, name='blog-jumbled_words'),
+
+
+
 
 ]
