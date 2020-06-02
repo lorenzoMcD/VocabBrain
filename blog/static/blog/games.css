@@ -209,3 +209,14 @@ body {
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
   cursor:pointer;
 }
+
+
+
+#home{
+   height:25px;
+   width:80px;
+   border-radius:8px;
+   background: rgb(34,193,195);
+   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
+   cursor:pointer;
+}
