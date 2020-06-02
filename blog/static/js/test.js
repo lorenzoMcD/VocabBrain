@@ -99,9 +99,11 @@ const showOnScreen = () => {
 // Click submit - Submit button disabled, reset button enabled
 const finish = () =>{
   let clickme = document.getElementById("clickme");
+  let home = document.getElementById("home");
   let reset = document.getElementById("reset");
   clickme.disabled = true;
   reset.hidden = false;
+  home.hidden= false;
   showCustom();
 
  
