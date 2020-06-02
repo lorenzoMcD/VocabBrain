@@ -12,8 +12,7 @@
 
 </style>
 
-
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" type="text/css" href="{% static 'blog/games.css'%}">
 
 
@@ -54,14 +53,14 @@
 <body>
 <div id  ="customAlert">
   <div id = "box">
-  <div class = "boxHead"> 
+  <div class = "boxHead">
     <p> Score</p>
 
-  </div> 
+  </div>
     <div id = "content">
-      <p> // </p> 
+      <p> // </p>
     </div>
-    <br> 
+    <br>
     <button id = "closeAlert" onclick = "hideCustom()"> Ok </button>
   </div>
 </div>
@@ -91,7 +90,7 @@
 
 <input id="sent4"  type="hidden"  value="{{ terms|index:3 }}"> </input>
 <li id = "data4"> {{mysent|index:3}}</li>
-<br><br> 
+<br><br>
  <input type=text id="answer4" class= "answer">
 
 <br><br>
@@ -117,7 +116,7 @@
 document.addEventListener('dragstart', function (event) {
       event.dataTransfer.setData('text', event.target.innerHTML);
     });
-  
+
 
 </script>
 
