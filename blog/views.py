@@ -130,7 +130,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class WordListUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = WordList
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'worksheet_text']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -767,7 +767,7 @@ def print_vocab_sent(request, pk):
 
     context = {
 
-        'words': words, 'sents': sentlist
+        'words': words, 'sents': sentlist, 'wordlist': wordlist
     }
 
     return render(request, 'blog/print_vocab_sent.html', context)
@@ -906,7 +906,7 @@ def track_progress(request):
     return render(request, 'blog/track_progress.html', context)
 
 
-def jumbled_game(request,pk):
+def jumbled_game(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
@@ -925,16 +925,15 @@ def jumbled_game(request,pk):
     # them with terms
     if len(termlist) > 5:
         new_list_terms += random.sample(termlist, 5)
-        for i in new_list_terms:     
+        for i in new_list_terms:
             terms = (new_list_terms)
-     
+
     else:
         terms = (termlist)
     # this mod will shuffle both lists at same time
     # but keep their order
     from sklearn.utils import shuffle
     terms = shuffle(terms)
-
 
     context = {
         'terms': terms

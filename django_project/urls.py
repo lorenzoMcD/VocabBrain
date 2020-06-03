@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.urls import path
 from users import views as user_views
+from ckeditor_uploader import views as uploader_views
+from django.views.decorators.cache import never_cache
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +38,12 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
 
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
+
+    path('ckeditor/upload/',
+         uploader_views.upload, name='ckeditor_upload'),
+
+    path('ckeditor/browse/',
+         never_cache(uploader_views.browse), name='ckeditor_browse'),
 
 
 ]

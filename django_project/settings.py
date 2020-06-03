@@ -42,7 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+
+CKEDITOR_UPLOAD_PATH = 'ckupload/'  # creates directory in media folder to store images
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,7 +128,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/blog/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'blog/static')
 
 # WHERE UPLOADED FILES WILL BE SAVED
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

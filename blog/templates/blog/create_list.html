@@ -9,7 +9,8 @@
 
             </legend>
 
-            {{ form|crispy }}
+            {{ form|crispy|safe}}
+            {{form.media}}
 
         </fieldset>
         <div class = "form-group">

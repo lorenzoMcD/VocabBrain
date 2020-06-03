@@ -4,6 +4,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from wiktionaryparser import WiktionaryParser
+#from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Post(models.Model):
@@ -22,6 +24,7 @@ class Post(models.Model):
 class WordList(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
+    worksheet_text = RichTextUploadingField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 

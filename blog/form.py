@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 class WordListForm(forms.ModelForm):
     class Meta:
         model = WordList
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'worksheet_text']
 
 
 class TestCreateForm(forms.ModelForm):
