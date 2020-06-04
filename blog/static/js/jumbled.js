@@ -1,5 +1,3 @@
-
-
 function jumbled(words){
 	// declare variable
 	var shuffled = "", len, i, randPos;
@@ -18,11 +16,8 @@ function jumbled(words){
 	//output 
 	return shuffled; 
 } 	
-	let words = document.querySelector("text");
+	let words = document.getElementById("1");
 	var shuffled = jumbled(words); 
-
-
-
 
 	console.log(shuffled)
 
