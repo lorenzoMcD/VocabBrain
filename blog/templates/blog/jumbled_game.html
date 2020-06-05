@@ -25,7 +25,7 @@
 <!-- <li id = "words" hidden> </li> -->
 
      <div id="buttons">
-  <p id="1">{{terms|index:0}}</p>
+  <p draggable="true" id="1">{{terms|index:0}}</p>
   <p draggable="true" id="2">{{terms|index:1}}</p>
   {% if terms|length >= 3 %}
   <p draggable="true" id="3">{{terms|index:2}}</p>
@@ -40,6 +40,63 @@
 </div>
 
 
+
+
+
+
+
+</header>
+
+<br> <br> <br> <br>
+
+
+<body>
+<div id  ="customAlert">
+  <div id = "box">
+  <div class = "boxHead">
+    <p> Score</p>
+
+  </div>
+    <div id = "content">
+      <p> // </p>
+    </div>
+    <br>
+    <button id = "closeAlert" onclick = "hideCustom()"> Ok </button>
+  </div>
+</div>
+
+
+<div id="element2">
+<input id="sent1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
+<li id = "data1"> {{jumbled|index:0}} </li>
+<br><br>
+<input type=text id="answer1" class= "answer">
+
+<br><br>
+
+<input id="sent2"  type="hidden"  value="{{ terms|index:1 }}"> </input>
+<li id ="data2"> {{jumbled|index:1}}</li>
+<br><br>
+<input type=text id="answer2" class= "answer">
+
+
+<br><br>
+
+<input id="sent3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
+<li id = "data3"> {{jumbled|index:2}}</li>
+<br><br>
+ <input type=text id="answer3" class= "answer">
+<br><br>
+
+<input id="sent4"  type="hidden"  value="{{ terms|index:3 }}"> </input>
+<li id = "data4"> {{jumbled|index:3}}</li>
+<br><br>
+ <input type=text id="answer4" class= "answer">
+
+<br><br>
+
+<input id="sent5"  type="hidden"  value="{{ terms|index:4 }}"> </input>
+<li id = "data5"> {{jumbled|index:4}}</li>
 <br> <br>
  <input type=text id="answer5" class= "answer">
  <br><br>
@@ -53,14 +110,14 @@
 
 
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'js/jumbled.js' %}"></script>
+<script src="{% static 'js/test.js' %}"></script>
 
 <script>
 
 document.addEventListener('dragstart', function (event) {
       event.dataTransfer.setData('text', event.target.innerHTML);
     });
-  
+
 
 </script>
 
