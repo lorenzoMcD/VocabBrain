@@ -847,7 +847,7 @@ def vocab_test(request, pk):
     return render(request, 'blog/vocab_test.html', context)
 
 
-def flash_card(request, pk):
+def flash_card_5 (request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
@@ -954,3 +954,177 @@ def jumbled_game(request, pk):
     }
 
     return render(request, 'blog/jumbled_game.html', context)
+
+
+
+
+def def_match_10(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 10 terms create new list that adds random 10 terms to list
+    new_list_terms = []
+    new_list_defs = []
+    # if length of term list > 10 take random 10 items from terms
+    # then find the matching defs from the word model and match
+    # them with terms
+    if len(termlist) > 10:
+        new_list_terms += random.sample(termlist, 10)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/def_match_10.html', context)
+
+
+
+def sent_match_10(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+    sentlist = []
+    deflist = []
+    termlist = []
+    for i in words:
+        sentlist.append(i.sentence)
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 10 terms create new list that adds random 10 terms to list
+    new_list_terms = []
+    new_list_sents = []
+    # if length of term list > 10 take random 10 items from terms
+    # then find the matching sents from the word model and match
+    # them with terms
+    if len(termlist) > 10:
+        new_list_terms += random.sample(termlist, 10)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_sents.append(word.sentence)
+        terms = (new_list_terms)
+        mysent = (new_list_sents)
+    else:
+        terms = (termlist)
+        mysent = (sentlist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mysent = shuffle(terms, mysent)
+    context = {
+        'mysent': mysent, 'terms': terms
+    }
+    return render(request, 'blog/sent_match_10.html', context)
+
+
+
+def flash_card_10 (request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    sentences = Word.objects.filter(wordlist__id=a)
+
+    deflist = []
+    termlist = []
+    for i in words:
+        deflist.append(i.definition)
+        termlist.append(i.term)
+    # if user has more than 10 terms create new list that adds random 10 terms to list
+    new_list_terms = []
+    new_list_defs = []
+    # if length of term list > 10 take random 10 items from terms
+    # then find the matching defs from the word model and match
+    # them with terms
+    if len(termlist) > 10:
+        new_list_terms += random.sample(termlist, 10)
+        for i in new_list_terms:
+            for word in words:
+                if i == word.term:
+                    new_list_defs.append(word.definition)
+        terms = (new_list_terms)
+        mydefs = (new_list_defs)
+    else:
+        terms = (termlist)
+        mydefs = (deflist)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+    from sklearn.utils import shuffle
+    terms, mydefs = shuffle(terms, mydefs)
+
+    context = {
+        'mydefs': mydefs, 'terms': terms
+    }
+
+    return render(request, 'blog/flash_card_10.html', context)
+
+
+
+def jumbled_game_10(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+
+    def jumble(word):
+        # sample() method shuffling the characters of the word
+        random_word = random.sample(word, len(word))
+
+    # join() method join the elements
+    # of the iterator(e.g. list) with particular character .
+        jumbled = ''.join(random_word)
+        return jumbled
+
+    termlist_copy = []
+    termlist = []
+    for i in words:
+        termlist.append(i.term)
+        termlist_copy.append(i.term)
+
+    # if user has more than 5 terms create new list that adds random 5 terms to list
+    new_list_terms = []
+    new_list_jumble = []
+    # if length of term list > 5 take random 5 items from terms
+    # then find the matching term in the term copy list. jumble the term thats in the copy list and add to the new list for jumbled terms.
+    if len(termlist) >= 10:
+        new_list_terms += random.sample(termlist, 10)
+        for i in new_list_terms:
+            for j in termlist_copy:
+                if i == j:
+                    new_list_jumble.append(jumble(j))
+
+        terms = (new_list_terms)
+        jumbled = (new_list_jumble)
+    else:
+        terms = (termlist)
+        jumbled = (termlist_copy)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+
+    from sklearn.utils import shuffle
+    terms, jumbled = shuffle(terms, jumbled)
+
+    context = {
+        'terms': terms, 'jumbled': jumbled
+    }
+
+    return render(request, 'blog/jumbled_game_10.html', context)
