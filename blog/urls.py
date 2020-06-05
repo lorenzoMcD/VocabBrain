@@ -91,14 +91,17 @@ urlpatterns = [
 
     path('testtaker/<int:pk>/delete/', TesttakerDeleteView.as_view(), name='testtaker-delete'),
 
-    path('flash_card/<int:pk>/', views.flash_card, name='blog-flash_card'),
+    path('flash_card/<int:pk>/', views.flash_card_5, name='blog-flash_card'),
 
     path('track_progress/', views.track_progress, name='blog-track_progress'),
 
 
     path('jumbled_game/<int:pk>/', views.jumbled_game, name='blog-jumbled_words'),
 
+    path('def_match_10/<int:pk>/', views.def_match_10, name='blog-def_match_10'),
 
 
+    path('sent_match_10/<int:pk>/', views.sent_match_10, name='blog-sent_match_10'),
 
+    path('flash_card_10/<int:pk>/', views.flash_card_10, name='blog-flash_card_10'),
 ]

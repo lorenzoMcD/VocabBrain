@@ -1,0 +1,133 @@
+{% load static %}
+{% load auth_extras %}
+
+<html>
+<!--  index.html -->
+
+
+
+<!--  Required meta tags  -->
+
+<!-- Css tags -->
+
+
+
+
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/flashcard.css'%}">
+
+
+<header>
+  <div class = "instruc"> 
+  <h1> <span id = "first"> Flash Cards! </span> </h1>
+  <h2> <span id = "second"> Click the Word to Reveal its Definition! </span> </h2> 
+  <h3> <span id = "third"> Work Hard! Study Hard! </span> </h3> 
+
+ </div> 
+</div>
+
+<style> 
+  body{
+    background-image: url( "{% static "img/paper.jpg" %}");
+    background-size:cover;
+    background-repeat: no-repeat;
+  
+}
+ </style> 
+
+
+
+
+
+
+</header>
+
+<br> <br> <br> <br>
+
+
+<body>
+
+
+
+
+    <div id="1" class="flashcard">
+    <div class="term">{{terms|index:0}}</div>
+    <div class="def">{{mydefs|index:0}}</div>
+    </div>
+     
+
+     <div id="2" class="flashcard">
+    <div class="term">{{terms|index:1}}</div>
+    <div class="def">{{mydefs|index:1}}</div>
+    </div>
+
+     <div id="3" class="flashcard">
+    <div class="term">{{terms|index:2}}</div>
+    <div class="def">{{mydefs|index:2}}</div>
+    </div>
+
+ <div id="4" class="flashcard">
+    <div class="term">{{terms|index:3}}</div>
+    <div class="def">{{mydefs|index:3}}</div>
+    </div>
+
+ <div id="5" class="flashcard">
+    <div class="term">{{terms|index:4}}</div>
+    <div class="def">{{mydefs|index:4}}</div>
+    </div>
+
+     <div id="5" class="flashcard">
+    <div class="term">{{terms|index:5}}</div>
+    <div class="def">{{mydefs|index:5}}</div>
+    </div>
+
+     <div id="5" class="flashcard">
+    <div class="term">{{terms|index:6}}</div>
+    <div class="def">{{mydefs|index:6}}</div>
+    </div>
+
+     <div id="5" class="flashcard">
+    <div class="term">{{terms|index:7}}</div>
+    <div class="def">{{mydefs|index:7}}</div>
+    </div>
+
+     <div id="5" class="flashcard">
+    <div class="term">{{terms|index:8}}</div>
+    <div class="def">{{mydefs|index:8}}</div>
+    </div>
+
+     <div id="5" class="flashcard">
+    <div class="term">{{terms|index:9}}</div>
+    <div class="def">{{mydefs|index:9}}</div>
+    </div>
+
+    
+
+
+ <button class = "button" onclick="window.location.href='{% url 'blog-home' %}'">Finished</button>
+</body>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/flash.js' %}"></script>
+<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >
+<script>
+
+
+
+</script>
+
+
+</html>
