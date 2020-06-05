@@ -1077,3 +1077,54 @@ def flash_card_10 (request, pk):
     }
 
     return render(request, 'blog/flash_card_10.html', context)
+
+
+
+def jumbled_game_10(request, pk):
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+
+    def jumble(word):
+        # sample() method shuffling the characters of the word
+        random_word = random.sample(word, len(word))
+
+    # join() method join the elements
+    # of the iterator(e.g. list) with particular character .
+        jumbled = ''.join(random_word)
+        return jumbled
+
+    termlist_copy = []
+    termlist = []
+    for i in words:
+        termlist.append(i.term)
+        termlist_copy.append(i.term)
+
+    # if user has more than 5 terms create new list that adds random 5 terms to list
+    new_list_terms = []
+    new_list_jumble = []
+    # if length of term list > 5 take random 5 items from terms
+    # then find the matching term in the term copy list. jumble the term thats in the copy list and add to the new list for jumbled terms.
+    if len(termlist) >= 10:
+        new_list_terms += random.sample(termlist, 10)
+        for i in new_list_terms:
+            for j in termlist_copy:
+                if i == j:
+                    new_list_jumble.append(jumble(j))
+
+        terms = (new_list_terms)
+        jumbled = (new_list_jumble)
+    else:
+        terms = (termlist)
+        jumbled = (termlist_copy)
+    # this mod will shuffle both lists at same time
+    # but keep their order
+
+    from sklearn.utils import shuffle
+    terms, jumbled = shuffle(terms, jumbled)
+
+    context = {
+        'terms': terms, 'jumbled': jumbled
+    }
+
+    return render(request, 'blog/jumbled_game_10.html', context)

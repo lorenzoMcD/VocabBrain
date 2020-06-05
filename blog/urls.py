@@ -104,4 +104,7 @@ urlpatterns = [
     path('sent_match_10/<int:pk>/', views.sent_match_10, name='blog-sent_match_10'),
 
     path('flash_card_10/<int:pk>/', views.flash_card_10, name='blog-flash_card_10'),
+
+
+    path('jumbled_game_10/<int:pk>/', views.jumbled_game_10, name='blog-jumbled_game_10'),
 ]
