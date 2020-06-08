@@ -52,6 +52,8 @@
 
     <a class = "dropdown-item" href="{% url 'blog-flash_card' object.id %}">5 term flash cards </a>
 
+    <a class = "dropdown-item" href="{% url 'blog-jumbled_words' object.id %}"> 5 Term Jumbled Words   </a>
+
     {% endif %}
 
 
@@ -69,7 +71,7 @@
 
     <a class = "dropdown-item" href="{% url 'blog-def_match_3' object.id %}">3 term definition matching game  </a>
 
-    <a class = "dropdown-item" href="{% url 'blog-jumbled_words' object.id %}">Jumbled Words   </a>
+   
 
     {% endif %}
     </div>
