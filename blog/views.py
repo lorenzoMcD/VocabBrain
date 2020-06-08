@@ -847,7 +847,7 @@ def vocab_test(request, pk):
     return render(request, 'blog/vocab_test.html', context)
 
 
-def flash_card_5 (request, pk):
+def flash_card_5(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
@@ -956,8 +956,6 @@ def jumbled_game(request, pk):
     return render(request, 'blog/jumbled_game.html', context)
 
 
-
-
 def def_match_10(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -996,7 +994,6 @@ def def_match_10(request, pk):
     }
 
     return render(request, 'blog/def_match_10.html', context)
-
 
 
 def sent_match_10(request, pk):
@@ -1038,8 +1035,7 @@ def sent_match_10(request, pk):
     return render(request, 'blog/sent_match_10.html', context)
 
 
-
-def flash_card_10 (request, pk):
+def flash_card_10(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
@@ -1077,7 +1073,6 @@ def flash_card_10 (request, pk):
     }
 
     return render(request, 'blog/flash_card_10.html', context)
-
 
 
 def jumbled_game_10(request, pk):

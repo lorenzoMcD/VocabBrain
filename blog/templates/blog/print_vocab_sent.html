@@ -70,9 +70,13 @@
 </main>
 
 <footer>
-
-<p>{{wordlist.worksheet_text | safe}}</p>
-
+<!-- prevents "None" text from showing if there is no worksheet description
+set for the worksheet-->
+{% if wordlist.worksheet_text|length > 0 %}
+    <p>{{ wordlist.worksheet_text | safe }}</p>
+{% else %}
+    <p></p>
+{% endif %}
   </footer>
 
 </body>
