@@ -3,7 +3,7 @@
 
 $(document).ready(function() {
 
-  var csrf = $("input[name = csrfmiddlewaretoken]").val();
+  //var csrf = $("input[name = csrfmiddlewaretoken]").val();
 
 
 
