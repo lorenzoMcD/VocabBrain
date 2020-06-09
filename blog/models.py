@@ -21,6 +21,16 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
+class Suggestion(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    comment = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+
 class WordList(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()

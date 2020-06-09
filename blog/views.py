@@ -26,6 +26,7 @@ from.models import Testtaker
 from.form import WordListForm
 from.form import TestCreateForm
 from.form import TestSubmitForm
+from.form import SuggestionForm
 import random
 
 
@@ -1123,3 +1124,29 @@ def jumbled_game_10(request, pk):
     }
 
     return render(request, 'blog/jumbled_game_10.html', context)
+
+
+def suggestions(request):
+    form = SuggestionForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+
+            messages.success(request, f'Your comment has been recieved!')
+
+            return redirect('blog-home')
+
+        else:
+            form = SuggestionForm(request.POST)
+
+    return render(request, 'blog/suggestions.html', {'form': form})
+
+
+def announcements(request):
+
+    context = {
+
+        'posts': Post.objects.all()
+    }
+    return render(request, 'blog/announcements.html', context)
