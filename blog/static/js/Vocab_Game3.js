@@ -26,7 +26,7 @@ $(document).ready(function() {
       data1.style.color = "#0ead38";
       showOnScreen();
     }else{
-      data1.style.color = "#EB1111";
+      data1.style.color = "#EB1111"
     }
 
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
       data2.style.color = "#0ead38";
       showOnScreen();
     }else{
-      data2.style.color = "#EB1111";
+      data2.style.color = "#EB1111"
     }
 
     if (answertext3.toLowerCase() === useranswer3.toLowerCase()){
@@ -43,7 +43,7 @@ $(document).ready(function() {
      data3.style.color = "#0ead38";
       showOnScreen();
     }else{
-      data3.style.color = "#EB1111";
+      data3.style.color = "#EB1111"
     }
   });
 
