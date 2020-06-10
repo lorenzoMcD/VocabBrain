@@ -87,3 +87,21 @@ div.flashcard div.def {
   
 }
 
+
+#back{
+  float:left;
+  border:1px white;
+  background-color:transparent;
+  font-size:48px;
+  color:red;
+  position: fixed;
+  z-index: 1;
+  top: 500px;
+  left: 30px;
+}
+
+#back:hover{
+  background: rgb(255,0,0);
+  background: linear-gradient(0deg, rgba(255,0,0,0.5158438375350141) 42%, rgba(255,255,255,0.48783263305322133) 100%);
+ 
+}   

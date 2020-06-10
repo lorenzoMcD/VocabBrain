@@ -2,7 +2,7 @@
 {% load auth_extras %}
 
 <html>
-<!--  index.html -->
+<!--  index.html -->  
 
 
 
@@ -11,10 +11,11 @@
 <!-- Css tags -->
 
 
- <link rel="stylesheet" type="text/css" href="{% static 'blog/games.css'%}" >
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/Games_10.css'%}" >
 
 
 <header>
+
   <h4> <span id = "title"> Guess The Word! </span> </h4>
   <h3> <span id = "instruct1"> Find the Term that Matches the Sentence </span> </h3>
   <h3> <span id = "instruct2"> Then Drag the Word into the correct Box </span> </h3>
@@ -22,10 +23,10 @@
   
 
 <!-- <li id = "words" hidden> </li> -->
-         <div id="buttons">
+           
+        <div class = "sidenav"> 
 
-
-
+  <button id= "back" onclick="window.location.href='{% url 'blog-home' %}'"><i class='fas fa-angle-left'></i></button> <br> <br> <br> <br>      
   <p draggable="true" id="1">{{terms|index:0}}</p>
   <p draggable="true" id="2">{{terms|index:1}}</p>
   {% if terms|length >= 3 %}
@@ -150,9 +151,10 @@
 
 </body>
 
-
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
 <script src="{% static 'js/VocabGm_Match10.js' %}"></script>
+
 <script>
 
 document.addEventListener('dragstart', function (event) {

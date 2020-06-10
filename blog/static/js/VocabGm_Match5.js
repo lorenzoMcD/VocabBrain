@@ -85,6 +85,7 @@ $(document).ready(function() {
 // Defining correct answers and our button
 let correct = 0
 let clickme = document.getElementById("clickme");
+let back = document.getElementById("back"); 
 
 
 //constant function that show and updates score
@@ -120,7 +121,6 @@ function showCustom(){
 function hideCustom(){
   customalert.style.display = 'none';
 }
-
 
 
 //load our function
