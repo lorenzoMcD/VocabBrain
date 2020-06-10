@@ -184,14 +184,14 @@ body {
   width: 160px;
   position: fixed;
   z-index: 1;
-  top: 0;
-  left: 0;
+  top:-25px;
   background-color: white;
   overflow-x: hidden;
   padding-top: 20px;
   appearance:button;
   -moz-appearance:button;
   -webkit-appearance:button;
+  overflow:hidden;
 
 }
 
@@ -203,7 +203,6 @@ body {
   color: #2196F3;
   display: block;
   padding: 2px 5px;
- 
   color:black;
   border:1px solid black;
   border-radius:12px;
@@ -211,3 +210,19 @@ body {
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
 
 }
+
+.sidenav #back{
+  border:1px white;
+  background-color:white;
+  font-size:68px;
+  color:red;
+  float:left;
+
+}
+
+
+#back:hover{
+  background: rgb(255,0,0);
+  background: linear-gradient(0deg, rgba(255,0,0,0.5158438375350141) 42%, rgba(255,255,255,0.48783263305322133) 100%);
+ 
+}   
