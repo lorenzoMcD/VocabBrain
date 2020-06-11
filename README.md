@@ -1,4 +1,11 @@
-# django_project
+# English Remote Learning Platform
+
+Web platform that helps support teacher/student remote learning. The website includes authentication for students and teachers to register as well as monitor their academic progress. Website is built using Django as backend, and the front end is designed using JavaScript, HTML and CSS.
+
+
+
+
+
 
 how to get started...
 
