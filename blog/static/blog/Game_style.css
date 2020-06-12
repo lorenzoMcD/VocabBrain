@@ -1,7 +1,7 @@
 
 body{
    font-family: Arial, Helvetica, sans-serif;
-  background-color:#FFFF;
+  background-color:#FFFFFF;
 }
 
 header {
@@ -243,10 +243,12 @@ body {
   z-index: 1;
   top: 500px;
   left: 30px;
+  color:#303C6C;
 }
 
 #back:hover{
   background: rgb(255,0,0);
   background: linear-gradient(0deg, rgba(255,0,0,0.5158438375350141) 42%, rgba(255,255,255,0.48783263305322133) 100%);
- 
+  cursor:pointer;
+  color:red;
 }   
