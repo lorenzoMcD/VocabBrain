@@ -1,3 +1,10 @@
+body{
+   font-family: Arial, Helvetica, sans-serif;
+   background-color:#FFFFFF;
+}
+
+
+
 header {
   text-align:center;
   list-style:none;
@@ -61,8 +68,8 @@ body {
   width:35%; 
   padding:10px; 
   margin-top:-100px; 
-  border:1px solid black;
-
+  font-weight:lighter;
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
 }
 
 
@@ -156,6 +163,7 @@ body {
    background: rgb(34,193,195);
    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
    cursor:pointer;
+
 }
 
 #reset{
@@ -185,13 +193,14 @@ body {
   position: fixed;
   z-index: 1;
   top:-25px;
-  background-color: white;
   overflow-x: hidden;
   padding-top: 20px;
   appearance:button;
   -moz-appearance:button;
   -webkit-appearance:button;
   overflow:hidden;
+  background-color:#FFFFFF;
+
 
 }
 
@@ -204,25 +213,30 @@ body {
   display: block;
   padding: 2px 5px;
   color:black;
-  border:1px solid black;
+
   border-radius:12px;
   background: rgb(34,193,195);
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
-
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .sidenav #back{
   border:1px white;
-  background-color:white;
   font-size:68px;
   color:red;
   float:left;
-
+  background-color:#FFFFFF;
+  color:#303C6C;
 }
 
 
+
 #back:hover{
-  background: rgb(255,0,0);
-  background: linear-gradient(0deg, rgba(255,0,0,0.5158438375350141) 42%, rgba(255,255,255,0.48783263305322133) 100%);
- 
-}   
+  color:red;
+  cursor:hand;
+}
+  
+#clickme:hover{
+
+ background-color:#303C6C;
+}

@@ -11,8 +11,7 @@
 <!-- Css tags -->
 
 
-
- <link rel="stylesheet" type="text/css" href="{% static 'blog/game.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/Game_style.css'%}">
 
 
 <header>
@@ -67,14 +66,14 @@
 <input id="sent1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
 <li id = "data1"> {{mysent|index:0}} </li>
 <br><br>
-<input type=text id="answer1" class= "answer">
+<input type=text id="answer1" class= "answer"  placeholder ="Drag Words Here! ">
 
 <br><br>
 
 <input id="sent2"  type="hidden"  value="{{ terms|index:1 }}"> </input>
 <li id = "data2"> {{mysent|index:1}}</li>
 <br><br>
-<input type=text id="answer2" class= "answer">
+<input type=text id="answer2" class= "answer"  placeholder ="Drag Words Here! ">
 
 
 <br><br>
@@ -82,7 +81,7 @@
 <input id="sent3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
 <li id = "data3"> {{mysent|index:2}}</li>
 <br><br>
- <input type=text id="answer3" class= "answer">
+ <input type=text id="answer3" class= "answer"  placeholder ="Drag Words Here! ">
  <br> <br> 
   <button id="clickme" onclick = "finish()">Submit</button>
  <button id= "home" onclick="window.location.href='{% url 'blog-home' %}'" hidden>Finished</button>

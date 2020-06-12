@@ -13,7 +13,7 @@
 
 
 
- <link rel="stylesheet" type="text/css" href="{% static 'blog/flashcard.css'%}">
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/flashcard_games.css'%}">
 
 
 <header>
@@ -26,14 +26,7 @@
  </div> 
 </div>
 
-<style> 
-  body{
-    background-image: url( "{% static "img/paper.jpg" %}");
-    background-size:cover;
-    background-repeat: no-repeat;
-  
-}
- </style> 
+
 
 
 
@@ -48,58 +41,126 @@
 <body>
 
 
+   <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:0}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:0}}</p>
+        </div>
+      </div> 
+   </div> 
 
 
-    <div id="1" class="flashcard">
-    <div class="term">{{terms|index:0}}</div>
-    <div class="def">{{mydefs|index:0}}</div>
-    </div>
-     
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:1}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:1}}</p>
+        </div>
+      </div> 
+   </div> 
 
-     <div id="2" class="flashcard">
-    <div class="term">{{terms|index:1}}</div>
-    <div class="def">{{mydefs|index:1}}</div>
-    </div>
 
-     <div id="3" class="flashcard">
-    <div class="term">{{terms|index:2}}</div>
-    <div class="def">{{mydefs|index:2}}</div>
-    </div>
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:2}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:2}}</p>
+        </div>
+      </div> 
+   </div> 
 
- <div id="4" class="flashcard">
-    <div class="term">{{terms|index:3}}</div>
-    <div class="def">{{mydefs|index:3}}</div>
-    </div>
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:3}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:3}}</p>
+        </div>
+      </div> 
+   </div> 
 
- <div id="5" class="flashcard">
-    <div class="term">{{terms|index:4}}</div>
-    <div class="def">{{mydefs|index:4}}</div>
-    </div>
 
-     <div id="5" class="flashcard">
-    <div class="term">{{terms|index:5}}</div>
-    <div class="def">{{mydefs|index:5}}</div>
-    </div>
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:4}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:4}}</p>
+        </div>
+      </div> 
+   </div> 
 
-     <div id="5" class="flashcard">
-    <div class="term">{{terms|index:6}}</div>
-    <div class="def">{{mydefs|index:6}}</div>
-    </div>
 
-     <div id="5" class="flashcard">
-    <div class="term">{{terms|index:7}}</div>
-    <div class="def">{{mydefs|index:7}}</div>
-    </div>
 
-     <div id="5" class="flashcard">
-    <div class="term">{{terms|index:8}}</div>
-    <div class="def">{{mydefs|index:8}}</div>
-    </div>
+   <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:5}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:5}}</p>
+        </div>
+      </div> 
+   </div> 
 
-     <div id="5" class="flashcard">
-    <div class="term">{{terms|index:9}}</div>
-    <div class="def">{{mydefs|index:9}}</div>
-    </div>
+
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:6}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:6}}</p>
+        </div>
+      </div> 
+   </div> 
+
+
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:7}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:7}}</p>
+        </div>
+      </div> 
+   </div> 
+
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:8}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:8}}</p>
+        </div>
+      </div> 
+   </div> 
+
+
+    <div class="flashcard">
+    <div class="flashcard-inner">
+      <div class="front">
+            <h1>{{terms|index:9}}</h1>
+      </div>
+           <div class="back">
+           <p>{{mydefs|index:9}}</p>
+        </div>
+      </div> 
+   </div> 
+
+
+
 
     
 
@@ -121,7 +182,6 @@
 
 
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'js/flash.js' %}"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
 <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >

@@ -1,3 +1,9 @@
+
+body{
+   font-family: Arial, Helvetica, sans-serif;
+  background-color:#FFFF;
+}
+
 header {
   text-align:center;
   list-style:none;
@@ -88,7 +94,8 @@ body {
   width:35%; 
   padding:10px; 
   margin-top:-100px; 
-  border:1px solid black;
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+  font-weight:lighter;
 
 }
 
@@ -105,7 +112,7 @@ body {
   border-radius:12px;
   background: rgb(34,193,195);
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
-
+ 
 }
 /* here for now because it's not inheriting from game.css for some reason */
 
@@ -122,12 +129,13 @@ body {
   text-decoration:underline;
   background: rgb(186,12,185);
   background: linear-gradient(0deg, rgba(186,12,185,0.5662640056022409) 0%, rgba(245,230,243,1) 100%);
-}
+  
+ }
 #instruct3{
   font-size:25px;
   background: rgb(255,0,0);
   background: linear-gradient(0deg, rgba(255,0,0,0.5158438375350141) 42%, rgba(255,255,255,0.48783263305322133) 100%);
-   text-decoration:underline;
+  text-decoration:underline;
 }
 
 .answer{
@@ -200,7 +208,10 @@ body {
    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
    cursor:pointer;
 }
+#clickme:hover{
 
+ background-color:#303C6C;
+}
 #reset{
   height:25px;
   width:80px;
@@ -225,7 +236,7 @@ body {
 #back{
   float:left;
   border:1px white;
-  background-color:white;
+  background-color:transparent;
   font-size:48px;
   color:red;
   position: fixed;
