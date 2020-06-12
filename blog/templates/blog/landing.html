@@ -1,0 +1,266 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+.stripes {
+    background-image: url( "{% static "img/girl_studying.jpg" %}");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.push-down {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top:40%;
+}
+
+[class*="col-"] {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(86, 61, 124, .15);
+  border: 1px solid rgba(86, 61, 124, .2);
+}
+
+@media (max-height: 700px) {
+  .mobile-hide {
+    display: none;
+    }
+}
+
+.card-wrapper {
+  margin: 5% 0;
+}
+
+/* You can adjust the image size by increasing/decreasing the width, height */
+.custom-circle-image {
+  width: 20vw; /* note i used vw not px for better responsive */
+  height: 20vw;
+}
+
+.custom-circle-image img {
+  object-fit: cover;
+}
+
+.card-title {
+  letter-spacing: 1.1px;
+}
+
+.card-text {
+  font-family: MerriweatherRegular;
+  font-size: 22px;
+  line-height: initial;
+}
+
+</style>
+<link rel="shortcut icon" type="image/png" href="{% static "img/bookworm.png" %}"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+
+
+    {% if title %}
+    <title> Django Blog - {{ title }}</title>
+    {% else %}
+    <title> Good to Know</title>
+    {% endif %}
+</head>
+<body>
+
+
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark box-shadow fixed-top" style="background-color: #3498DB;">
+    <div class="container">
+      <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
+      <a class="navbar-brand mr-4" href="/">Good To Know </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+
+          <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
+          {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                      {% if group.name == 'Student' %}
+
+          <a class="nav-item nav-link" href="{% url 'blog-teacher_lookup' %}">Teachers Lookup</a>
+          {% endif %}
+          {%  endfor %}
+          {% endif %}
+        </div>
+        <!-- Navbar Right Side -->
+        <div class="navbar-nav">
+          {% if user.is_authenticated %}
+          {% if user.is_superuser %}
+
+          <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+          {% endif %}
+            {% for group in user.groups.all %}
+            {% if group.name == 'Teacher' %}
+          <a class="nav-item nav-link" href="{% url 'blog-temp' %}">Word List</a>
+
+          <a class="nav-item nav-link" href="{% url 'blog-temp2' %}">Test</a>
+
+
+          <a class="nav-item nav-link" href="{% url 'blog-temp3' %}">Test-Takers-TEMP</a>
+
+
+
+          {% endif %}
+          {% endfor %}
+          <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+          <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+          <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+
+
+
+
+
+
+
+<div class="jumbotron-fluid">
+  <div class="navbar fixed-bottom navbar-dark" style="background-color: #3498DB;">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
+            </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <a class="navbar-brand text-white" href="#">WE ARE THE CHAMPIONS</a>
+              <h4 class="text-white"></h4>
+              <p class="text-muted">I've paid my dues, time after time, I've done my sentence, but committed no crime. And bad mistakes, I've made a few, I've had my share of sand kicked in my face, but I've come through. And we mean to go on, and on, and on, and on.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4 mobile-hide">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </header>
+
+
+
+
+
+  <div class="jumbotron-fluid">
+    <div class="container-fluid special stripes">
+      <div class="container push-down mx-auto">
+        <h1 class="jumbotron-heading text-white text-center"> <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612"> <br>Good to Know </h1>
+        <p class="lead text-white text-center mx-auto" style="width: 60%;" class=" ">just an example of the home page<br>
+          <div class="row justify-content-center">
+            <a href="{% url 'register' %}" class="btn btn-outline-success m-1">Get Started</a>
+
+
+          </div>
+      </div>
+    </div>
+    <!--   /container  -->
+  </div>
+  <!--   /container  -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<section class="about-cards-section" >
+  <div class="container" >
+    <div class="row">
+      <div class="col-sm-4 card-wrapper" style="background-color: #FFC107;">
+        <div class="card border-0" style="background-color: #D5D8DC;">
+          <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+            <img class="w-100 h-100" src="{% static "img/teacher.jpg" %}" alt="Card image cap">
+          </div>
+          <div class="card-body text-center mt-4">
+            <h3 class="text-uppercase card-title">Create</h3>
+            <p class="card-text">Teachers can create vocabulary lists for their students to study.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 card-wrapper" style="background-color: #FFC107;">
+        <div class="card border-0" style="background-color: #D5D8DC;">
+          <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+            <img class="w-100 h-100" src="{% static "img/kids.jpg" %}" alt="Card image cap">
+          </div>
+          <div class="card-body text-center mt-4">
+            <h3 class="text-uppercase card-title">Learn</h3>
+            <p class="card-text">Students can study vocabulary lists by playing word games or studying flash cards.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 card-wrapper" style="background-color: #FFC107;">
+        <div class="card border-0" style="background-color: #D5D8DC;">
+          <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+            <img class="w-100 h-100" src="{% static "img/test.jpg" %}" alt="Card image cap">
+          </div>
+          <div class="card-body text-center mt-4">
+            <h3 class="text-uppercase card-title">Test</h3>
+            <p class="card-text">Teachers can administer tests and track the progress of their students.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+
+
+<!-- this is js for the table pagination-->
+<script> $('.mydatatable').DataTable({
+            order: [[3, 'desc']],
+            pagingType: 'full_numbers',
+            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,"All"]]
+});
+</script>
+
+<!-- This code sets timer for how long message appears at top of screen.-->
+    <script>
+    var message_ele = document.getElementById("message_container");
+    setTimeout(function(){
+   message_ele.style.display = "none";
+}, 3000);       // Timeout is 3 sec, you can change it
+    </script>
+</body>
+</html>

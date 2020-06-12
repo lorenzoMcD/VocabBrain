@@ -24,16 +24,16 @@
 <body>
 
     <header class="site-header">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark box-shadow fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark box-shadow fixed-top" style="background-color: #3498DB;">
     <div class="container">
       <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
-      <a class="navbar-brand mr-4" href="/">Good To Know </a>
+      <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Good To Know </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
-          
+
           <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
 
           {% if user.is_authenticated %}
@@ -93,43 +93,45 @@
     </div>
 
 
+
+
     <div class="col-md-0">
-      <div class="content-section" div id= "sidebar">
+      <div class="content-section" div id= "sidebar" style="background-color: #FFC107;">
         {%block sidebar%}
         <h3>Placeholder</h3>
         <p class='text-muted'>Placeholder.
 
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light"><a href="{% url 'blog-announce' %}" > Announcements</a></li>
+          <ul class="list-group" >
+            <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'blog-announce' %}" > Announcements</a></li>
 
 
             {% if user.is_authenticated %}
                 {% for group in user.groups.all %}
                       {% if group.name == 'Teacher' %}
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'list-create' %}" >Create WordList</a></li>
+                      <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'list-create' %}" >Create WordList</a></li>
 
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'test-create' %}" >Create Test</a></li>
+                      <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'test-create' %}" >Create Test</a></li>
 
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-student_tracker' %}" >Track Students in Your Class</a></li>
+                      <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'blog-student_tracker' %}" >Track Students in Your Class</a></li>
 
 
                       {% endif %}
 
                       {% if group.name == 'Student' %}
 
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-track_progress' %}" >Track Your Progress</a></li>
-                      <li class="list-group-item list-group-item-light"><a href="{% url 'blog-groups' %}" >Groups</a></li>
+                      <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'blog-track_progress' %}" >Track Your Progress</a></li>
+                      <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'blog-groups' %}" >Groups</a></li>
 
                       {% endif %}
                           {% endfor %}
                             {% endif %}
 
-            <li class="list-group-item list-group-item-light"> <a href= "{% url 'blog-faq' %}">FAQ </a></li>
-            <li class="list-group-item list-group-item-light"><a href="{% url 'blog-suggest' %}" >Suggestions</a></li>
-            <li class="list-group-item list-group-item-light"><a href="#" >Help</a></li>
+            <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7; color: blue;"> <a href= "{% url 'blog-faq' %}">FAQ </a></li>
+            <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'blog-suggest' %}" >Suggestions</a></li>
+            <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="#" >Help</a></li>
           </ul>
         </p>
         {% endblock %}
