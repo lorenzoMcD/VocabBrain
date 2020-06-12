@@ -63,6 +63,7 @@
   line-height: initial;
 }
 
+
 </style>
 <link rel="shortcut icon" type="image/png" href="{% static "img/bookworm.png" %}"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
@@ -86,7 +87,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarToggle">
+      <div class="collapse navbar-collapse" id="navbarToggle" >
         <div class="navbar-nav mr-auto">
 
           <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
@@ -101,7 +102,7 @@
           {% endif %}
         </div>
         <!-- Navbar Right Side -->
-        <div class="navbar-nav">
+        <div class="navbar-nav" >
           {% if user.is_authenticated %}
           {% if user.is_superuser %}
 
@@ -183,10 +184,14 @@
       <div class="container push-down mx-auto">
         <h1 class="jumbotron-heading text-white text-center"> <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612"> <br>Good to Know </h1>
         <p class="lead text-white text-center mx-auto" style="width: 60%;" class=" ">just an example of the home page<br>
-          <div class="row justify-content-center">
+          <div class="row justify-content-center">  
+            {% if not user.is_authenticated %}
             <a href="{% url 'register' %}" class="btn btn-outline-success m-1">Get Started</a>
+            {% endif %}
 
-
+              {% if user.is_authenticated %}
+              <a href="{% url 'blog-home' %}" class="btn btn-outline-success m-1">Enter</a>
+                {% endif %}
           </div>
       </div>
     </div>
