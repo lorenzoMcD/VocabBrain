@@ -39,30 +39,56 @@
     }
 }
 
+.card-wrapper {
+  margin: 5% 0;
+}
 
+/* You can adjust the image size by increasing/decreasing the width, height */
+.custom-circle-image {
+  width: 20vw; /* note i used vw not px for better responsive */
+  height: 20vw;
+}
+
+.custom-circle-image img {
+  object-fit: cover;
+}
+
+.card-title {
+  letter-spacing: 1.1px;
+}
+
+.card-text {
+  font-family: MerriweatherRegular;
+  font-size: 22px;
+  line-height: initial;
+}
 
 </style>
+<link rel="shortcut icon" type="image/png" href="{% static "img/bookworm.png" %}"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
 
 
     {% if title %}
-    <title>Django Blog - {{ title }}</title>
+    <title> Django Blog - {{ title }}</title>
     {% else %}
-    <title>Django Blog</title>
+    <title> Good to Know</title>
     {% endif %}
 </head>
 <body>
 
+
+
     <header class="site-header">
-  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark box-shadow fixed-top">
     <div class="container">
+      <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
       <a class="navbar-brand mr-4" href="/">Good To Know </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+          
           <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
 
           {% if user.is_authenticated %}
@@ -108,11 +134,19 @@
 
 </header>
 
+
+
+
+
+
+
+
+
 <div class="jumbotron-fluid">
   <div class="navbar fixed-bottom navbar-dark bg-dark box-shadow">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-<svg class="jumbotron-heading text-white text-center" width="36" height="36" viewBox="0 0 612 612" xmlns="http://www.w3.org/2000/svg" focusable="false"><title>Bootstrap</title><path fill="currentColor" d="M510 8a94.3 94.3 0 0 1 94 94v408a94.3 94.3 0 0 1-94 94H102a94.3 94.3 0 0 1-94-94V102a94.3 94.3 0 0 1 94-94h408m0-8H102C45.9 0 0 45.9 0 102v408c0 56.1 45.9 102 102 102h408c56.1 0 102-45.9 102-102V102C612 45.9 566.1 0 510 0z"></path><path fill="currentColor" d="M196.77 471.5V154.43h124.15c54.27 0 91 31.64 91 79.1 0 33-24.17 63.72-54.71 69.21v1.76c43.07 5.49 70.75 35.82 70.75 78 0 55.81-40 89-107.45 89zm39.55-180.4h63.28c46.8 0 72.29-18.68 72.29-53 0-31.42-21.53-48.78-60-48.78h-75.57zm78.22 145.46c47.68 0 72.73-19.34 72.73-56s-25.93-55.37-76.46-55.37h-74.49v111.4z"></path></svg>
+        <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
             </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -139,10 +173,15 @@
     </div>
   </div>
   </header>
+
+
+
+
+
   <div class="jumbotron-fluid">
     <div class="container-fluid special stripes">
       <div class="container push-down mx-auto">
-        <h1 class="jumbotron-heading text-white text-center"> <svg class="jumbotron-heading text-white text-center" width="36" height="36" viewBox="0 0 612 612" xmlns="http://www.w3.org/2000/svg" focusable="false"><title>Bootstrap</title><path fill="currentColor" d="M510 8a94.3 94.3 0 0 1 94 94v408a94.3 94.3 0 0 1-94 94H102a94.3 94.3 0 0 1-94-94V102a94.3 94.3 0 0 1 94-94h408m0-8H102C45.9 0 0 45.9 0 102v408c0 56.1 45.9 102 102 102h408c56.1 0 102-45.9 102-102V102C612 45.9 566.1 0 510 0z"></path><path fill="currentColor" d="M196.77 471.5V154.43h124.15c54.27 0 91 31.64 91 79.1 0 33-24.17 63.72-54.71 69.21v1.76c43.07 5.49 70.75 35.82 70.75 78 0 55.81-40 89-107.45 89zm39.55-180.4h63.28c46.8 0 72.29-18.68 72.29-53 0-31.42-21.53-48.78-60-48.78h-75.57zm78.22 145.46c47.68 0 72.73-19.34 72.73-56s-25.93-55.37-76.46-55.37h-74.49v111.4z"></path></svg><br>Good to Know </h1>
+        <h1 class="jumbotron-heading text-white text-center"> <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612"> <br>Good to Know </h1>
         <p class="lead text-white text-center mx-auto" style="width: 60%;" class=" ">just an example of the home page<br>
           <div class="row justify-content-center">
             <a href="#latest" class="btn btn-outline-light m-1">Button</a>
@@ -154,123 +193,49 @@
     <!--   /container  -->
   </div>
   <!--   /container  -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<section class="about-cards-section">
   <div class="container">
-
-    <h1>Bootstrap grid examples</h1>
-    <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
-
-    <h3>Five grid tiers</h3>
-    <p>There are five tiers to the Bootstrap grid system, one for each range of devices we support. Each tier starts at a minimum viewport size and automatically applies to the larger devices unless overridden.</p>
-
     <div class="row">
-      <div class="col-4">.col-4</div>
-      <div class="col-4">.col-4</div>
-      <div class="col-4">.col-4</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-4">.col-sm-4</div>
-      <div class="col-sm-4">.col-sm-4</div>
-      <div class="col-sm-4">.col-sm-4</div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4">.col-lg-4</div>
-      <div class="col-lg-4">.col-lg-4</div>
-      <div class="col-lg-4">.col-lg-4</div>
-    </div>
-
-    <div class="row">
-      <div class="col-xl-4">.col-xl-4</div>
-      <div class="col-xl-4">.col-xl-4</div>
-      <div class="col-xl-4">.col-xl-4</div>
-    </div>
-
-    <h3>Three equal columns</h3>
-    <p>Get three equal-width columns <strong>starting at desktops and scaling to large desktops</strong>. On mobile devices, tablets and below, the columns will automatically stack.</p>
-    <div class="row">
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-
-    <h3>Three unequal columns</h3>
-    <p>Get three columns <strong>starting at desktops and scaling to large desktops</strong> of various widths. Remember, grid columns should add up to twelve for a single horizontal block. More than that, and columns start stacking no matter the viewport.</p>
-    <div class="row">
-      <div class="col-md-3">.col-md-3</div>
-      <div class="col-md-6">.col-md-6</div>
-      <div class="col-md-3">.col-md-3</div>
-    </div>
-
-    <h3>Two columns</h3>
-    <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
-    <div class="row">
-      <div class="col-md-8">.col-md-8</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-
-    <h3>Full width, single column</h3>
-    <p class="text-warning">No grid classes are necessary for full-width elements.</p>
-
-    <hr>
-
-    <h3>Two columns with two nested columns</h3>
-    <p>Per the documentation, nesting is easy—just put a row of columns within an existing column. This gives you two columns <strong>starting at desktops and scaling to large desktops</strong>, with another two (equal widths) within the larger column.</p>
-    <p>At mobile device sizes, tablets and down, these columns and their nested columns will stack.</p>
-    <div class="row">
-      <div class="col-md-8">
-        .col-md-8
-        <div class="row">
-          <div class="col-md-6">.col-md-6</div>
-          <div class="col-md-6">.col-md-6</div>
+      <div class="col-sm-4 card-wrapper">
+        <div class="card border-0">
+          <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+            <img class="w-100 h-100" src="{% static "img/teacher.jpg" %}" alt="Card image cap">
+          </div>
+          <div class="card-body text-center mt-4">
+            <h3 class="text-uppercase card-title">Create</h3>
+            <p class="card-text">Teachers can create vocabulary lists for their students to study.</p>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">.col-md-4</div>
+
+      <div class="col-sm-4 card-wrapper">
+        <div class="card border-0">
+          <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+            <img class="w-100 h-100" src="{% static "img/kids.jpg" %}" alt="Card image cap">
+          </div>
+          <div class="card-body text-center mt-4">
+            <h3 class="text-uppercase card-title">Learn</h3>
+            <p class="card-text">Students can study vocabulary lists by playing word games or studying flash cards.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 card-wrapper">
+        <div class="card border-0">
+          <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+            <img class="w-100 h-100" src="{% static "img/test.jpg" %}" alt="Card image cap">
+          </div>
+          <div class="card-body text-center mt-4">
+            <h3 class="text-uppercase card-title">Test</h3>
+            <p class="card-text">Teachers can administer tests and track the progress of their students.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <hr>
-
-    <h3>Mixed: mobile and desktop</h3>
-    <p>The Bootstrap v4 grid system has five tiers of classes: xs (extra small), sm (small), md (medium), lg (large), and xl (extra large). You can use nearly any combination of these classes to create more dynamic and flexible layouts.</p>
-    <p>Each tier of classes scales up, meaning if you plan on setting the same widths for xs and sm, you only need to specify xs.</p>
-    <div class="row">
-      <div class="col-12 col-md-8">.col-12 .col-md-8</div>
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-    </div>
-    <div class="row">
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-    </div>
-    <div class="row">
-      <div class="col-6">.col-6</div>
-      <div class="col-6">.col-6</div>
-    </div>
-
-    <hr>
-
-    <h3>Mixed: mobile, tablet, and desktop</h3>
-    <p></p>
-    <div class="row">
-      <div class="col-12 col-sm-6 col-lg-8">.col-12 .col-sm-6 .col-lg-8</div>
-      <div class="col-6 col-lg-4">.col-6 .col-lg-4</div>
-    </div>
-    <div class="row">
-      <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-      <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-      <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-    </div>
-
-
-
-
-
+  </div>
+</section>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
