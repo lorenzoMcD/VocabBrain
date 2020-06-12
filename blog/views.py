@@ -31,6 +31,7 @@ import random
 
 
 # page that shows posts by every user on site
+@login_required
 def home(request):
 
     context = {
@@ -39,6 +40,11 @@ def home(request):
     }
 
     return render(request, 'blog/home.html', context)
+
+
+def landing(request):
+
+    return render(request, 'blog/landing.html')
 
 
 # this web page will show list of teachers on site

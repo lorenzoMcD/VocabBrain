@@ -20,7 +20,8 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('', PostListView.as_view(), name='blog-home'),
+    path('', views.landing, name='blog-landing'),
+    path('home/', PostListView.as_view(), name='blog-home'),
     path('user/<str:username>/', UserPostListView.as_view(), name='user-posts'),
     path('teacher_lookup/<str:username>/', UserPostListView.as_view(), name='blog-teacher_search_result'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
