@@ -82,9 +82,9 @@ In order to unlock games for your students your wordlist must contain a minimum 
 
             <th>  {{list.date_posted|date:"SHORT_DATE_FORMAT" }} </th>
 
-            <th> <button class = "btn btn-primary" onclick="window.location.href='{% url 'list-detail' user.id %}'">View Wordlist </button></th>
+            <th> <button class = "btn btn-primary" onclick="window.location.href='{% url 'list-detail' list.id %}'">View Wordlist </button></th>
 
-            <th><a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' user.id %}">View Worksheet </a></th>
+            <th><a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' list.id %}">View Worksheet </a></th>
 
 
 
@@ -131,7 +131,7 @@ In order to unlock games for your students your wordlist must contain a minimum 
        <tr>
 
 
-            <th><button class = "btn btn-primary" onclick="window.location.href='{% url 'test-detail' user.id %}'">View Test </button></th>
+            <th><button class = "btn btn-primary" onclick="window.location.href='{% url 'test-detail' test.id %}'">View Test </button></th>
 
 
             <th>  {{test.author}} </th>
