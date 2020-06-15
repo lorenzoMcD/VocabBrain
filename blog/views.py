@@ -33,10 +33,15 @@ import random
 # page that shows posts by every user on site
 @login_required
 def home(request):
+    users = request.user.groups.all()
 
+    posts = Post.objects.order_by('-date_posted')[0:1]
+
+    wordlist = WordList.objects.filter(author=request.user)
+    test = Test.objects.filter(author=request.user)
     context = {
 
-        'posts': Post.objects.all()
+        'lists': wordlist, 'tests': test, 'posts': posts, 'users': users
     }
 
     return render(request, 'blog/home.html', context)
@@ -1149,10 +1154,9 @@ def suggestions(request):
     return render(request, 'blog/suggestions.html', {'form': form})
 
 
-def announcements(request):
-
-    context = {
-
-        'posts': Post.objects.all()
-    }
-    return render(request, 'blog/announcements.html', context)
+class Announcements(ListView):
+    model = Post
+    template_name = 'blog/announcements.html'
+    context_object_name = 'posts'
+    paginate_by = 4
+    ordering = ['-date_posted']

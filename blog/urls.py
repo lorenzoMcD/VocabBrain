@@ -16,12 +16,13 @@ from .views import UserWordListView
 from .views import WordListDeleteView
 from .views import WordListDetailView
 from .views import WordListUpdateView
+from .views import Announcements
 from django.urls import path
 
 
 urlpatterns = [
     path('', views.landing, name='blog-landing'),
-    path('home/', PostListView.as_view(), name='blog-home'),
+    path('home/', views.home, name='blog-home'),
     path('user/<str:username>/', UserPostListView.as_view(), name='user-posts'),
     path('teacher_lookup/<str:username>/', UserPostListView.as_view(), name='blog-teacher_search_result'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
@@ -37,7 +38,7 @@ urlpatterns = [
 
     path('suggestions/', views.suggestions, name='blog-suggest'),
 
-    path('announcements/', views.announcements, name='blog-announce'),
+    path('announcements/', Announcements.as_view(), name='blog-announce'),
 
     path('student_tracker/', views.student_tracker, name='blog-student_tracker'),
     path('groups/', views.groups, name='blog-groups'),
