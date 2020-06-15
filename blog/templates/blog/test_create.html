@@ -1,10 +1,17 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content%}
+{% load static %}
 
-<p> NOTE: Before you can create a new test, you must already have created a wordlist. If you have not created any wordlists the dropdown list below will be empty!!</p>
 
-<h2 style="color:red"> Your wordlist must have minimum 5 words to create a Test</h2>
+
+
+<h5 style="color:red">
+<img src="{% static "img/alert.gif" %}" alt="" width="80" height="80" viewBox="0 0 612 612">
+Before you can create a new test, you must already have created a wordlist. If you have not created any wordlists the dropdown list below will be empty. Your wordlist must have minimum 5 words to create a Test
+
+<img src="{% static "img/alert.gif" %}" alt="" width="80" height="80" viewBox="0 0 612 612">
+</h5>
 
 
     <div class="content-section">
