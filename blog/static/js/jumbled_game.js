@@ -6,7 +6,6 @@ let data4 = document.getElementById("data4");
 let data5 = document.getElementById("data5"); 
 
 
-
 var customalert = document.getElementById("customAlert");
 
 
@@ -123,7 +122,24 @@ function hideCustom(){
 
 
 
+
+
+function hint(){ 
+  let buttons = document.getElementById("buttons"); 
+
+  if (buttons.style.display === "block"){
+    buttons.style.display = "none";
+  } else{
+    buttons.style.display= "block"; 
+  }
+}
+
+
+
+
 //load our function
+
+
 
 
 window.onload = showOnScreen
