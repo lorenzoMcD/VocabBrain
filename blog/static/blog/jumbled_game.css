@@ -93,7 +93,7 @@ body {
   display:inline-block; 
   width:35%; 
   padding:5px; 
-  margin-top:-100px; 
+  margin-top:-75px; 
   box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
   font-weight:lighter;
 
@@ -251,3 +251,26 @@ body {
   cursor:pointer;
   color:red;
 }   
+
+#buttons {
+
+  display:none;
+
+
+}
+
+#hint{
+
+   height:25px;
+   width:60px;
+   border-radius:8px;
+   background: rgb(34,193,195);
+   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
+   display:inline-block;
+   font-weight:bold;
+}
+
+#hint:hover{
+  cursor:pointer;
+  background-color:#303C6C;
+}

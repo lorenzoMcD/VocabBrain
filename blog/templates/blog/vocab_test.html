@@ -32,7 +32,7 @@
 
 
 <header>
-  <h3> <span id = "title"> Guess The Word! </span> </h3>
+  <h3> <span id = "title"> Vocab Test! </span> </h3>
 
 <!-- <li id = "words" hidden> </li> -->
 
@@ -51,7 +51,7 @@
     {% endif %}
 </div>
 
-       <h3> Correct:   <span id= "correct"></span> /5</h3>
+       <h3 hidden> Correct:   <span id= "correct" hidden></span> /5</h3>
 
 
 
@@ -64,73 +64,43 @@
 
 
 
-<div id="element1">
-
- <input type=text id="answer1" placeholder = "Enter Word" >
-
-<br><br>
-
- <input type=text id="answer2" placeholder = "Enter Word">
-
-{% if terms|length >= 3 %}
-<br><br>
-
- <input type=text id="answer3"placeholder = "Enter Word">
-
-{% if terms|length >= 4 %}
-<br><br>
-
- <input type=text id="answer4"placeholder = "Enter Word">
-
-{% if terms|length >= 5 %}
-<br><br>
-
- <input type=text id="answer5"placeholder = "Enter Word">
-
-{% endif %}
-{% endif %}
-{% endif %}
-
-</div>
 
 
 
 <div id="element2">
 <input id="sent1"  type="hidden"  value="{{ terms|index:0 }}"> </input>
-<li> {{mydefs|index:0}} </li>
-
+<li id = "data1"> {{mydefs|index:0}} </li>
+<br><br> 
+<input type=text id="answer1" class= "answer" placeholder ="Drag Words Here! ">
 
 <br><br>
 
 <input id="sent2"  type="hidden"  value="{{ terms|index:1 }}"> </input>
-<li> {{mydefs|index:1}}</li>
+<li id ="data2"> {{mydefs|index:1}}</li>
+<br><br>
+<input type=text id="answer2" class= "answer" placeholder ="Drag Words Here! ">
 
-
-
-{% if terms|length >= 3 %}
 
 <br><br>
 
 <input id="sent3"  type="hidden"  value="{{ terms|index:2 }}"> </input>
-<li> {{mydefs|index:2}}</li>
-
-
-{% if terms|length >= 4 %}
+<li id = "data3"> {{mydefs|index:2}}</li>
+<br><br>
+ <input type=text id="answer3" class= "answer" placeholder ="Drag Words Here! ">
 <br><br>
 
 <input id="sent4"  type="hidden"  value="{{ terms|index:3 }}"> </input>
-<li> {{mydefs|index:3}}</li>
-
+<li id = "data4"> {{mydefs|index:3}}</li>
+<br><br>
+ <input type=text id="answer4" class= "answer"placeholder ="Drag Words Here! ">
 
 <br><br>
-{% if terms|length >= 5 %}
+
 <input id="sent5"  type="hidden"  value="{{ terms|index:4 }}"> </input>
-<li> {{mydefs|index:4}}</li>
-
-
-{% endif %}
-{% endif %}
-{% endif %}
+<li id = "data5"> {{mydefs|index:4}}</li>
+<br> <br>
+ <input type=text id="answer5" class= "answer"placeholder ="Drag Words Here! ">
+ <br><br>
 
 </div>
 
