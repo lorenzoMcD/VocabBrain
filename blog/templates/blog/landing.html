@@ -9,7 +9,61 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
 <style>
+
+.loader_bg{
+
+  position: fixed;
+  z-index: 999999;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+
+}
+
+.loader{
+  border: 0 solid transparent;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: calc(50vh - 75px);
+  left: calc(50vw - 75px);
+}
+
+.loader:before, .loader:after{
+  content: '';
+  border: 1em solid #ff5733;
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: loader 2s linear infinite;
+  opacity: 0;
+}
+
+.loader:before{
+  animation-delay: .5s;
+}
+
+@keyframes loader{
+0%{
+  transform: scale(0);
+  opacity: 0;
+  }
+50%{
+  opacity: 1;
+    }
+100%{
+  transform: scale(1);
+  opacity: 0;
+    }
+}
+
 .stripes {
     background-image: url( "{% static "img/girl_studying.jpg" %}");
     background-attachment: fixed;
@@ -64,6 +118,7 @@
 }
 
 
+
 </style>
 <link rel="shortcut icon" type="image/png" href="{% static "img/bookworm.png" %}"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
@@ -74,8 +129,14 @@
     {% else %}
     <title> Good to Know</title>
     {% endif %}
+
 </head>
 <body>
+
+<div class = "loader_bg">
+<div class = "loader"></div>
+
+</div>
 
 
 
@@ -184,7 +245,7 @@
       <div class="container push-down mx-auto">
         <h1 class="jumbotron-heading text-white text-center"> <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612"> <br>Good to Know </h1>
         <p class="lead text-white text-center mx-auto" style="width: 60%;" class=" ">just an example of the home page<br>
-          <div class="row justify-content-center">  
+          <div class="row justify-content-center">
             {% if not user.is_authenticated %}
             <a href="{% url 'register' %}" class="btn btn-outline-success m-1">Get Started</a>
             {% endif %}
@@ -242,6 +303,17 @@
   </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -252,20 +324,18 @@
      <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
 
 
-<!-- this is js for the table pagination-->
-<script> $('.mydatatable').DataTable({
-            order: [[3, 'desc']],
-            pagingType: 'full_numbers',
-            lengthMenu:[[5,10,25,50,-1],[5,10,25,50,"All"]]
-});
-</script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- This code sets timer for how long message appears at top of screen.-->
     <script>
-    var message_ele = document.getElementById("message_container");
-    setTimeout(function(){
-   message_ele.style.display = "none";
-}, 3000);       // Timeout is 3 sec, you can change it
+
+      window.onload = function(){
+        $('.loader_bg').fadeToggle();
+      }
     </script>
+
+
+
+
 </body>
 </html>
