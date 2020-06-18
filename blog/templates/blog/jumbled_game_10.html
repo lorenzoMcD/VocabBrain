@@ -29,24 +29,24 @@
   <button id= "back" onclick="window.location.href='{% url 'blog-home' %}'"><i class='fas fa-angle-left'></i></button>
    <br> <br> <br> <br>      
     <div id = "buttons"> 
-          <p draggable="true" id="1">{{terms|index:0}}</p>
-          <p draggable="true" id="2">{{terms|index:1}}</p>
+          <p id="1">{{terms|index:0}}</p>
+          <p id="2">{{terms|index:1}}</p>
           {% if terms|length >= 3 %}
-          <p draggable="true" id="3">{{terms|index:2}}</p>
+          <p id="3">{{terms|index:2}}</p>
           {% if terms|length >= 4 %}
-          <p draggable="true" id="4">{{terms|index:3}}</p>
+          <p id="4">{{terms|index:3}}</p>
           {% if terms|length >= 5 %}
-          <p draggable="true" id="5">{{terms|index:4}}</p>
+          <p id="5">{{terms|index:4}}</p>
            {% if terms|length >= 10 %}
-          <p draggable="true" id="6">{{terms|index:5}}</p>
+          <p id="6">{{terms|index:5}}</p>
           
-          <p draggable="true" id="7">{{terms|index:6}}</p>
+          <p id="7">{{terms|index:6}}</p>
           
-          <p draggable="true" id="8">{{terms|index:7}}</p>
+          <p id="8">{{terms|index:7}}</p>
           
-          <p draggable="true" id="9">{{terms|index:8}}</p>
+          <p id="9">{{terms|index:8}}</p>
           
-          <p draggable="true" id="10">{{terms|index:9}}</p>
+          <p id="10">{{terms|index:9}}</p>
     {% endif %}
     {% endif %}
     {% endif %}
@@ -155,7 +155,7 @@
 
 
 <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="{% static 'js/jumbled_game_10.js' %}"></script>
+<script src="{% static 'js/jumbled_game10.js' %}"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script>
 
