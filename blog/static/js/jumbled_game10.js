@@ -6,6 +6,7 @@ let data4 = document.getElementById("data4");
 let data5 = document.getElementById("data5"); 
 
 
+
 var customalert = document.getElementById("customAlert");
 
 
@@ -30,6 +31,22 @@ $(document).ready(function() {
 
     var answertext5 = $("#answer5").val();
     var useranswer5 = $("#sent5").val();
+
+    var useranswer6 = $("#sent6").val();
+    var answertext6 = $("#answer6").val();
+
+    var answertext7 = $("#answer7").val();
+    var useranswer7 = $("#sent7").val();
+
+    var answertext8 = $("#answer8").val();
+    var useranswer8 = $("#sent8").val();
+
+
+    var answertext9 = $("#answer9").val();
+    var useranswer9 = $("#sent9").val();
+
+    var answertext10 = $("#answer10").val();
+    var useranswer10 = $("#sent10").val();
 
 
     //$("#status").html(useranswer);
@@ -72,8 +89,50 @@ $(document).ready(function() {
       data5.style.color = "#0ead38";      
       showOnScreen();
     }else{
-      data5.style.color = "#EB1111"
+      data5.style.color = "#EB1111";
     }
+    
+    if (answertext6.toLowerCase() === useranswer6.toLowerCase()){
+      correct++;
+      data6.style.color = "#0ead38";      
+      showOnScreen();
+    }else{
+      data6.style.color = "#EB1111";
+    }
+    
+    if (answertext7.toLowerCase() === useranswer7.toLowerCase()){
+      correct++;
+      data7.style.color = "#0ead38";      
+      showOnScreen();
+    }else{
+      data7.style.color = "#EB1111";
+    }
+    
+    if (answertext8.toLowerCase() === useranswer8.toLowerCase()){
+      correct++;
+      data8.style.color = "#0ead38";      
+      showOnScreen();
+    }else{
+      data8.style.color = "#EB1111";
+    }
+  
+   if (answertext9.toLowerCase() === useranswer9.toLowerCase()){
+      correct++;
+      data9.style.color = "#0ead38";      
+      showOnScreen();
+    }else{
+      data9.style.color = "#EB1111";
+    }
+   
+   if (answertext10.toLowerCase() === useranswer10.toLowerCase()){
+      correct++;
+      data10.style.color = "#0ead38";      
+      showOnScreen();
+    }else{
+      data10.style.color = "#EB1111";
+    }
+
+
 
 
   });
@@ -89,8 +148,8 @@ let clickme = document.getElementById("clickme");
 //constant function that show and updates score
 // Capping the score at 5
 const showOnScreen = () => {
-  document.getElementById("content").innerHTML = "You've scored "  + correct+ " out of 5!" ;
-  correct = Math.min(Math.max(correct,0),4);
+  document.getElementById("content").innerHTML = "You've scored "  + correct+ " out of 10!" ;
+  correct = Math.min(Math.max(correct,0),9);
 
 
 }
@@ -119,11 +178,6 @@ function showCustom(){
 function hideCustom(){
   customalert.style.display = 'none';
 }
-
-
-
-
-
 function hint(){ 
   let buttons = document.getElementById("buttons"); 
 
@@ -135,11 +189,7 @@ function hint(){
 }
 
 
-
-
 //load our function
-
-
 
 
 window.onload = showOnScreen
