@@ -34,7 +34,7 @@ urlpatterns = [
 
     path('create_word_list/<int:pk>/', views.create_word_list, name='blog-create_word_list'),
 
-    path('faq/', views.faq, name='blog-faq'),
+    
 
     path('suggestions/', views.suggestions, name='blog-suggest'),
 

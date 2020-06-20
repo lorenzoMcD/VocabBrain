@@ -365,9 +365,7 @@ def create_word_list(request, pk):
     return render(request, 'blog/create_word_list.html', context)
 
 
-def faq(request):
 
-    return render(request, 'blog/faq.html', {'title': 'FAQ'})
 
 
 def student_tracker(request):
