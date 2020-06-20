@@ -58,7 +58,6 @@ urlpatterns = [
 
     path('temp2/', views.temp2, name='blog-temp2'),
 
-    path('temp3/', views.temp3, name='blog-temp3'),
 
     path('word_list_defs/<int:pk>/', views.word_list_defs, name='word_list_defs'),
 

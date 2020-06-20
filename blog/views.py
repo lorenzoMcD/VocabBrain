@@ -443,15 +443,6 @@ def temp2(request):
     return render(request, 'blog/temp2.html', context)
 
 
-def temp3(request):
-    context = {
-
-        'lists': Testtaker.objects.all()
-    }
-
-    return render(request, 'blog/temp3.html', context)
-
-
 def word_list_defs(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
