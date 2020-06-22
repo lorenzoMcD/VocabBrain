@@ -18,7 +18,7 @@
     {% if title %}
     <title>Django Blog - {{ title }}</title>
     {% else %}
-    <title>Django Blog</title>
+    <title>Vocab Brain</title>
     {% endif %}
 </head>
 <body>
@@ -27,7 +27,7 @@
   <nav class="navbar navbar-expand-md navbar-dark box-shadow fixed-top" style="background-color: #3498DB;">
     <div class="container">
       <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
-      <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Good To Know </a>
+      <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Vocab Brain </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
@@ -58,8 +58,6 @@
 
           <a class="nav-item nav-link" href="{% url 'blog-temp2' %}">Test</a>
 
-
-  
 
 
 
@@ -164,8 +162,7 @@
 <div class="jumbotron-fluid">
   <div class="navbar fixed-bottom navbar-dark" style="background-color: #3498DB;">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="{% static "img/bookworm.png" %}" alt="" width="36" height="36" viewBox="0 0 612 612">
+      <a href="https://www.goodtoknow.com/Main_Page" class="navbar-brand d-flex align-items-center"> Good to Know
             </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -174,16 +171,14 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
-              <a class="navbar-brand text-white" href="#">WE ARE THE CHAMPIONS</a>
+              <a class="navbar-brand text-white" href="#">Vocab Brain</a>
               <h4 class="text-white"></h4>
-              <p class="text-muted">I've paid my dues, time after time, I've done my sentence, but committed no crime. And bad mistakes, I've made a few, I've had my share of sand kicked in my face, but I've come through. And we mean to go on, and on, and on, and on.</p>
+              <p class="text-muted">Study Hard! Become the best you can be! Education is key, no one can take that away from you. Become the person that you want to be.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4 mobile-hide">
               <h4 class="text-white">Contact</h4>
               <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
+                <li><a href="{% url 'blog-suggest' %}" class="text-white">Contact us</a></li>
               </ul>
             </div>
           </div>
