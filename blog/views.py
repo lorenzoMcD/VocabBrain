@@ -365,9 +365,7 @@ def create_word_list(request, pk):
     return render(request, 'blog/create_word_list.html', context)
 
 
-def faq(request):
 
-    return render(request, 'blog/faq.html', {'title': 'FAQ'})
 
 
 def student_tracker(request):
@@ -443,15 +441,6 @@ def temp2(request):
     }
 
     return render(request, 'blog/temp2.html', context)
-
-
-def temp3(request):
-    context = {
-
-        'lists': Testtaker.objects.all()
-    }
-
-    return render(request, 'blog/temp3.html', context)
 
 
 def word_list_defs(request, pk):
