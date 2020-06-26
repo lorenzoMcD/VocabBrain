@@ -3,6 +3,10 @@
 
 
 <h2>Add Terms to your Word List </h2>
+<p> Directions: Add terms to your list by typing terms in the boxes below. If you need more boxes, click the 'Add extra box' button below. When finished adding terms to your list click the 'done' button below to advance to next page.
+</p>
+<p>__________________________________________________________________________________________________________</p>
+
 
 <form method= "POST">
   {% csrf_token %}
@@ -11,7 +15,7 @@
 {{form.as_p}}
 {% endfor %}
 
-<button type = "submit">Add Word</button>
+<button type = "submit">Add extra box</button>
 <button type = "Done" name = "done">Done</button>
 </form>
 

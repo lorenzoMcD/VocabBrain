@@ -1,14 +1,18 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content%}
+{% load static %}
+
+
+     <img src="{% static "img/alert.gif" %}" alt="" width="80" height="80" viewBox="0 0 612 612">
+  <p>Directions: To create vocabulary list fill out the form below. You will add terms and defintions to your list in the following pages. The worksheet text box below is the text that will appear at bottom of your printable worksheet. This box can be used to add custom directions for your students,as well as motivational images and text.</p>
+
     <div class="content-section">
        <form method="POST">
             {% csrf_token %}
         <fieldset class = "form-group">
             <legend class = "border-bottom mb-4"> Create WordList
-
             </legend>
-
             {{ form|crispy|safe}}
             {{form.media}}
 
