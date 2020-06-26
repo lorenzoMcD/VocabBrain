@@ -344,7 +344,7 @@ def create_list(request):
 @login_required
 def create_word_list(request, pk):
     wordlist = WordList.objects.get(pk=pk)
-    wordformset = inlineformset_factory(WordList, Word, fields=('term',), extra=1)
+    wordformset = inlineformset_factory(WordList, Word, fields=('term',), extra=10)
 
     if request.method == "POST":
         formset = wordformset(request.POST, instance=wordlist)
@@ -363,9 +363,6 @@ def create_word_list(request, pk):
 
     }
     return render(request, 'blog/create_word_list.html', context)
-
-
-
 
 
 def student_tracker(request):
