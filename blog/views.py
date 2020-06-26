@@ -541,14 +541,16 @@ def sent_match_5(request, pk):
         mysent = (sentlist)
     # this mod will shuffle both lists at same time
     # but keep their order
+
+    for i in terms:
+        mysent = [sub.replace(str(i), '____') for sub in mysent]
+
     from sklearn.utils import shuffle
     terms, mysent = shuffle(terms, mysent)
     context = {
         'mysent': mysent, 'terms': terms, 'rand_terms': new_list_terms
     }
     return render(request, 'blog/sent_match_5.html', context)
-
-
 
 
 def def_match_5(request, pk):
@@ -581,6 +583,10 @@ def def_match_5(request, pk):
         mydefs = (deflist)
     # this mod will shuffle both lists at same time
     # but keep their order
+
+    for i in terms:
+        mydefs = [sub.replace(str(i), '____') for sub in mydefs]
+
     from sklearn.utils import shuffle
     terms, mydefs = shuffle(terms, mydefs)
 
@@ -589,8 +595,6 @@ def def_match_5(request, pk):
     }
 
     return render(request, 'blog/def_match_5.html', context)
-
-
 
 
 def print_vocab_sent(request, pk):
