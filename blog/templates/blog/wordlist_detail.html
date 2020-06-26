@@ -55,25 +55,6 @@
     <a class = "dropdown-item" href="{% url 'blog-jumbled_words' object.id %}"> 5 Term Jumbled Words   </a>
 
     {% endif %}
-
-
-    {% if words|length >= 4 %}
-    <a class = "dropdown-item" href="{% url 'blog-sent_match_4' object.id %}">4 term sentence matching game  </a>
-
-    <a class = "dropdown-item" href="{% url 'blog-def_match_4' object.id %}">4 term definition matching game  </a>
-
-
-    {% endif %}
-
-
-    {% if words|length >= 3 %}
-    <a class = "dropdown-item" href="{% url 'blog-sent_match_3' object.id %}">3 term sentence matching game  </a>
-
-    <a class = "dropdown-item" href="{% url 'blog-def_match_3' object.id %}">3 term definition matching game  </a>
-
-   
-
-    {% endif %}
     </div>
   </div>
 {% endif %}

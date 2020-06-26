@@ -65,13 +65,6 @@ urlpatterns = [
 
     path('sent_match_5/<int:pk>/', views.sent_match_5, name='blog-sent_match_5'),
 
-    path('sent_match_4/<int:pk>/', views.sent_match_4, name='blog-sent_match_4'),
-
-    path('sent_match_3/<int:pk>/', views.sent_match_3, name='blog-sent_match_3'),
-
-    path('def_match_3/<int:pk>/', views.def_match_3, name='blog-def_match_3'),
-
-    path('def_match_4/<int:pk>/', views.def_match_4, name='blog-def_match_4'),
 
     path('def_match_5/<int:pk>/', views.def_match_5, name='blog-def_match_5'),
 
