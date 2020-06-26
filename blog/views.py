@@ -528,7 +528,7 @@ def sent_match_5(request, pk):
     # if length of term list > 5 take random 5 items from terms
     # then find the matching sents from the word model and match
     # them with terms
-    if len(termlist) > 5:
+    if len(termlist) >= 5:
         new_list_terms += random.sample(termlist, 5)
         for i in new_list_terms:
             for word in words:
@@ -544,7 +544,7 @@ def sent_match_5(request, pk):
     from sklearn.utils import shuffle
     terms, mysent = shuffle(terms, mysent)
     context = {
-        'mysent': mysent, 'terms': terms
+        'mysent': mysent, 'terms': terms, 'rand_terms': new_list_terms
     }
     return render(request, 'blog/sent_match_5.html', context)
 
@@ -646,7 +646,7 @@ def def_match_5(request, pk):
     # if length of term list > 5 take random 5 items from terms
     # then find the matching defs from the word model and match
     # them with terms
-    if len(termlist) > 5:
+    if len(termlist) >= 5:
         new_list_terms += random.sample(termlist, 5)
         for i in new_list_terms:
             for word in words:
@@ -663,7 +663,7 @@ def def_match_5(request, pk):
     terms, mydefs = shuffle(terms, mydefs)
 
     context = {
-        'mydefs': mydefs, 'terms': terms
+        'mydefs': mydefs, 'terms': terms, 'rand_terms': new_list_terms
     }
 
     return render(request, 'blog/def_match_5.html', context)
@@ -686,7 +686,7 @@ def def_match_4(request, pk):
     # if length of term list > 4 take random 4 items from terms
     # then find the matching defs from the word model and match
     # them with terms
-    if len(termlist) > 4:
+    if len(termlist) >= 4:
         new_list_terms += random.sample(termlist, 4)
         for i in new_list_terms:
             for word in words:
