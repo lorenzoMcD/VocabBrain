@@ -5,18 +5,33 @@
 
 
 <style type="text/css">
-#element1 {display:inline-block; width:34%; padding:15px}
-#element2 {display:inline-block; width:34%; padding:15px}
+
+}
+#element2 {display:inline-block; width:34%; padding:15px; display:inline;
+}
 
 .inline{display: inline;padding:2px; width:55%; }
 
 #box {
-   width: 300px;
-  padding: 30px;
-  border: 5px solid black;
-  margin-left: 200px;
-  margin-right: 380px;
+ text-align:center;
+ font-size:20px;
+ margin-top:-5vh;
+ word-spacing:20px;
+ border:1px solid black;
+ font-weight:bold;
+
+
 }
+
+.head{
+  text-align:center;
+}
+#instruc{
+  text-align:center;
+  font-size:18px;
+}
+
+
 </style>
 
 <head>
@@ -37,8 +52,9 @@
 <br><br><br><br>
 <input type="button" value="print worksheet" onclick="this.style.display='none';window.print();" />
 
-  <h3>  Vocababulary List Matching   </h3>
-<p class = "inline">Match each term to its sentence. </p>
+<h3 class = "head">  Vocababulary List Matching   </h3>
+<br> 
+<p id = "instruc">Match each term to its sentence. </p>
 <br><br><br><br>
 <div id = "box">
     <div class = "boxHead">
@@ -56,12 +72,13 @@
 
 
 
-<div id="element1">
-<p> __________________</p>
-</div>
 
 <div id="element2">
-<p> {{word.sentence}}</p>
+<p id ="word"> {{word.sentence}}</p>
+<br> 
+<ul> 
+<li id = "answer"> __________________________________________</li>
+</ul> 
 </div>
 
 
@@ -80,7 +97,6 @@ set for the worksheet-->
   </footer>
 
 </body>
-
 
 
 
