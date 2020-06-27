@@ -760,6 +760,12 @@ def jumbled_game(request, pk):
 
     def jumble(word):
         # sample() method shuffling the characters of the word
+        # did this multi times just in case word appears normal
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
         random_word = random.sample(word, len(word))
 
     # join() method join the elements
@@ -929,6 +935,12 @@ def jumbled_game_10(request, pk):
 
     def jumble(word):
         # sample() method shuffling the characters of the word
+        # did this multi times just in case word appears normal
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
+        random_word = random.sample(word, len(word))
         random_word = random.sample(word, len(word))
 
     # join() method join the elements

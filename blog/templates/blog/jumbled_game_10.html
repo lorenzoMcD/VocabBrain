@@ -17,18 +17,18 @@
 
 
 <header>
-  
-  <h4> <span id = "title"> Match-it Jumbled Words </span> </h4>
+
+  <h4> <span id = "title"> Guess The Word! </span> </h4>
   <h3> <span id = "instruct1"> Guess The Term that Matches the Jumbled Word! </span> </h3>
 
-  <button id = "hint" onclick = "hint()"> Hint </button> 
+
 <!-- <li id = "words" hidden> </li> -->
 
-       
-        <div class = "sidenav"> 
+
+        <div class = "sidenav">
   <button id= "back" onclick="window.location.href='{% url 'blog-home' %}'"><i class='fas fa-angle-left'></i></button>
-   <br> <br> <br> <br>      
-    <div id = "buttons"> 
+   <br> <br> <br> <br>
+    <div id = "buttons">
           <p id="1">{{terms|index:0}}</p>
           <p id="2">{{terms|index:1}}</p>
           {% if terms|length >= 3 %}
@@ -39,13 +39,13 @@
           <p id="5">{{terms|index:4}}</p>
            {% if terms|length >= 10 %}
           <p id="6">{{terms|index:5}}</p>
-          
+
           <p id="7">{{terms|index:6}}</p>
-          
+
           <p id="8">{{terms|index:7}}</p>
-          
+
           <p id="9">{{terms|index:8}}</p>
-          
+
           <p id="10">{{terms|index:9}}</p>
     {% endif %}
     {% endif %}

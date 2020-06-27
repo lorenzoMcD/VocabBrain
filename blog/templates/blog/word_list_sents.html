@@ -7,17 +7,21 @@
 <div class = "card card-body">
 
 <p>----------------------------------------------------------------------------------------</p>
-<p>directions:</p>
-<p>Click the add button to add a sentence to your term</p>
-<p>Your definiton will show up in text below, showing the sentence set for your term</p>
-<p>When you finish selecting sentences for your term(s) click the finish button</p>
-<p>at bottom of this page to advance.</p>
+<p>Directions:</p>
+
+<p>Click the 'add' button in table below to add a sentence to your term.
+<p>The webpage will reload after hitting the 'add' button. After the page reloads you will see your chosen sentence in red text to the right of the 'current sentence saved' heading.</p>
+
+<p> If none of the sentences below are what you want, you have option to type in your own sentence for your terms in the text boxes below. Click the 'Add Custom Sentence' button when you have added your custom text. The page will reload and show your custom sentence in red text to the right of the 'current sentence saved' heading.</p>
+
+<p>When you finish selecting sentences for your term(s) click the 'finish' button at bottom of this page to advance.</p>
+
 
 <p>----------------------------------------------------------------------------------------</p>
 {% for word in words %}
 
 
-<h2> the current sentence saved for {{word}}:</h2>
+<h2> The current sentence saved for {{word}}:</h2>
 <h3 style="color:red">   {{word.sentence}}  </h3>
 
 <table class = "table table-sm">
@@ -38,7 +42,7 @@
                     <form method = "POST">{% csrf_token %}
 
                 <input name="word-id" type="hidden" value="{{word.id}}"></input>
-              <button class="btn btn-primary" type="submit" name="term_sent" value= "{{sent}}">Add</button>
+              <button class="btn btn-primary" type="submit" name="term_sent" value= "{{sent}}" onclick="myFunction()">Add</button>
                 </form>
           </td>
             </tr>
@@ -59,7 +63,7 @@
 
 {% endfor %}
 <p>----------------------------------------------------------------------------------------</p>
-<h3 class="font-weight-bold">click Finish Button when you are Done</h3>
+<h3 class="font-weight-bold">Click 'Finish' button when you are done.</h3>
 <p>----------------------------------------------------------------------------------------</p>
 <form method = "POST">{% csrf_token %}
 
@@ -70,3 +74,27 @@
 </div>
 </div>
 {% endblock content %}
+
+
+{% block script %}
+
+<script>
+
+$(window).scroll(function() {
+  sessionStorage.scrollTop = $(this).scrollTop();
+});
+
+$(document).ready(function() {
+  if (sessionStorage.scrollTop != "undefined") {
+    $(window).scrollTop(sessionStorage.scrollTop);
+  }
+});
+
+
+function myFunction(){
+    $("form").submit();
+}
+
+</script>
+
+{% endblock script %}
