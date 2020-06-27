@@ -37,19 +37,19 @@
 
 <div class ="dropdown-menu" aria-labelledby="dropdownMenuLink">
     {% if words|length >= 10 %}
-    <a class = "dropdown-item" href="{% url 'blog-sent_match_10' object.id %}">10 term Sentence matching game  </a>
-    <a class = "dropdown-item" href="{% url 'blog-def_match_10' object.id %}">10 term definition matching game  </a>
-    <a class = "dropdown-item" href="{% url 'blog-flash_card_10' object.id %}">10 term flash cards </a>
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_10' object.id %}">10 Term Sentence matching game  </a>
+    <a class = "dropdown-item" href="{% url 'blog-def_match_10' object.id %}">10 Term Definition matching game  </a>
+    <a class = "dropdown-item" href="{% url 'blog-flash_card_10' object.id %}">10 Term Flash-cards </a>
     <a class = "dropdown-item" href="{% url 'blog-jumbled_game_10' object.id %}">10 Term Jumbled Words   </a>
 
 
      {% endif %}
     {% if words|length >= 5 %}
-    <a class = "dropdown-item" href="{% url 'blog-sent_match_5' object.id %}">5 term sentence matching game  </a>
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_5' object.id %}">5 Term Sentence matching game  </a>
 
-    <a class = "dropdown-item" href="{% url 'blog-def_match_5' object.id %}">5 term definition matching game  </a>
+    <a class = "dropdown-item" href="{% url 'blog-def_match_5' object.id %}">5 Term Definition matching game  </a>
 
-    <a class = "dropdown-item" href="{% url 'blog-flash_card' object.id %}">5 term flash cards </a>
+    <a class = "dropdown-item" href="{% url 'blog-flash_card' object.id %}">5 Term Flash-Cards </a>
 
     <a class = "dropdown-item" href="{% url 'blog-jumbled_words' object.id %}"> 5 Term Jumbled Words   </a>
 
