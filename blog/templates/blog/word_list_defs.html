@@ -43,7 +43,7 @@
 					<form method = "POST">{% csrf_token %}
 
 				<input name="word-id" type="hidden" value="{{word.id}}"></input>
-              <button class="btn btn-primary" type="submit" name="term_def" value= "{{def}}">Add</button>
+              <button class="btn btn-primary" type="submit" name="term_def" value= "{{def}}" onclick="myFunction()" >Add</button>
               	</form>
 
           </td>
@@ -73,3 +73,27 @@
 </div>
 </div>
 {% endblock content %}
+
+
+{% block script %}
+
+<script>
+
+$(window).scroll(function() {
+  sessionStorage.scrollTop = $(this).scrollTop();
+});
+
+$(document).ready(function() {
+  if (sessionStorage.scrollTop != "undefined") {
+    $(window).scrollTop(sessionStorage.scrollTop);
+  }
+});
+
+
+function myFunction(){
+    $("form").submit();
+}
+
+</script>
+
+{% endblock script %}

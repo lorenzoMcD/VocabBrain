@@ -44,7 +44,7 @@
 
           <a class="nav-item nav-link" href="{% url 'blog-temp' %}">Word List</a>
 
-  
+
           {% endif %}
           {%  endfor %}
           {% endif %}
@@ -152,9 +152,9 @@
                           {% endfor %}
                             {% endif %}
 
-            
+
             <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'blog-suggest' %}" >Suggestions</a></li>
-         
+
           </ul>
         </p>
         {% endblock %}
@@ -202,7 +202,7 @@
 
      <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
 
-
+{% block script %}
 <!-- this is js for the table pagination-->
 <script> $('.mydatatable').DataTable({
             order: [[3, 'desc']],
@@ -218,5 +218,8 @@
    message_ele.style.display = "none";
 }, 3000);       // Timeout is 3 sec, you can change it
     </script>
+
+
+{% endblock %}
 </body>
 </html>

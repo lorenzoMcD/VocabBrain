@@ -10,12 +10,11 @@
       <a class="mr-2" href="{% url 'user-lists' object.author.username %}">{{ object.author }}</a>
       <small class="text-muted">{{ object.date_posted|date:"F d , Y" }}</small>
     {% if object.author == user %}
-    <p> note: to update the terms within this list</p>
-    <p> click "update terms" to update terms,sentences and </p>
-    <p> defintions for your list.</p>
-    <p>__________________________________________________________</p>
+    <p> Directions: to update the terms within this list click "update terms" to update terms,sentences and defintions for your list.</p>
+
     <p> in order to have vocabulary games for students, your list</p>
-    <p> must have at least 3 terms </p>
+    <p> must have at least 5 terms </p>
+    <p>__________________________________________________________</p>
     <div>
     <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-update' object.id %}">Update description/title</a>
 
@@ -28,7 +27,7 @@
     {% endif %}
 
  <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' object.id %}">Print Worksheet </a>
-    {% if words|length < 3%}
+    {% if words|length < 5%}
 
 
     {%else%}
