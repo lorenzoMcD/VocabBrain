@@ -16,7 +16,7 @@
 
 <header>
 
-  <h4> <span id = "title"> Match-it Sentences </span> </h4>
+  <h4> <span id = "title"> Match-it: Sentences </span> </h4>
   <h3> <span id = "instruct1"> Find the Term that Matches the Sentence </span> </h3>
   <h3> <span id = "instruct2"> Then Drag the Word into the correct Box </span> </h3>
   <h4> <span id = "instruct3"> Click the Box and Delete the Word to Change Your Answer </span> </h4>
@@ -27,23 +27,23 @@
         <div class = "sidenav"> 
 
   <button id= "back" onclick="window.location.href='{% url 'blog-home' %}'"><i class='fas fa-angle-left'></i></button> <br> <br> <br> <br>      
-  <p draggable="true" id="1">{{terms|index:0}}</p>
-  <p draggable="true" id="2">{{terms|index:1}}</p>
+  <p draggable="true" id="1">{{rand_terms|index:0}}</p>
+  <p draggable="true" id="2">{{rand_terms|index:1}}</p>
   {% if terms|length >= 3 %}
-  <p draggable="true" id="3">{{terms|index:2}}</p>
+  <p draggable="true" id="3">{{rand_terms|index:2}}</p>
   {% if terms|length >= 4 %}
-  <p draggable="true" id="4">{{terms|index:3}}</p>
+  <p draggable="true" id="4">{{rand_terms|index:3}}</p>
   {% if terms|length >= 5 %}
-  <p draggable="true" id="5">{{terms|index:4}}</p>
+  <p draggable="true" id="5">{{rand_terms|index:4}}</p>
     {% if terms|length >= 10 %}
-  <p draggable="true" id="6">{{terms|index:5}}</p>
-  <p draggable="true" id="7">{{terms|index:6}}</p>
+  <p draggable="true" id="6">{{rand_terms|index:5}}</p>
+  <p draggable="true" id="7">{{rand_terms|index:6}}</p>
  
-  <p draggable="true" id="8">{{terms|index:7}}</p>
+  <p draggable="true" id="8">{{rand_terms|index:7}}</p>
  
-  <p draggable="true" id="9">{{terms|index:8}}</p>
+  <p draggable="true" id="9">{{rand_terms|index:8}}</p>
 
-  <p draggable="true" id="10">{{terms|index:9}}</p>
+  <p draggable="true" id="10">{{rand_terms|index:9}}</p>
 
     {% endif %}
     {% endif %}

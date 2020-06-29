@@ -899,11 +899,15 @@ def def_match_10(request, pk):
         mydefs = (deflist)
     # this mod will shuffle both lists at same time
     # but keep their order
+
+    for i in terms:
+        mydefs = [sub.replace(str(i), '____') for sub in mydefs]
+
     from sklearn.utils import shuffle
     terms, mydefs = shuffle(terms, mydefs)
 
     context = {
-        'mydefs': mydefs, 'terms': terms
+        'mydefs': mydefs, 'terms': terms, 'rand_terms': new_list_terms
     }
 
     return render(request, 'blog/def_match_10.html', context)
@@ -942,10 +946,13 @@ def sent_match_10(request, pk):
         mysent = (sentlist)
     # this mod will shuffle both lists at same time
     # but keep their order
+    for i in terms:
+        mysent = [sub.replace(str(i), '____') for sub in mysent]
+    
     from sklearn.utils import shuffle
     terms, mysent = shuffle(terms, mysent)
     context = {
-        'mysent': mysent, 'terms': terms
+        'mysent': mysent, 'terms': terms, 'rand_terms': new_list_terms
     }
     return render(request, 'blog/sent_match_10.html', context)
 
