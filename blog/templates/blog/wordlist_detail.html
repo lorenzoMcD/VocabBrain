@@ -12,8 +12,7 @@
     {% if object.author == user %}
     <p> Directions: to update the terms within this list click "update terms" to update terms,sentences and defintions for your list.</p>
 
-    <p> in order to have vocabulary games for students, your list</p>
-    <p> must have at least 5 terms </p>
+    <p> In order to have vocabulary games for students, your list must have at least 5 terms. </p>
     <p>__________________________________________________________</p>
     <div>
     <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-update' object.id %}">Update description/title</a>
@@ -26,7 +25,17 @@
 
     {% endif %}
 
- <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' object.id %}">Print Worksheet </a>
+<p>Click the author's username to access their other created content.</p>
+                 <div class="dropdown">
+  <button class="btn btn-danger btn-sm mt-1 mb-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Printable Worksheets
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_sent' object.id %}">Sentence</a>
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_def' object.id %}">Definiton</a>
+
+  </div>
+</div>
     {% if words|length < 5%}
 
 

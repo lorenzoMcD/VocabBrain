@@ -30,7 +30,8 @@ from.form import SuggestionForm
 import random
 
 
-# page that shows posts by every user on site
+# home page of site, this page has announcement section(posts), wordlist,test tables so
+# teacher or student can see their created or assigned content on front page.
 @login_required
 def home(request):
     users = request.user.groups.all()
@@ -46,13 +47,15 @@ def home(request):
 
     return render(request, 'blog/home.html', context)
 
-
+# landing page when people first come to site they see this page.
 def landing(request):
 
     return render(request, 'blog/landing.html')
 
 
 # this web page will show list of teachers on site
+# students will then be able to click a join button to
+# join the group of teacher they want.
 @login_required
 def teacher_lookup(request):
     users = User.objects.filter(groups__name='Teacher')
@@ -83,7 +86,7 @@ def teacher_lookup(request):
 
     return render(request, 'blog/teacher_lookup.html', context)
 
-
+# class based view for viewing posts for everyuser
 class PostListView(ListView):
 
     model = Post
@@ -92,7 +95,7 @@ class PostListView(ListView):
     ordering = ['-date_posted']   # shows newest posts at the top of page
     paginate_by = 4  # this will change number of posts visible per page
 
-
+# class based for for viewing list of current user posts
 class UserPostListView(ListView):
 
     model = Post
@@ -104,7 +107,7 @@ class UserPostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
-
+# class for viewing posts in detail
 class PostDetailView(DetailView):
 
     model = Post
@@ -138,7 +141,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-# class for update blog post
+# class based view for update wordlist
 class WordListUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = WordList
@@ -155,6 +158,7 @@ class WordListUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+# class based view for wordlist delete view
 class WordListDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     model = WordList
@@ -166,7 +170,7 @@ class WordListDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-
+# class based view for wordlist detail page
 class WordListDetailView(DetailView):
 
     model = WordList
@@ -178,7 +182,7 @@ class WordListDetailView(DetailView):
         context['words'] = Word.objects.filter(wordlist__id=self.kwargs['pk'])
         return context
 
-
+# class based view for user wordlists
 class UserWordListView(ListView):
 
     model = WordList
@@ -189,7 +193,7 @@ class UserWordListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return WordList.objects.filter(author=user)
 
-
+# class based view for user test list view
 class UserTestListView(ListView):
 
     model = Test
@@ -200,7 +204,7 @@ class UserTestListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Test.objects.filter(author=user)
 
-
+# class based view for testaker listview
 class TesttakerListView(ListView):
 
     model = Testtaker
@@ -211,11 +215,12 @@ class TesttakerListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Testtaker.objects.filter(tester=user)
 
+# class based view for testtaker detail
 class TesttakerDetailView(DetailView):
 
     model = Testtaker
 
-
+# class based view for testtaker delete view
 class TesttakerDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Testtaker
@@ -227,7 +232,7 @@ class TesttakerDeleteView(LoginRequiredMixin, DeleteView):
             return True
         return False
 
-
+# class based view for test detail page
 class TestDetailView(DetailView):
 
     model = Test
@@ -244,6 +249,7 @@ class TestDetailView(DetailView):
         context['words'] = Word.objects.filter(wordlist__id=a)
         return context
 
+# class based view for delete test
 class TestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     model = Test
@@ -255,6 +261,7 @@ class TestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+# class based view for updateing the tests
 class TestUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = Test
@@ -319,8 +326,7 @@ class WikiSearch:
         return(sentences)
 
 
-# we might need to rename this....
-# This page starts our wordlist creation user will type in title and desc
+# This page starts wordlist creation
 @login_required
 def create_list(request):
     if request.method == 'POST':
@@ -363,6 +369,8 @@ def create_word_list(request, pk):
 
     }
     return render(request, 'blog/create_word_list.html', context)
+
+# student tracker page, that includes table of all students assigened to teacher group
 
 
 def student_tracker(request):
@@ -420,6 +428,10 @@ def groups(request):
 
     return render(request, 'blog/groups.html', context)
 
+# temp html page used to view all the wordlists on the site
+# while in development phase. we may end up keeping this page
+# when we deploy
+
 
 def temp(request):
     context = {
@@ -429,15 +441,20 @@ def temp(request):
 
     return render(request, 'blog/temp.html', context)
 
+# temp html page used to view all the tests on the site
+# while in development phase. we may end up keeping this page
+# when we deploy
 
-# temp html to test out the test views
+
 def temp2(request):
     context = {
 
-        'lists': Test.objects.all()
+        'tests': Test.objects.all()
     }
 
     return render(request, 'blog/temp2.html', context)
+
+# page that lets users add defs to their terms
 
 
 def word_list_defs(request, pk):
@@ -475,6 +492,7 @@ def word_list_defs(request, pk):
     return render(request, 'blog/word_list_defs.html', context)
 
 
+# page that lets users add sents to their terms
 def word_list_sents(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -510,6 +528,7 @@ def word_list_sents(request, pk):
     return render(request, 'blog/word_list_sents.html', context)
 
 
+# vocab matching game for the sentences. the game must have 5 terms
 def sent_match_5(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -551,6 +570,8 @@ def sent_match_5(request, pk):
         'mysent': mysent, 'terms': terms, 'rand_terms': new_list_terms
     }
     return render(request, 'blog/sent_match_5.html', context)
+
+# vocab matching game for the definitions. the game must have 5 terms
 
 
 def def_match_5(request, pk):
@@ -597,6 +618,7 @@ def def_match_5(request, pk):
     return render(request, 'blog/def_match_5.html', context)
 
 
+# vocab worksheet (sentences)
 def print_vocab_sent(request, pk):
 
     wordlist = WordList.objects.get(pk=pk)
@@ -604,13 +626,17 @@ def print_vocab_sent(request, pk):
     words = Word.objects.filter(wordlist__id=a)
     sentences = Word.objects.filter(wordlist__id=a)
     sentlist = []
+    terms = []
     for i in words:
         sentlist.append(i.sentence)
+        terms.append(i.term)
 
-    random.shuffle(sentlist)
+    from sklearn.utils import shuffle
 
-    mylists = (words)
-    mysent = (sentlist)
+    for i in terms:
+        sentlist = [sub.replace(str(i), '____') for sub in sentlist]
+
+        random.shuffle(sentlist)
 
     context = {
 
@@ -618,6 +644,34 @@ def print_vocab_sent(request, pk):
     }
 
     return render(request, 'blog/print_vocab_sent.html', context)
+
+
+# vocab worksheet (sentences)
+def print_vocab_def(request, pk):
+
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+    definition = Word.objects.filter(wordlist__id=a)
+    deflist = []
+    terms = []
+    for i in words:
+        deflist.append(i.definition)
+        terms.append(i.term)
+
+    from sklearn.utils import shuffle
+
+    for i in terms:
+        deflist = [sub.replace(str(i), '____') for sub in deflist]
+
+        random.shuffle(deflist)
+
+    context = {
+
+        'words': words, 'defs': deflist, 'wordlist': wordlist
+    }
+
+    return render(request, 'blog/print_vocab_def.html', context)
 
 
 # create new test for students
@@ -643,11 +697,10 @@ def test_create(request):
     return render(request, 'blog/test_create.html', {'form': form})
 
 
+# vocab test , after user takes test a score will be saved to their testtaker profile
 def vocab_test(request, pk):
     test = Test.objects.get(pk=pk)
     a = test.wordlist_id
-    # wordlist = WordList.objects.get(pk=pk)
-    # a = wordlist.id
     words = Word.objects.filter(wordlist__id=a)
     sentences = Word.objects.filter(wordlist__id=a)
 
@@ -675,6 +728,10 @@ def vocab_test(request, pk):
 
     # this mod will shuffle both lists at same time
     # but keep their order
+
+    for i in terms:
+        mydefs = [sub.replace(str(i), '____') for sub in mydefs]
+
     from sklearn.utils import shuffle
     terms, mydefs = shuffle(terms, mydefs)
 
@@ -688,12 +745,13 @@ def vocab_test(request, pk):
         return redirect('blog-home')
 
     context = {
-        'mydefs': mydefs, 'terms': terms
+        'mydefs': mydefs, 'terms': terms, 'rand_terms': new_list_terms
     }
 
     return render(request, 'blog/vocab_test.html', context)
 
 
+# page for flash cards
 def flash_card_5(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -733,24 +791,24 @@ def flash_card_5(request, pk):
 
     return render(request, 'blog/flash_card.html', context)
 
+# this page tracks the progress of the testtakers so they can see their scores
+# from tests
+
 
 def track_progress(request):
     users = Testtaker.objects.filter(tester=request.user)
     myFilter = ProgressFilter(request.GET, queryset=users)
     users = myFilter.qs
-
-    if request.method == 'POST':
-
-        # this resets the filter if the reset button is pushed
-        if 'reset' in request.POST:
-            return redirect('blog-track_progress')
+    test = Test.objects.filter(author=request.user)
 
     context = {
 
-        'users': users, 'myFilter': myFilter
+        'users': users, 'myFilter': myFilter, 'tests': test
     }
 
     return render(request, 'blog/track_progress.html', context)
+
+# jumbled game
 
 
 def jumbled_game(request, pk):
@@ -761,6 +819,7 @@ def jumbled_game(request, pk):
     def jumble(word):
         # sample() method shuffling the characters of the word
         # did this multi times just in case word appears normal
+        # lazy but was failsafe so orig word doesnt appear
         random_word = random.sample(word, len(word))
         random_word = random.sample(word, len(word))
         random_word = random.sample(word, len(word))
@@ -809,6 +868,7 @@ def jumbled_game(request, pk):
     return render(request, 'blog/jumbled_game.html', context)
 
 
+# vocab game matching for defs with 10 terms
 def def_match_10(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -826,7 +886,7 @@ def def_match_10(request, pk):
     # if length of term list > 10 take random 10 items from terms
     # then find the matching defs from the word model and match
     # them with terms
-    if len(termlist) > 10:
+    if len(termlist) >= 10:
         new_list_terms += random.sample(termlist, 10)
         for i in new_list_terms:
             for word in words:
@@ -848,6 +908,8 @@ def def_match_10(request, pk):
 
     return render(request, 'blog/def_match_10.html', context)
 
+# vocab game matching for sents with 10 terms
+
 
 def sent_match_10(request, pk):
     wordlist = WordList.objects.get(pk=pk)
@@ -867,7 +929,7 @@ def sent_match_10(request, pk):
     # if length of term list > 10 take random 10 items from terms
     # then find the matching sents from the word model and match
     # them with terms
-    if len(termlist) > 10:
+    if len(termlist) >= 10:
         new_list_terms += random.sample(termlist, 10)
         for i in new_list_terms:
             for word in words:
@@ -888,6 +950,7 @@ def sent_match_10(request, pk):
     return render(request, 'blog/sent_match_10.html', context)
 
 
+# flash card game for 10 terms
 def flash_card_10(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -905,7 +968,7 @@ def flash_card_10(request, pk):
     # if length of term list > 10 take random 10 items from terms
     # then find the matching defs from the word model and match
     # them with terms
-    if len(termlist) > 10:
+    if len(termlist) >= 10:
         new_list_terms += random.sample(termlist, 10)
         for i in new_list_terms:
             for word in words:
@@ -926,6 +989,8 @@ def flash_card_10(request, pk):
     }
 
     return render(request, 'blog/flash_card_10.html', context)
+
+# jumbled game 10 terms
 
 
 def jumbled_game_10(request, pk):
@@ -983,6 +1048,10 @@ def jumbled_game_10(request, pk):
 
     return render(request, 'blog/jumbled_game_10.html', context)
 
+# suggestion page , user would type content into a suggestion form
+# which will then save the content in the database. # as of now only way
+# to view this content is within the admin on site.
+
 
 def suggestions(request):
     form = SuggestionForm(request.POST)
@@ -999,6 +1068,8 @@ def suggestions(request):
             form = SuggestionForm(request.POST)
 
     return render(request, 'blog/suggestions.html', {'form': form})
+
+# class based view for the announcements page
 
 
 class Announcements(ListView):

@@ -4,7 +4,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from wiktionaryparser import WiktionaryParser
-#from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 

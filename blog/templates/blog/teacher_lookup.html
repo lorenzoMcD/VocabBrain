@@ -3,7 +3,8 @@
 {% load auth_extras %}
 {% load static %}
     <h1>Teacher Lookup Page</h1>
-
+<img src="{% static "img/teacher.gif" %}" alt="" width="80" height="80" viewBox="0 0 612 612">
+<p> This page allows you to find your teacher and join their class.</p>
 
 
 
@@ -13,7 +14,7 @@
 
     <table class = "table table-striped table-bordered mydatatable" width="100%">
     <thead>
-        <tr style="background-color:#77A6F8 ">
+        <tr style="background-color:#9CCC65 ">
 
             <th width="30%">Username</th>
             <th width ="30%">Teacher Name</th>
@@ -27,8 +28,12 @@
            {% for user in users %}
        <tr>
             <th>
-              <a href="{% url 'user-lists' user.username %}"> {{ user.username}} </a>
+              <button class = "btn btn-warning" onclick="window.location.href='{% url 'user-lists' user.username %}'"> View {{ user.username}}'s page </button>
             </th>
+
+
+
+
 
 
             <th>  {{user.first_name}}  {{user.last_name}}  </th>

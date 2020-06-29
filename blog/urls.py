@@ -34,7 +34,7 @@ urlpatterns = [
 
     path('create_word_list/<int:pk>/', views.create_word_list, name='blog-create_word_list'),
 
-    
+
 
     path('suggestions/', views.suggestions, name='blog-suggest'),
 
@@ -69,6 +69,8 @@ urlpatterns = [
     path('def_match_5/<int:pk>/', views.def_match_5, name='blog-def_match_5'),
 
     path('print_vocab_sent/<int:pk>/', views.print_vocab_sent, name='blog-print_vocab_sent'),
+
+    path('print_vocab_def/<int:pk>/', views.print_vocab_def, name='blog-print_vocab_def'),
 
     path('test_create/new/', views.test_create, name='test-create'),
 
