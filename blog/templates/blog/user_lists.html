@@ -42,7 +42,26 @@
 
             <th> <button class = "btn btn-primary" onclick="window.location.href='{% url 'list-detail' user.id %}'">View Wordlist </button></th>
 
-            <th><a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' user.id %}">View Worksheet </a></th>
+            <th>
+
+
+         <div class="dropdown">
+  <button class="btn btn-danger btn-sm mt-1 mb-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Printable Worksheets
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_sent' user.id %}">Sentence</a>
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_def' user.id %}">Definiton</a>
+
+  </div>
+</div>
+
+
+
+
+
+
+            </th>
 
 
 

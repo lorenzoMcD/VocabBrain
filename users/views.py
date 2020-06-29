@@ -9,9 +9,10 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-# .....
 
 
+# this is the register page where user will sign up for site
+# depending on the user selection they will be placed in a certain group
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -41,6 +42,9 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
+# this creates a profile for every new user
+# this allows them to have their own profile page which includes an image of them
+# and ability to change elements of their account such as email, username etc.
 @login_required
 def profile(request):
     if request.method == 'POST':

@@ -2,7 +2,7 @@
 {% block content%}
 {% load auth_extras %}
     <h1>Track Your Progress : {{request.user.username}}</h1>
-
+    <p> On this page you can view your test results. Click the test name button under the 'Test Name' column within the table to take test again.
 
 
 <div class = "row">
@@ -25,10 +25,15 @@
     </thead>
     <tbody>
            {% for user in users %}
+
+
        <tr>
 
 
-            <th>  {{user.test}}</th>
+           <th><button class = "btn btn-primary" onclick="window.location.href='{% url 'test-detail' user.test.id %}'"> {{user.test}} </button></th>
+
+
+
 
 
             <th>  {{user.score}} </th>

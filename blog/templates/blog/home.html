@@ -64,7 +64,7 @@ To unlock games for your students, your wordlist must contain a minimum of 5 ter
 
             <th >Title</th>
             <th>Author</th>
-             <th>date posted</th>
+             <th>Date posted</th>
              <th>View list</th>
              <th>View WorkSheet</th>
 
@@ -87,7 +87,20 @@ To unlock games for your students, your wordlist must contain a minimum of 5 ter
 
             <th> <button class = "btn btn-primary" onclick="window.location.href='{% url 'list-detail' list.id %}'">View Wordlist </button></th>
 
-            <th><a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-print_vocab_sent' list.id %}">View Worksheet </a></th>
+            <th>
+
+                <div class="dropdown">
+  <button class="btn btn-danger btn-sm mt-1 mb-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Printable Worksheets
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_sent' list.id %}">Sentence</a>
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_def' list.id %}">Definiton</a>
+
+  </div>
+</div>
+
+            </th>
 
 
 
@@ -122,7 +135,7 @@ To unlock games for your students, your wordlist must contain a minimum of 5 ter
             <th >Action</th>
             <th>Author</th>
              <th>Wordlist</th>
-             <th>date posted</th>
+             <th>Date posted</th>
 
 
 
@@ -139,7 +152,9 @@ To unlock games for your students, your wordlist must contain a minimum of 5 ter
 
             <th>  {{test.author}} </th>
 
-            <th>{{test.wordlist}} </th>
+            <th> <button class = "btn btn-primary" onclick="window.location.href='{% url 'list-detail' test.wordlist.id %}'">View Wordlist </button></th>
+
+
 
             <th>  {{test.date_posted|date:"SHORT_DATE_FORMAT" }} </th>
 
@@ -167,7 +182,7 @@ To unlock games for your students, your wordlist must contain a minimum of 5 ter
 
     <div class="jumbotron">
   <h1 class="display-4">Welcome</h1>
-  <p class="lead">This is your home page. In the table below you will see all the classes you are assigned to. To find your teacher, click the teacher lookup page in the navigation bar. To view your progress, Go to the Student Sidebar and click "Track your progress".
+  <p class="lead">This is your home page. In the table below you will see all the classes you are assigned to. To find your teacher, click the teacher lookup page in the navigation bar. To view your progress, go to the Student Actions sidebar and click "Track your progress".
   </p>
   <hr class="my-4">
 
