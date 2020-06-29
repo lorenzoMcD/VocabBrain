@@ -540,7 +540,7 @@ def sent_match_5(request, pk):
     for i in words:
         sentlist.append(i.sentence)
         deflist.append(i.definition)
-        termlist.append(i.term)
+        termlist.append(i.term.lower())
     # if user has more than 5 terms create new list that adds random 5 terms to list
     new_list_terms = []
     new_list_sents = []
@@ -551,7 +551,7 @@ def sent_match_5(request, pk):
         new_list_terms += random.sample(termlist, 5)
         for i in new_list_terms:
             for word in words:
-                if i == word.term:
+                if i == word.term.lower():
                     new_list_sents.append(word.sentence)
         terms = (new_list_terms)
         mysent = (new_list_sents)
@@ -584,7 +584,7 @@ def def_match_5(request, pk):
     termlist = []
     for i in words:
         deflist.append(i.definition)
-        termlist.append(i.term)
+        termlist.append(i.term.lower())
     # if user has more than 5 terms create new list that adds random 5 terms to list
     new_list_terms = []
     new_list_defs = []
@@ -595,7 +595,7 @@ def def_match_5(request, pk):
         new_list_terms += random.sample(termlist, 5)
         for i in new_list_terms:
             for word in words:
-                if i == word.term:
+                if i == word.term.lower():
                     new_list_defs.append(word.definition)
         terms = (new_list_terms)
         mydefs = (new_list_defs)
@@ -708,7 +708,7 @@ def vocab_test(request, pk):
     termlist = []
     for i in words:
         deflist.append(i.definition)
-        termlist.append(i.term)
+        termlist.append(i.term.lower())
 
     new_list_terms = []
     new_list_defs = []
@@ -717,7 +717,7 @@ def vocab_test(request, pk):
         new_list_terms += random.sample(termlist, 5)
         for i in new_list_terms:
             for word in words:
-                if i == word.term:
+                if i == word.term.lower():
                     new_list_defs.append(word.definition)
         terms = (new_list_terms)
         mydefs = (new_list_defs)
@@ -879,7 +879,7 @@ def def_match_10(request, pk):
     termlist = []
     for i in words:
         deflist.append(i.definition)
-        termlist.append(i.term)
+        termlist.append(i.term.lower())
     # if user has more than 10 terms create new list that adds random 10 terms to list
     new_list_terms = []
     new_list_defs = []
@@ -890,7 +890,7 @@ def def_match_10(request, pk):
         new_list_terms += random.sample(termlist, 10)
         for i in new_list_terms:
             for word in words:
-                if i == word.term:
+                if i == word.term.lower():
                     new_list_defs.append(word.definition)
         terms = (new_list_terms)
         mydefs = (new_list_defs)
@@ -926,7 +926,7 @@ def sent_match_10(request, pk):
     for i in words:
         sentlist.append(i.sentence)
         deflist.append(i.definition)
-        termlist.append(i.term)
+        termlist.append(i.term.lower())
     # if user has more than 10 terms create new list that adds random 10 terms to list
     new_list_terms = []
     new_list_sents = []
@@ -937,7 +937,7 @@ def sent_match_10(request, pk):
         new_list_terms += random.sample(termlist, 10)
         for i in new_list_terms:
             for word in words:
-                if i == word.term:
+                if i == word.term.lower():
                     new_list_sents.append(word.sentence)
         terms = (new_list_terms)
         mysent = (new_list_sents)
@@ -948,7 +948,7 @@ def sent_match_10(request, pk):
     # but keep their order
     for i in terms:
         mysent = [sub.replace(str(i), '____') for sub in mysent]
-    
+
     from sklearn.utils import shuffle
     terms, mysent = shuffle(terms, mysent)
     context = {
