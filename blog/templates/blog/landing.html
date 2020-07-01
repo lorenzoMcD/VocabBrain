@@ -67,10 +67,13 @@
 .stripes {
     background-image: url( "{% static "img/girl_studying.jpg" %}");
     background-attachment: fixed;
-    background-position: center center;
+    background-position: center;
+   -webkit-background-size:cover;
+   -moz-background-size: cover;
     background-repeat: no-repeat;
-    background-size: 100% 100vh;
-    min-height: 100vh;
+    background-size: cover;
+    min-height: 100vh;   
+
 }
 
 .push-down {
@@ -93,18 +96,33 @@
     }
 }
 
+
+@media only screen and (max-width: 767px) {
+  .stripes {
+    background-image: url( "{% static "img/girl_studying.jpg" %}");
+  }
+}
+
+
+
 .card-wrapper {
   margin: 5% 0;
 }
 
 /* You can adjust the image size by increasing/decreasing the width, height */
 .custom-circle-image {
-  width: 15vw; /* note i used vw not px for better responsive */
-  height: 15vw;
+  max-width: 650px; /* note i used vw not px for better responsive */
+  height: 350px;
+  min-width: 350px;
+
+
 }
 
 .custom-circle-image img {
   object-fit: cover;
+
+
+
 }
 
 .card-title {
@@ -116,6 +134,11 @@
   font-size: 22px;
   line-height: initial;
 }
+
+
+
+
+
 
 
 
@@ -264,7 +287,7 @@
       <div class="col-sm-4 card-wrapper" style="background-color: #FFC107;">
         <div class="card border-0" style="background-color: #D5D8DC;">
           <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
-            <img class="w-100 h-100" src="{% static "img/teacher.jpg" %}" alt="Card image cap">
+            <img class="w-100 h-100 responsive" src="{% static "img/teacher.jpg" %}" alt="Card image cap">
           </div>
           <div class="card-body text-center mt-4">
             <h3 class="text-uppercase card-title">Create</h3>
@@ -276,7 +299,7 @@
       <div class="col-sm-4 card-wrapper" style="background-color: #FFC107;">
         <div class="card border-0" style="background-color: #D5D8DC;">
           <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
-            <img class="w-100 h-100" src="{% static "img/kids.jpg" %}" alt="Card image cap">
+            <img class="w-100 h-100 responsive" src="{% static "img/kids.jpg" %}" alt="Card image cap">
           </div>
           <div class="card-body text-center mt-4">
             <h3 class="text-uppercase card-title">Learn</h3>
