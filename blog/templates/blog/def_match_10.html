@@ -15,18 +15,18 @@
 
 
 <header>
-  <h4> <span id = "title"> Match-it: Definitions </span> </h4>
-  
+  <h4> <span id = "title"> Vocabulary List: Definitions </span> </h4>
+
   <h3> <span id = "instruct1"> Find the Term that Matches the Definition </span> </h3>
   <h3> <span id = "instruct2"> Then Drag the Word into the correct Box </span> </h3>
   <h4> <span id = "instruct3"> Click the Box and Delete the Word to Change Your Answer </span> </h4>
-  
+
 
 <!-- <li id = "words" hidden> </li> -->
-         
-        <div class = "sidenav"> 
+
+        <div class = "sidenav">
   <button id= "back" onclick="window.location.href='{% url 'blog-home' %}'"><i class='fas fa-angle-left'></i></button>
-  <br> <br> <br> <br>          
+  <br> <br> <br> <br>
   <p draggable="true" id="1">{{rand_terms|index:0}}</p>
   <p draggable="true" id="2">{{rand_terms|index:1}}</p>
   {% if terms|length >= 3 %}
@@ -38,9 +38,9 @@
     {% if terms|length >= 10 %}
   <p draggable="true" id="6">{{rand_terms|index:5}}</p>
   <p draggable="true" id="7">{{rand_terms|index:6}}</p>
- 
+
   <p draggable="true" id="8">{{rand_terms|index:7}}</p>
- 
+
   <p draggable="true" id="9">{{rand_terms|index:8}}</p>
 
   <p draggable="true" id="10">{{rand_terms|index:9}}</p>
@@ -50,7 +50,7 @@
     {% endif %}
     {% endif %}
 
-  </div> 
+  </div>
 
 
 
@@ -100,7 +100,7 @@
 
 <input id="sent4"  type="hidden"  value="{{ terms|index:3 }}"> </input>
 <li id = "data4"> {{mydefs|index:3}}</li>
-<br><br> 
+<br><br>
  <input type=text id="answer4" class= "answer"placeholder ="Drag Words Here! ">
 
 <br><br>
@@ -113,19 +113,19 @@
  <input id="sent6"  type="hidden"  value="{{ terms|index:5 }}"> </input>
 <li id = "data6"> {{mydefs|index:5}}</li>
 <br> <br>
- 
+
  <input type=text id="answer6" class= "answer"placeholder ="Drag Words Here! ">
  <br><br>
  <input id="sent7"  type="hidden"  value="{{ terms|index:6 }}"> </input>
 <li id = "data7"> {{mydefs|index:6}}</li>
 <br> <br>
- 
+
  <input type=text id="answer7" class= "answer"placeholder ="Drag Words Here! ">
  <br><br>
  <input id="sent8"  type="hidden"  value="{{ terms|index:7 }}"> </input>
 <li id = "data8"> {{mydefs|index:7}}</li>
 <br> <br>
- 
+
  <input type=text id="answer8" class= "answer"placeholder ="Drag Words Here! ">
  <br><br>
  <input id="sent9"  type="hidden"  value="{{ terms|index:8 }}"> </input>
@@ -138,7 +138,7 @@
 <li id = "data10"> {{mydefs|index:9}}</li>
 <br> <br>
  <input type=text id="answer10" class= "answer"placeholder ="Drag Words Here! ">
- <br> <br> 
+ <br> <br>
  <button id="clickme" onclick = "finish()">Submit</button>
  <button id= "home" onclick="window.location.href='{% url 'blog-home' %}'" hidden>Finished</button>
  <button id = "reset" onclick ="window.location.reload()" hidden>Restart</button>

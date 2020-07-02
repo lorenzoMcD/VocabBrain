@@ -66,14 +66,15 @@ body {
     font-size:30px;
     color:#303C6C;
     font-weight:bold;
-    text-decoration:underline;
+    
 }    
 
 
 #second {
     color: #E703D2;
     font-size:24px;
-}
+    text-decoration:underline;
+} 
 
 #third{
     color: #EA0808;
