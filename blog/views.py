@@ -1055,6 +1055,49 @@ def jumbled_game_10(request, pk):
 
     return render(request, 'blog/jumbled_game_10.html', context)
 
+#hangman game where user is allowed to, given a number of tries, guess each letter, 
+#or alternatively enter into a textbox the full word
+def hangman_game(request,pk,num_of_tries):
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+     'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 
+     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    curr_tries = 0
+    list_of_guesses = []
+    word_found = False
+
+    wordlist = WordList.objects.get(pk=pk)
+    a = wordlist.id
+    words = Word.objects.filter(wordlist__id=a)
+
+    termlist = []
+    for i in words:
+        termlist.append(i)
+    
+    #get random word in wordlist
+    random_word = random.sample(termlist)
+
+    #when the user has "lives" left and the word is not found
+    if curr_tries <= num_of_tries and word_found == False:
+        if request.method == 'GET':
+            for k,v in request.GET.items():
+                list_of_guesses.append(v)
+                #take out print statement later
+                print(v)
+        else if request.method == 'POST':
+            if random_word.term in request.POST:
+                word_found = True
+        if all(letter in random_word.term for letter in list_of_guesses):
+            word_found = True
+        curr_tries += 1
+
+    context = {
+        'alphabet': alphabet, 'term': random_word, 'tries_left': num_of_tries - curr_tries
+
+    }
+    
+    return render(request, 'blog/hangman_game.html', context)
+
+
 # suggestion page , user would type content into a suggestion form
 # which will then save the content in the database. # as of now only way
 # to view this content is within the admin on site.

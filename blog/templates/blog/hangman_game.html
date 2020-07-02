@@ -1,0 +1,98 @@
+{% load static %}
+{% load auth_extras %}
+
+<html>
+<!--  index.html -->
+
+
+
+<!--  Required meta tags  -->
+
+<!-- Css tags -->
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/Game_10.css'%}" >
+
+
+<header>
+
+  <h4> <span id = "title"> Vocabulary List: Hangman </span> </h4>
+  <h3> <span id = "instruct1"> Click on each letter you're guessing, </span> </h3>
+  <h3> <span id = "instruct2"> or, if you think you know the word, type it into the box  </span> </h3>
+
+
+<!-- <li id = "words" hidden> </li> -->
+
+<div class="wrapper">
+    {% for a in alphabet %}
+      <form action="#" method="GET">
+        {% for a in alphabet %}
+            <button id="buttons" name="{{ a }}">
+                {{ a }}
+            </button>
+        </form>
+    {% endfor %}
+</div> 
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form_word_guesser }}
+        <button class="btn btn-outline-info" type="submit" name="word_guesser" >Guess Full Word</button>
+    </form>
+    <div id="hold">
+    </div>
+    <p> Your Remaining Lives: </p>
+    {% for i in tries_left %}
+    <p id="mylives">*</p>
+    {% endfor %}
+    <div class="container">
+      <button id="reset">Play again</button>
+    </div>
+
+
+
+
+</header>
+
+<br> <br> <br> <br>
+
+
+<body>
+
+  <div id  ="customAlert">
+  <div id = "box">
+  <div class = "boxHead">
+    <p> Score</p>
+
+  </div>
+    <div id = "content">
+      <p> // </p>
+    </div>
+    <br>
+    <button id = "closeAlert" onclick = "hideCustom()"> Ok </button>
+  </div>
+</div>
+
+
+<div id="element2">
+ <button id="clickme" onclick = "finish()">Submit</button>
+ <button id= "home" onclick="window.location.href='{% url 'blog-home' %}'" hidden>Finished</button>
+ <button id = "reset" onclick ="window.location.reload()" hidden>Restart</button>
+</div>
+
+
+
+</body>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<script>
+
+document.addEventListener('dragstart', function (event) {
+      event.dataTransfer.setData('text', event.target.innerHTML);
+    });
+
+</script>
+
+
+
+</html>
