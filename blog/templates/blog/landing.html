@@ -99,7 +99,15 @@
 
 @media only screen and (max-width: 767px) {
   .stripes {
-    background-image: url( "{% static "img/girl_studying.jpg" %}");
+    background-image: url( "{% static "img/rsz_girl_studying.jpg" %}");
+    background-attachment: fixed;
+    background-position: center;
+   -webkit-background-size:cover;
+   -moz-background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+
   }
 }
 
@@ -113,15 +121,14 @@
 .custom-circle-image {
   max-width: 650px; /* note i used vw not px for better responsive */
   height: 350px;
-  min-width: 350px;
+  max-width: 350px;
 
 
 }
 
 .custom-circle-image img {
-  object-fit: cover;
-
-
+  height: auto;  
+  width: auto;
 
 }
 
@@ -265,7 +272,7 @@
     <div class="container-fluid special stripes">
       <div class="container push-down mx-auto">
         <h1 class="jumbotron-heading text-white text-center"> <br>Vocab Brain </h1>
-        <p class="lead text-white text-center mx-auto" style="width: 60%;" class=" ">Learning Vocabulary in an enjoyable way<br>
+        <p class="lead text-white text-center mx-auto" style="width: 60%;" class=" ">Learning vocabulary in an enjoyable way<br>
           <div class="row justify-content-center">
             {% if not user.is_authenticated %}
             <a href="{% url 'register' %}" class="btn btn-outline-success m-1">Get Started</a>
@@ -315,7 +322,7 @@
           </div>
           <div class="card-body text-center mt-4">
             <h3 class="text-uppercase card-title">Test</h3>
-            <p class="card-text">Teachers can administer tests and track the progress of their student's.</p>
+            <p class="card-text">Teachers can administer tests and track the progress of their students.</p>
           </div>
         </div>
       </div>
