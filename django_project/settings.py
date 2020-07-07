@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,7 +26,7 @@ SECRET_KEY = '&ts^7c=i7$f$4^*c+-%_kn_u=+)p6rmqm*znpgu9%vj3_&kb(1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.vocabbrain.com','148.72.22.93']
+ALLOWED_HOSTS = ['www.vocabbrain.com', '148.72.22.93']
 
 
 # Application definition
@@ -132,8 +131,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
 
 
 # WHERE UPLOADED FILES WILL BE SAVED
