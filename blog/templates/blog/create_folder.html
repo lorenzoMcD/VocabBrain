@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+{% load static %}
+
+<img src="{% static "img/alert.gif" %}" alt="" width="80" height="80" viewBox="0 0 612 612">
+<h5>On this page you can create a folder. Folders allow for better organization of your wordlists and tests.</h5>
+
+    <div class="content-section">
+       <form method="POST">
+            {% csrf_token %}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4"> Create Folder
+            </legend>
+            {{ form|crispy|safe}}
+
+
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type= "submit">Create</button>
+        </div>
+        </form>
+
+    </div>
+{% endblock content %}

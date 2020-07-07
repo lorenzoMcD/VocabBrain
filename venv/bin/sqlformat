@@ -1,4 +1,4 @@
-#!/home/vocabbrain/django_project/venv/bin/python3
+#!/home/vocabbrain/django_project/venv/bin/python3.6
 
 # -*- coding: utf-8 -*-
 import re

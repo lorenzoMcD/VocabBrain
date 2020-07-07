@@ -1,4 +1,7 @@
 from . import views
+from .views import FolderDeleteView
+from .views import FolderDetailView
+from .views import FolderUpdateView
 from .views import PostCreateView
 from .views import PostDeleteView
 from .views import PostDetailView
@@ -16,6 +19,7 @@ from .views import UserWordListView
 from .views import WordListDeleteView
 from .views import WordListDetailView
 from .views import WordListUpdateView
+from .views import UserFolderView
 from .views import Announcements
 from django.urls import path
 
@@ -29,7 +33,17 @@ urlpatterns = [
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+
+    path('create_folder/new/', views.create_folder, name='folder-create'),
+    path('folder/<int:pk>/', FolderDetailView.as_view(), name='folder-detail'),
+    path('folder/<int:pk>/update/', FolderUpdateView.as_view(), name='folder-update'),
+    path('folder/<int:pk>/delete/', FolderDeleteView.as_view(), name='folder-delete'),
+    path('user/folder/<str:username>/', UserFolderView.as_view(), name='user-folders'),
+
+
     path('about/', views.about, name='blog-about'),
+
+    path('gameDemo/',views.gameDemo,name='blog-gameDemo'),
     path('teacher_lookup/', views.teacher_lookup, name='blog-teacher_lookup'),
 
     path('create_word_list/<int:pk>/', views.create_word_list, name='blog-create_word_list'),
@@ -57,7 +71,6 @@ urlpatterns = [
     path('temp/', views.temp, name='blog-temp'),
 
     path('temp2/', views.temp2, name='blog-temp2'),
-
 
     path('word_list_defs/<int:pk>/', views.word_list_defs, name='word_list_defs'),
 
