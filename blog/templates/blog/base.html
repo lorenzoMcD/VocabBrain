@@ -65,6 +65,7 @@
 
 
 
+
           {% endif %}
           {% endfor %}
           <a class="nav-item nav-link" href="{% url 'profile' %}">
@@ -131,6 +132,9 @@
                       {% if group.name == 'Teacher' %}
 
                       <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'list-create' %}" >Create WordList</a></li>
+
+
+                       <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'folder-create' %}" >Create Folder</a></li>
 
 
                       <li class="list-group-item list-group-item-light" style="background-color: #FEF5E7;color: blue;"><a href="{% url 'test-create' %}" >Create Test</a></li>

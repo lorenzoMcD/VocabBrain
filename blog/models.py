@@ -30,12 +30,26 @@ class Suggestion(models.Model):
         return self.name
 
 
+class Folder(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('folder-detail', kwargs={'pk': self.pk})
+
+
 class WordList(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     worksheet_text = RichTextUploadingField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
+    folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -98,6 +112,7 @@ class Test(models.Model):
     wordlist = models.ForeignKey(WordList, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
     description = models.TextField()
+    folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.title
