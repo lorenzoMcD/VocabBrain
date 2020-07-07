@@ -23,10 +23,12 @@ from.models import WordList
 from.models import Word
 from.models import Test
 from.models import Testtaker
+from.models import Folder
 from.form import WordListForm
 from.form import TestCreateForm
 from.form import TestSubmitForm
 from.form import SuggestionForm
+from.form import FolderCreateForm
 import random
 
 
@@ -36,13 +38,15 @@ import random
 def home(request):
     users = request.user.groups.all()
 
+    folder = Folder.objects.filter(author=request.user)
+
     posts = Post.objects.order_by('-date_posted')[0:1]
 
     wordlist = WordList.objects.filter(author=request.user)
     test = Test.objects.filter(author=request.user)
     context = {
 
-        'lists': wordlist, 'tests': test, 'posts': posts, 'users': users
+        'lists': wordlist, 'tests': test, 'posts': posts, 'users': users, 'folders': folder
     }
 
     return render(request, 'blog/home.html', context)
@@ -107,6 +111,7 @@ class UserPostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
+
 # class for viewing posts in detail
 class PostDetailView(DetailView):
 
@@ -145,7 +150,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class WordListUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     model = WordList
-    fields = ['title', 'description', 'worksheet_text']
+    fields = ['title', 'description', 'worksheet_text', 'folder']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -158,11 +163,65 @@ class WordListUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+
+class FolderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
+    model = Folder
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+
+        folder = self.get_object()
+        if self.request.user == folder.author:
+            return True
+        return False
+
+
+class FolderDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+
+    model = Folder
+    success_url = '/home/'
+
+    def test_func(self):
+        folder = self.get_object()
+        if self.request.user == folder.author:
+            return True
+        return False
+
+
+# class based view for folder detail page
+class FolderDetailView(DetailView):
+
+    model = Folder
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['lists'] = WordList.objects.filter(folder__id=self.kwargs['pk'])
+        return context
+
+# class based view for user wordlists
+class UserFolderView(ListView):
+
+    model = Folder
+    template_name = 'blog/user_folders.html'
+    context_object_name = 'folders'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Folder.objects.filter(author=user)
+
+
 # class based view for wordlist delete view
 class WordListDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     model = WordList
-    success_url = '/'
+    success_url = '/home/'
 
     def test_func(self):
         wordlist = self.get_object()
@@ -192,6 +251,16 @@ class UserWordListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return WordList.objects.filter(author=user)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserWordListView, self).get_context_data(**kwargs)
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        context.update({
+            'folders': Folder.objects.filter(author=user),
+            'tests': Test.objects.filter(author=user)
+        })
+        return context
+
 
 # class based view for user test list view
 class UserTestListView(ListView):
@@ -224,7 +293,7 @@ class TesttakerDetailView(DetailView):
 class TesttakerDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Testtaker
-    success_url = '/'
+    success_url = '/home/'
 
     def test_func(self):
         testtaker = self.get_object()
@@ -253,7 +322,7 @@ class TestDetailView(DetailView):
 class TestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     model = Test
-    success_url = '/'
+    success_url = '/home/'
 
     def test_func(self):
         test = self.get_object()
@@ -283,7 +352,7 @@ class TestUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     model = Post
-    success_url = '/'
+    success_url = '/home/'
 
     def test_func(self):
         post = self.get_object()
@@ -327,7 +396,7 @@ class WikiSearch:
 
 
 # This page starts wordlist creation
-@login_required
+@ login_required
 def create_list(request):
     if request.method == 'POST':
         form = WordListForm(request.POST)
@@ -341,13 +410,32 @@ def create_list(request):
             return redirect('blog-create_word_list', pk=user.id)
     else:
         form = WordListForm()
+        form.fields['folder'].queryset = Folder.objects.filter(author=request.user)
     return render(request, 'blog/create_list.html', {'form': form})
+
+
+# creates a folder for users to store their wordlists
+@ login_required
+def create_folder(request):
+    if request.method == 'POST':
+        form = FolderCreateForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.author = request.user
+            user.save()
+            messages.success(request, f'Your folder has been created.')
+
+            return redirect('blog-home')
+    else:
+        form = FolderCreateForm()
+    return render(request, 'blog/create_folder.html', {'form': form})
+
 
 # this second part of word list creation
 # this page user can add terms to their word list
 
 
-@login_required
+@ login_required
 def create_word_list(request, pk):
     wordlist = WordList.objects.get(pk=pk)
     wordformset = inlineformset_factory(WordList, Word, fields=('term',), extra=10)
@@ -453,6 +541,7 @@ def temp2(request):
     }
 
     return render(request, 'blog/temp2.html', context)
+
 
 # page that lets users add defs to their terms
 
@@ -676,7 +765,7 @@ def print_vocab_def(request, pk):
 
 # create new test for students
 # allows teacher to import their wordlist to the test
-@login_required
+@ login_required
 def test_create(request):
     if request.method == 'POST':
         form = TestCreateForm(request.POST)
@@ -693,6 +782,7 @@ def test_create(request):
         # this gives teacher drop down list of wordlists that they have created
 
         form.fields['wordlist'].queryset = WordList.objects.filter(author=request.user)
+        form.fields['folder'].queryset = Folder.objects.filter(author=request.user)
 
     return render(request, 'blog/test_create.html', {'form': form})
 
