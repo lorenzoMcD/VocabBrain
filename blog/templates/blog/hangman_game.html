@@ -19,80 +19,171 @@
   <h4> <span id = "title"> Vocabulary List: Hangman </span> </h4>
   <h3> <span id = "instruct1"> Click on each letter you're guessing, </span> </h3>
   <h3> <span id = "instruct2"> or, if you think you know the word, type it into the box  </span> </h3>
+  
+<body>
+  <canvas id="hangman_canvas" width="400" height="400" style="border:1px solid #c3c3c3;"></canvas>
 
+  <p>Defintion:</p>
+  <p id="target_def">{{ definition }}</p>
+  <p id="current_word" style="letter-spacing:5px"></p>
 
 <!-- <li id = "words" hidden> </li> -->
 
 <div class="wrapper">
     {% for a in alphabet %}
-      <form action="#" method="GET">
-        {% for a in alphabet %}
-            <button id="buttons" name="{{ a }}">
+            <button type="button" id="reset" name="{{ a }}" onclick="clickAlphabetButton(this.name)">
                 {{ a }}
             </button>
-        </form>
-    {% endfor %}
+      {% endfor %}
 </div> 
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form_word_guesser }}
-        <button class="btn btn-outline-info" type="submit" name="word_guesser" >Guess Full Word</button>
-    </form>
+      <input type="text" id="full_word">
+    <button type="button" id="instruct2" onclick="clickFullButton()" style="font-size:medium; text-decoration:solid">
+      Guess Word
+  </button>
     <div id="hold">
     </div>
-    <p> Your Remaining Lives: </p>
-    {% for i in tries_left %}
-    <p id="mylives">*</p>
-    {% endfor %}
-    <div class="container">
-      <button id="reset">Play again</button>
+    <div>
+    <p> Your Remaining Lives: <div id="remaining_lives">IIIII</div></p>
     </div>
-
-
+    <div class="container">
+      <button id="reset" onclick ="window.location.reload()">Play again</button>
+    </div>
+<p id="endgame_message"></p>
+<p id="target_word" style="visibility:hidden">{{ term }}</p>
+</body>
 
 
 </header>
 
 <br> <br> <br> <br>
 
-
-<body>
-
-  <div id  ="customAlert">
-  <div id = "box">
-  <div class = "boxHead">
-    <p> Score</p>
-
-  </div>
-    <div id = "content">
-      <p> // </p>
-    </div>
-    <br>
-    <button id = "closeAlert" onclick = "hideCustom()"> Ok </button>
-  </div>
-</div>
-
-
-<div id="element2">
- <button id="clickme" onclick = "finish()">Submit</button>
- <button id= "home" onclick="window.location.href='{% url 'blog-home' %}'" hidden>Finished</button>
- <button id = "reset" onclick ="window.location.reload()" hidden>Restart</button>
-</div>
-
-
-
-</body>
-
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 <script>
+  targetWord = document.getElementById("target_word").innerHTML.toLowerCase();
+  guesses = "";
+  wordSoFar = "_".repeat(targetWord.length);
+  change_word = document.getElementById("current_word");
+  current_word.innerHTML = wordSoFar;
+  game_finished_flag = false;
+  
+  //Setting up Canvas
+  canvas = document.getElementById("hangman_canvas");
+  canvasContext = canvas.getContext("2d");
+  canvasContext.lineWidth = 1.5;
 
-document.addEventListener('dragstart', function (event) {
-      event.dataTransfer.setData('text', event.target.innerHTML);
-    });
+  //hangman image
+  canvasContext.beginPath();
+  canvasContext.arc(200, 90, 30, 0, 2 * Math.PI);
+  canvasContext.stroke(); 
+  canvasContext.moveTo(200, 60);
+  canvasContext.lineTo(200, 10);
+  canvasContext.moveTo(200, 10);
+  canvasContext.lineTo(50, 10);
+  canvasContext.moveTo(50, 10);
+  canvasContext.lineTo(50, 350);
+  canvasContext.stroke();
+  var save1 = canvasContext.getImageData(0,0,canvas.width,canvas.height);
+  //body
+  canvasContext.moveTo(200, 120);
+  canvasContext.lineTo(200, 240);
+  canvasContext.stroke();
+  var save2 = canvasContext.getImageData(0,0,canvas.width,canvas.height);
+  //left arm
+  canvasContext.moveTo(200, 140);
+  canvasContext.lineTo(160, 180);
+  canvasContext.stroke();
+  var save3 = canvasContext.getImageData(0,0,canvas.width,canvas.height);
+  //right arm
+  canvasContext.moveTo(200, 140);
+  canvasContext.lineTo(240, 180);
+  canvasContext.stroke();
+  var save4 = canvasContext.getImageData(0,0,canvas.width,canvas.height);
+  //left leg
+  canvasContext.moveTo(200, 240);
+  canvasContext.lineTo(170, 300);
+  canvasContext.stroke();
+  var save5 = canvasContext.getImageData(0,0,canvas.width,canvas.height);
+  //right leg
+  canvasContext.moveTo(200, 240);
+  canvasContext.lineTo(230, 300);
+  canvasContext.stroke();
 
-</script>
+  
 
+  function clickAlphabetButton(the_name)
+  {
+    the_guess = the_name.toLowerCase();
+    remaining_lives = document.getElementById("remaining_lives");
+    if (remaining_lives.innerHTML.length > 0  && !guesses.includes(the_guess) && game_finished_flag == false)
+    {
+      guesses.concat(the_guess);
+      if (targetWord.includes(the_guess))
+      {
+        for (var i = 0; i < targetWord.length; i++)
+        {
+          if (targetWord.charAt(i) === the_guess && wordSoFar.charAt(i) === "_")
+          {
+            wordSoFar = wordSoFar.substring(0, i) + the_guess + wordSoFar.substring(i + 1);
+          }
+        }
+      }
+      else
+      {
+        if (remaining_lives.innerHTML.length == 5)
+        {
+          canvasContext.putImageData(save5,0,0);
+        }
+        else if (remaining_lives.innerHTML.length == 4)
+        {
+          canvasContext.putImageData(save4,0,0);
+        }
+        else if (remaining_lives.innerHTML.length == 3)
+        {
+          canvasContext.putImageData(save3,0,0);
+        }
+        else if (remaining_lives.innerHTML.length == 2)
+        {
+          canvasContext.putImageData(save2,0,0);
+        }
+        else if (remaining_lives.innerHTML.length == 1)
+        {
+          canvasContext.putImageData(save1,0,0);
+        }
+        remaining_lives.innerHTML = remaining_lives.innerHTML.substring(0, remaining_lives.innerHTML.length - 1);
+      }
+      change_word = document.getElementById("current_word");
+      current_word.innerHTML = wordSoFar;
+      checkIfFinished(remaining_lives.innerHTML.length);
+    }
+  }
+  function clickFullButton()
+  {
+    full_word = document.getElementById("full_word").value;
+    remaining_lives = document.getElementById("remaining_lives");
+    if (full_word == targetWord)
+    {
+      wordSoFar = full_word;
+    }
+    else
+    {
+      remaining_lives.innerHTML = remaining_lives.innerHTML.substring(0, remaining_lives.innerHTML.length - 1);
+    }
+    checkIfFinished(remaining_lives.innerHTML.length);
+  }
 
-
-</html>
+  function checkIfFinished(num_of_lives)
+  {
+    end_message = document.getElementById("endgame_message");
+    if (wordSoFar == targetWord)
+    {
+      end_message.innerHTML = "You found the correct word! You win!"
+      game_finished_flag = true;
+    }
+    else if (num_of_lives == 0)
+    {
+      end_message.innerHTML = "You have no more lives left! You lose! The word was " + targetWord + ".";
+      game_finished_flag = true;
+    }
+  }
+  </script>

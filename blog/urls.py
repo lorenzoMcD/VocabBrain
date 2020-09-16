@@ -107,4 +107,6 @@ urlpatterns = [
 
 
     path('jumbled_game_10/<int:pk>/', views.jumbled_game_10, name='blog-jumbled_game_10'),
+
+    path('hangman_game/<int:pk>/', views.hangman_game, name='blog-hangman_game')
 ]

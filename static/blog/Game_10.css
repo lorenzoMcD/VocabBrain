@@ -3,7 +3,11 @@ body{
    background-color:#FFFFFF;
 }
 
-
+button{
+  display:inline-block;
+  margin:6px;
+  font-weight:bold;
+}
 
 header {
   text-align:center;
@@ -174,6 +178,7 @@ body {
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,233,0.3533788515406162) 100%);
   cursor:pointer;
 }
+
 
 
 

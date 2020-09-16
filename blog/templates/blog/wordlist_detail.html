@@ -47,10 +47,14 @@
 <div class ="dropdown-menu" aria-labelledby="dropdownMenuLink">
     {% if words|length >= 10 %}
     <a class = "dropdown-item" href="{% url 'blog-sent_match_10' object.id %}">10 Term Sentence matching game  </a>
+    
     <a class = "dropdown-item" href="{% url 'blog-def_match_10' object.id %}">10 Term Definition matching game  </a>
+    
     <a class = "dropdown-item" href="{% url 'blog-flash_card_10' object.id %}">10 Term Flash-cards </a>
+    
     <a class = "dropdown-item" href="{% url 'blog-jumbled_game_10' object.id %}">10 Term Jumbled Words   </a>
-
+    
+    <a class = "dropdown-item" href="{% url 'blog-hangman_game' object.id %}">Hangman Game</a>
 
      {% endif %}
     {% if words|length >= 5 %}
@@ -62,6 +66,7 @@
 
     <a class = "dropdown-item" href="{% url 'blog-jumbled_words' object.id %}"> 5 Term Jumbled Words   </a>
 
+    <a class = "dropdown-item" href="{% url 'blog-hangman_game' object.id %}">Hangman Game</a>
     {% endif %}
     </div>
   </div>

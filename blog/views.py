@@ -1057,13 +1057,13 @@ def jumbled_game_10(request, pk):
 
 #hangman game where user is allowed to, given a number of tries, guess each letter, 
 #or alternatively enter into a textbox the full word
-def hangman_game(request,pk,num_of_tries):
+def hangman_game(request,pk):
     alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
      'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 
      'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    curr_tries = 0
-    list_of_guesses = []
-    word_found = False
+    #curr_tries = 0
+    #list_of_guesses = []
+    #word_found = False
 
     wordlist = WordList.objects.get(pk=pk)
     a = wordlist.id
@@ -1074,9 +1074,11 @@ def hangman_game(request,pk,num_of_tries):
         termlist.append(i)
     
     #get random word in wordlist
-    random_word = random.sample(termlist)
+    random_word = random.choice(termlist).term
 
-    #when the user has "lives" left and the word is not found
+    word_def = Word.get_defs(random_word)[1]
+
+    '''#when the user has "lives" left and the word is not found
     if curr_tries <= num_of_tries and word_found == False:
         if request.method == 'GET':
             for k,v in request.GET.items():
@@ -1089,11 +1091,9 @@ def hangman_game(request,pk,num_of_tries):
         if all(letter in random_word.term for letter in list_of_guesses):
             word_found = True
         curr_tries += 1
-
+    '''
     context = {
-        'alphabet': alphabet, 'term': random_word, 'tries_left': num_of_tries - curr_tries
-
-    }
+        'alphabet': alphabet, 'term': random_word, 'definition': word_def}
     
     return render(request, 'blog/hangman_game.html', context)
 
