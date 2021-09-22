@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+{% block content%}
+<h1 class = "mb-3"> Tests by {{ view.kwargs.username }}</h1>
+
+<p> click the button "View Test" under the "Action" column to view the test for that specific wordlist.</p>
+
+ <div class = "row">
+<div class = "col-md">
+<div class = "card card-body">
+
+    <table class = "table table-striped table-bordered mydatatable" width="100%">
+    <thead>
+        <tr style="background-color:#9CCC65 ">
+
+
+            <th >Action</th>
+            <th>Author</th>
+             <th>Wordlist</th>
+             <th>date posted</th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+           {% for user in users %}
+       <tr>
+
+
+            <th><button class = "btn btn-primary" onclick="window.location.href='{% url 'test-detail' user.id %}'">View Test </button></th>
+
+
+            <th>  {{user.author}} </th>
+
+            <th>{{user.wordlist}} </th>
+
+            <th>  {{user.date_posted|date:"SHORT_DATE_FORMAT" }} </th>
+
+
+        </tr>
+
+          {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
