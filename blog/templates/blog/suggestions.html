@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+<h2>Website Suggestion Form</h2>
+
+<p> Let us know how we can improve the website. Have any thoughts on what we should add to site? Tell us, and we'll try to include them. Can't find a page? Tell us, and we'll work on the navigation to make it easier to find.</p>
+
+
+    <div class="content-section">
+       <form method="POST">
+            {% csrf_token %}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4"> COMMENTS AND SUGGESTIONS:
+
+            </legend>
+
+            {{ form|crispy }}
+
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type= "submit">Submit</button>
+        </div>
+        </form>
+
+    </div>
+{% endblock content %}

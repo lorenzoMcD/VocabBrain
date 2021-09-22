@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+{% load static %}
+
+
+
+<img src="{% static "img/alert.gif" %}" alt="" width="80" height="80" viewBox="0 0 612 612">
+<h5>
+Directions: This page is where you can import your wordlist to create a vocabulary test. Before you can create a new test, you must already have created a wordlist. If you have not created any wordlists the dropdown list below will be empty. Your wordlist must have minimum 5 words to create a test. You can also add your test to a folder for better organization below. You will need to have already created a folder, for the dropdown box below to populate.
+</h5>
+
+
+    <div class="content-section">
+       <form method="POST">
+            {% csrf_token %}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4"> Create Test
+
+            </legend>
+
+            {{ form|crispy }}
+
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type= "submit">Create</button>
+        </div>
+        </form>
+
+    </div>
+{% endblock content %}

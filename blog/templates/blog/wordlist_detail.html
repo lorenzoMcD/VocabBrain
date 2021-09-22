@@ -1,0 +1,87 @@
+{% extends "blog/base.html" %}
+{% block content%}
+
+
+
+<article class="media content-section">
+  <img class = "rounded-circle article-img" src="{{object.author.profile.image.url }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'user-lists' object.author.username %}">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d , Y" }}</small>
+    {% if object.author == user %}
+    <p> Directions: to update the terms within this list click "update terms" to update terms,sentences and defintions for your list.</p>
+
+    <p> In order to have vocabulary games for students, your list must have at least 5 terms. </p>
+    <p>__________________________________________________________</p>
+    <div>
+    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-update' object.id %}">Update description/title</a>
+
+    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog-create_word_list' object.id %}">Update Terms </a>
+
+    <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'list-delete' object.id %}">Delete </a>
+
+</div>
+
+    {% endif %}
+
+<p>Click the author's username to access their other created content.</p>
+                 <div class="dropdown">
+  <button class="btn btn-danger btn-sm mt-1 mb-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Printable Worksheets
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_sent' object.id %}">Sentence</a>
+    <a class="dropdown-item" href="{% url 'blog-print_vocab_def' object.id %}">Definiton</a>
+
+  </div>
+</div>
+    {% if words|length < 5%}
+
+
+    {%else%}
+    <div class = "dropdown show">
+      <a class = "btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Games</a>
+
+
+<div class ="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% if words|length >= 10 %}
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_10' object.id %}">10 Term Sentence matching game  </a>
+    <a class = "dropdown-item" href="{% url 'blog-def_match_10' object.id %}">10 Term Definition matching game  </a>
+    <a class = "dropdown-item" href="{% url 'blog-flash_card_10' object.id %}">10 Term Flash-cards </a>
+    <a class = "dropdown-item" href="{% url 'blog-jumbled_game_10' object.id %}">10 Term Jumbled Words   </a>
+
+
+     {% endif %}
+    {% if words|length >= 5 %}
+    <a class = "dropdown-item" href="{% url 'blog-sent_match_5' object.id %}">5 Term Sentence matching game  </a>
+
+    <a class = "dropdown-item" href="{% url 'blog-def_match_5' object.id %}">5 Term Definition matching game  </a>
+
+    <a class = "dropdown-item" href="{% url 'blog-flash_card' object.id %}">5 Term Flash-Cards </a>
+
+    <a class = "dropdown-item" href="{% url 'blog-jumbled_words' object.id %}"> 5 Term Jumbled Words   </a>
+
+    {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+
+    <h2><a class="article-title"> {{ object.title }}</a></h2>
+    <p class="article-content">{{ object.description }}</p>
+
+
+<p>Terms:</p>
+{% for word in words%}
+
+<p>{{word}} </p>
+
+{% endfor %}
+</div>
+
+</article>
+
+{% endblock content %}
+
+
