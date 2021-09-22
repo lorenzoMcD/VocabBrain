@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% block content%}
+
+
+
+<article class="media content-section">
+  <img class = "rounded-circle article-img" src="{{object.author.profile.image.url }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'user-tests' object.author.username %}">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d , Y" }}</small>
+    {% if object.author == user %}
+    <p> Directions: to update test title and description, click the 'Update description/title button below.</p>
+    <p>__________________________________________________________</p>
+    <div>
+    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'test-update' object.id %}">Update description/title</a>
+
+    <a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'test-delete' object.id %}">Delete </a>
+{% endif %}
+
+<p> On this page you can take {{ object.author }}'s test. Your results can be viewed in 'Track Your Progress' link in the Student Actions sidebar.</p>
+{% if words|length >= 5 %}
+<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-vocab_test' object.id %}">Take Vocabulary Test  </a>
+ {% endif %}
+</div>
+
+
+
+
+
+
+    <h2><a class="article-title"> {{ object.title }}</a></h2>
+    <p class="article-content">{{ object.description }}</p>
+
+
+</div>
+
+</article>
+
+{% endblock content %}
+
+

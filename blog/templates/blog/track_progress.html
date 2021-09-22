@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+{% block content%}
+{% load auth_extras %}
+    <h1>Track Your Progress : {{request.user.username}}</h1>
+    <p> On this page you can view your test results. Click the test name button under the 'Test Name' column within the table to take test again.
+
+
+<div class = "row">
+<div class = "col-md">
+<div class = "card card-body">
+
+    <table class = "table table-striped table-bordered mydatatable" width="100%">
+    <thead>
+        <tr style="background-color:#9CCC65 ">
+
+
+            <th >Test Name</th>
+            <th>Score</th>
+             <th>Terms Missed</th>
+             <th>date taken</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+           {% for user in users %}
+
+
+       <tr>
+
+
+           <th><button class = "btn btn-primary" onclick="window.location.href='{% url 'test-detail' user.test.id %}'"> {{user.test}} </button></th>
+
+
+
+
+
+            <th>  {{user.score}} </th>
+
+            <th>  {{user.wrong_terms}} </th>
+
+            <th>  {{user.date_posted|date:"SHORT_DATE_FORMAT" }} </th>
+
+
+        </tr>
+
+          {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

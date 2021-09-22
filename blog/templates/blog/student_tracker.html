@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+{% block content%}
+    <h1>Student Tracker</h1>
+    <p> This table shows students that are in your group</p>
+    <p> Click "View Test Results" under the "Test Results" column to view test results for that student.</p>
+
+
+
+<div class = "row">
+<div class = "col-md">
+<div class = "card card-body">
+
+     <table class = "table table-striped table-bordered mydatatable" width="100%">
+    <thead>
+        <tr style="background-color:#77A6F8 ">
+
+
+            <th >Username</th>
+            <th>Email</th>
+             <th>Test Results</th>
+            <th></th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+           {% for user in users %}
+           {% if user.username != request.user.username %}
+       <tr>
+
+
+            <th>{{user.username}}</th>
+
+
+            <th>{{user.email}}</th>
+
+
+            <th> <button class = "btn btn-success" onclick="window.location.href='{% url 'user-testtaker' user.username %}'">View Test Results </button></th>
+
+            <th></th>
+
+
+        </tr>
+          {% endif %}
+          {% endfor %}
+
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
