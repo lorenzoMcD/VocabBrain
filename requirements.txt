@@ -18,5 +18,5 @@ scipy==1.4.1
 soupsieve==2.0
 sqlparse==0.3.1
 threadpoolctl==2.0.0
-urllib3==1.25.9
+urllib3==1.26.5
 wiktionaryparser==0.0.97
