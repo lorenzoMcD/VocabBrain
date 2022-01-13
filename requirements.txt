@@ -10,7 +10,7 @@ django-js-asset==1.2.2
 idna==2.9
 joblib==0.15.1
 numpy==1.18.4
-Pillow==7.1.2
+Pillow==9.0.0
 pytz==2019.3
 requests==2.23.0
 scikit-learn==0.23.1
